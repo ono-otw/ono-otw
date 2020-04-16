@@ -3,6 +3,10 @@
   "private": true,
   "dependencies": {
     "@babel/runtime": "^7.8.3",
+    "@types/jest": "^25.2.1",
+    "@types/node": "^13.11.1",
+    "@types/react": "^16.9.34",
+    "@types/react-dom": "^16.9.6",
     "classnames": "^2.2.6",
     "core-js": "^3.6.4",
     "graphql": "^14.5.8",
@@ -15,8 +19,9 @@
     "react-router-dom": "^5.1.2",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.88.2",
-    "simpl-schema": "^1.5.6",
+    "simpl-schema": "^1.5.7",
     "sweetalert": "^2.1.2",
+    "typescript": "^3.8.3",
     "uniforms": "^2.6.5",
     "uniforms-bridge-simple-schema-2": "^2.6.5",
     "uniforms-semantic": "^2.6.5"
