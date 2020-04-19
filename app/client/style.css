@@ -1,0 +1,18 @@
+
+/* Start of custom CSS for signin page*/
+
+.signin-bg {
+  background: url('images/login-background.png') no-repeat center center fixed;
+  background-size: cover;
+  padding-bottom: 50px;
+  padding-top: 50px;
+}
+
+.signin-form {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+
+

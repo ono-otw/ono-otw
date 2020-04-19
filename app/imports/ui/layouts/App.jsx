@@ -5,7 +5,9 @@ import 'semantic-ui-css/semantic.css';
 import { Roles } from 'meteor/alanning:roles';
 import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import NavBar from '../components/NavBar';
+import Signin from '../pages/Signin';
 import Landing from '../pages/Landing';
+import Footer from '../components/Footer'
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -15,8 +17,10 @@ class App extends React.Component {
           <div>
             <NavBar/>
             <Switch>
+              <Route path="/signin" component={Signin}/>
               <Route exact path="/" component={Landing}/>
             </Switch>
+            <Footer/>
           </div>
         </Router>
     );
