@@ -16,10 +16,6 @@ hr { display: block; height: 1px;
   border-radius: 10px !important;
 }
 
-.ui.form .field .ui.input {
-  width: 28rem !important;
-}
-
 .ui.stacked.segment.signin-form::after  {
   border: none !important;
   background: none !important;
