@@ -8,6 +8,7 @@ import NavBar from '../components/NavBar';
 import Signin from '../pages/Signin';
 import Landing from '../pages/Landing';
 import Footer from '../components/Footer';
+import Restaurants from '../pages/Restaurants';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -18,6 +19,7 @@ class App extends React.Component {
             <NavBar/>
             <Switch>
               <Route path="/signin" component={Signin}/>
+              <Route path="/restaurants" component={Restaurants}/>
               <Route exact path="/" component={Landing}/>
             </Switch>
             <Footer/>

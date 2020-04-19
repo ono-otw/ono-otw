@@ -16,10 +16,6 @@ hr { display: block; height: 1px;
   border-radius: 10px !important;
 }
 
-.ui.form .field .ui.input {
-  width: 28rem !important;
-}
-
 .ui.stacked.segment.signin-form::after  {
   border: none !important;
   background: none !important;
@@ -50,4 +46,13 @@ hr { display: block; height: 1px;
   background: #184470 !important;
 }
 
+/*Restaurant CSS starts here*/
+.restaurant_card > div > .ui.card > .content, .restaurant_card > .ui.card > .content > .header, .restaurant_card > div > .ui.card > .content > .meta, .restaurant_card > div > .ui.card > .content > .description  {
+  background-color: #184470 !important;
+  color: white !important;
+}
+
+.search_bar > .ui.input {
+  width: 80% !important;
+}
 
