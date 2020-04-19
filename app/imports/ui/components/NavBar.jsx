@@ -10,7 +10,11 @@ import { Roles } from 'meteor/alanning:roles';
 class NavBar extends React.Component {
   render() {
     const menuStyle = {
-      backgroundColor: '#2F602C',
+      backgroundColor: 'transparent',
+    };
+    const navColor = {
+      color: '#184470',
+      backgroundColor: 'transparent',
     };
 
     return (
@@ -27,10 +31,10 @@ class NavBar extends React.Component {
           ) : ''}
           <Menu.Item position="right">
             {this.props.currentUser === '' ? (
-                <Dropdown text="Login" pointing="top right" icon={'user'}>
+                <Dropdown style={navColor} text="Login" pointing="top right" icon={'user'}>
                   <Dropdown.Menu>
-                    <Dropdown.Item icon="user" text="Sign In" as={NavLink} exact to="/signin"/>
-                    <Dropdown.Item icon="add user" text="Sign Up" as={NavLink} exact to="/signup"/>
+                    <Dropdown.Item style={navColor} icon="user" text="Sign In" as={NavLink} exact to="/signin"/>
+                    <Dropdown.Item style={navColor} icon="add user" text="Sign Up" as={NavLink} exact to="/signup"/>
                   </Dropdown.Menu>
                 </Dropdown>
             ) : (

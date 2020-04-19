@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
-import { Container, Form, Grid, Header, Message, Segment, Image } from 'semantic-ui-react';
+import { Container, Form, Grid, Header, Message, Segment, Divider } from 'semantic-ui-react';
 
 /**
  * Signin page overrides the form’s submit event and call Meteor’s loginWithPassword().
@@ -41,41 +41,54 @@ export default class Signin extends React.Component {
       return <Redirect to={from}/>;
     }
 
+    const paddingDiv = {
+      paddingTop: '2rem',
+      paddingBottom: '2rem',
+    };
+
+    const signContainer = {
+      paddingBottom: '5rem',
+    };
+
     // Otherwise return the Login form.
     return (
-        <div className={'signin-bg'}>
-        <Container>
+        <div>
+        <Container style={signContainer}>
           <Grid textAlign="center" verticalAlign="middle" centered columns={2}>
             <Grid.Column>
-              <Header as="h2" textAlign="center">
-                Login to your account
-              </Header>
+              <Divider horizontal>
+                <Header inverted as="h2" textAlign="center">
+                  Login
+                </Header>
+              </Divider>
               <Form onSubmit={this.submit}>
                 <Segment className='signin-form' stacked>
-                  <Form.Input className='signin-inputs'
-                      label="Email"
-                      icon="user"
-                      iconPosition="left"
-                      name="email"
-                      type="email"
-                      placeholder="E-mail address"
-                      onChange={this.handleChange}
-                  />
-                  <Form.Input
-                      label="Password"
-                      icon="lock"
-                      iconPosition="left"
-                      name="password"
-                      placeholder="Password"
-                      type="password"
-                      onChange={this.handleChange}
-                  />
+                  <div align='center' style={paddingDiv}>
+                    <Form.Input className='signin-input'
+                        label="Email"
+                        icon="user"
+                        iconPosition="left"
+                        name="email"
+                        type="email"
+                        placeholder="E-mail address"
+                        onChange={this.handleChange}
+                    />
+                    <Form.Input
+                        label="Password"
+                        icon="lock"
+                        iconPosition="left"
+                        name="password"
+                        placeholder="Password"
+                        type="password"
+                        onChange={this.handleChange}
+                    />
+                  </div>
                   <div align='center'>
                     <Form.Button secondary className='signin-button' content="LOGIN"/>
                   </div>
                 </Segment>
               </Form>
-              <Message>
+              <Message className='signin-message'>
                 <div align='center'>
                   <Link to="/signup">New user? Sign up here!</Link>
                 </div>

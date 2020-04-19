@@ -1,18 +1,53 @@
-
-/* Start of custom CSS for signin page*/
-
-.signin-bg {
-  background: url('images/login-background.png') no-repeat center center fixed;
-  background-size: cover;
-  padding-bottom: 50px;
-  padding-top: 50px;
+/*Divider Logo*/
+.ui.horizontal.divider:before, .ui.horizontal.divider:after {
+  background-image: url('/images/divider.png') !important;
 }
 
+/*Changes hr to white*/
+hr { display: block; height: 1px;
+  border: 0; border-top: 2px solid white;
+  margin: 1em 0; padding: 0;
+}
+
+/*Sign in CSS starts here*/
 .signin-form {
-  background: none !important;
-  border: none !important;
-  box-shadow: none !important;
+  background: #D3E3FC !important;
+  padding-bottom: 50px !important;
+  border-radius: 10px !important;
 }
 
+.ui.form .field .ui.input {
+  width: 28rem !important;
+}
+
+.ui.stacked.segment.signin-form::after  {
+  border: none !important;
+  background: none !important;
+}
+
+.ui.form input[type="email"], .ui.form input[type="password"]{
+  /*background: rgba(0, 0, 0, 0.21) !important;*/
+  border-radius: 20px !important;
+}
+
+.ui.form input[type="email"]::placeholder , .ui.form input[type="password"]::placeholder {
+  color: black !important;
+}
+
+.signin-message {
+  background: rgba(0, 0, 0, 0.21) !important;
+}
+
+.signin-message a {
+  color: white;
+}
+
+.signin-message a:hover {
+  color: #deffdf;
+}
+
+.signin-button .ui.button {
+  background: #184470 !important;
+}
 
 
