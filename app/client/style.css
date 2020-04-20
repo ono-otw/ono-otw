@@ -49,5 +49,27 @@ hr { display: block; height: 1px;
 .signin-button .ui.button {
   background: #184470 !important;
 }
+/*----------------------------------------- MENU PAGE ------------------------------------------*/
+.menu_search_bar > .ui.input {
+  width: 40% !important;
+}
+
+.menubartext {
+  font-size: 20px !important;
+}
+
+.show-more-button {
+  background-color: #184470 !important;
+  color: white !important;
+}
+
+.card-bg {
+  background-color: #184470 !important;
+  color: white !important;
+}
+.buttonspacing {
+  padding: 20px;
+}
 
 
+/* -------------------------------------------------------------------------------------------------*/
