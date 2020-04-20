@@ -25,77 +25,124 @@ class ListStuff extends React.Component {
       fontWeight: 'bold',
     };
 
+    const cardPad = {
+      padding: '30px',
+    };
+
     const { activeItem } = this.state;
     return (
-        <Container>
-          <Container><Image fluid src='https://bit.ly/2XMIbtJ'/></Container>
-          <div align='center'>
-            <Header style={{ marginTop: '20px' }}>Starbucks</Header>
-            <div className='menu_search_bar'><Input size='large' icon='search'
-                                                    placeholder='Search for a menu item'></Input></div>
-            <Menu secondary className='menubartext'>
-              <Menu.Item name='Coffee' active={activeItem === 'Coffee'} onClick={this.handleItemClick}></Menu.Item>
-              <Menu.Item name='Tea' active={activeItem === 'Tea'} onClick={this.handleItemClick}></Menu.Item>
-              <Menu.Item name='Pastries' active={activeItem === 'Pastries'} onClick={this.handleItemClick}></Menu.Item>
-              <Menu.Item name='Sandwiches' active={activeItem === 'Sandwiches'}
-                         onClick={this.handleItemClick}></Menu.Item>
-            </Menu>
+        <div>
+          <Image fluid src={'/images/starbucks.jpg'}/>
+          <Container>
 
-            <hr style={{ borderTop: '2px solid #184470' }}/>
-              <Card.Group centered>
-                <Card className='card-bg'>
+            <div align='center'>
+              <Header style={{ marginTop: '20px' }}>Starbucks</Header>
+              <div className='menu_search_bar'><Input size='large' icon='search'
+                                                      placeholder='Search for a menu item'></Input></div>
+              <Menu secondary className='menubartext'>
+                <Menu.Item name='Coffee' active={activeItem === 'Coffee'} onClick={this.handleItemClick}></Menu.Item>
+                <Menu.Item name='Tea' active={activeItem === 'Tea'} onClick={this.handleItemClick}></Menu.Item>
+                <Menu.Item name='Pastries' active={activeItem === 'Pastries'}
+                           onClick={this.handleItemClick}></Menu.Item>
+                <Menu.Item name='Sandwiches' active={activeItem === 'Sandwiches'}
+                           onClick={this.handleItemClick}></Menu.Item>
+              </Menu>
 
-                  <Grid columns={2}>
-                    <Grid.Column>
-                      <Image
-                          rounded
-                          floated='left'
-                          size='medium'
-                          src='https://bit.ly/2VGp029'
-                      />
-                    </Grid.Column>
-                    <Grid.Column>
-                      <Card.Header style={cardHeader}>Flat White</Card.Header>
-                      <Card.Description>
-                        240 Cal<br/>
-                        16 oz<br/>
-                        $4.45<br/>
-                      </Card.Description>
+              <hr style={{ borderTop: '2px solid #184470' }}/>
+              <Card.Group>
+                {/* <Card className='card-bg'> */}
+                {/*  <Grid columns={2}> */}
+                {/*    <Grid.Column> */}
+                {/*      <Image */}
+                {/*          rounded */}
+                {/*          floated='left' */}
+                {/*          size='medium' */}
+                {/*          src='https://bit.ly/2VGp029' */}
+                {/*      /> */}
+                {/*    </Grid.Column> */}
+                {/*    <Grid.Column> */}
+                {/*      <Card.Header style={cardHeader}>Flat White</Card.Header> */}
+                {/*      <Card.Description> */}
+                {/*        240 Cal<br/> */}
+                {/*        16 oz<br/> */}
+                {/*        $4.45<br/> */}
+                {/*      </Card.Description> */}
 
-                    </Grid.Column>
-                  </Grid>
-
-                </Card>
-
-                {/* <Card> */}
-                {/*  <Card.Content> */}
-                {/*    <Grid columns={2}> */}
-                {/*      <Grid.Column> */}
-                {/*        <Image */}
-                {/*            rounded */}
-                {/*            floated='left' */}
-                {/*            size='medium' */}
-                {/*            src='https://bit.ly/2VGp029' */}
-                {/*        /> */}
-                {/*      </Grid.Column> */}
-                {/*      <Grid.Column> */}
-                {/*        <Card.Header style={cardHeader}>Flat White</Card.Header> */}
-                {/*        <Card.Description> */}
-                {/*          240 Cal<br/> */}
-                {/*          16 oz<br/> */}
-                {/*          $4.45<br/> */}
-                {/*        </Card.Description> */}
-
-                {/*      </Grid.Column> */}
-                {/*    </Grid> */}
-                {/*  </Card.Content> */}
+                {/*    </Grid.Column> */}
+                {/*  </Grid> */}
                 {/* </Card> */}
-
+                <div style={cardPad}>
+                  <Card>
+                    <Card.Content>
+                      <Grid columns={2}>
+                        <Grid.Column>
+                          <Image
+                              rounded
+                              floated='left'
+                              size='medium'
+                              src='https://bit.ly/2VGp029'
+                          />
+                        </Grid.Column>
+                        <Grid.Column>
+                          <Card.Header style={cardHeader}>Flat White</Card.Header>
+                          <Card.Description>
+                            240 Cal<br/> 16 oz<br/> $4.45<br/>
+                          </Card.Description>
+                        </Grid.Column>
+                      </Grid>
+                    </Card.Content>
+                  </Card>
+                </div>
+                <div style={cardPad}>
+                  <Card>
+                    <Card.Content>
+                      <Grid columns={2}>
+                        <Grid.Column>
+                          <Image
+                              rounded
+                              floated='left'
+                              size='medium'
+                              src='https://bit.ly/2VGp029'
+                          />
+                        </Grid.Column>
+                        <Grid.Column>
+                          <Card.Header style={cardHeader}>Flat White</Card.Header>
+                          <Card.Description>
+                            240 Cal<br/> 16 oz<br/> $4.45<br/>
+                          </Card.Description>
+                        </Grid.Column>
+                      </Grid>
+                    </Card.Content>
+                  </Card>
+                </div>
+                <div style={cardPad}>
+                  <Card>
+                    <Card.Content>
+                      <Grid columns={2}>
+                        <Grid.Column>
+                          <Image
+                              rounded
+                              floated='left'
+                              size='medium'
+                              src='https://bit.ly/2VGp029'
+                          />
+                        </Grid.Column>
+                        <Grid.Column>
+                          <Card.Header style={cardHeader}>Flat White</Card.Header>
+                          <Card.Description>
+                            240 Cal<br/> 16 oz<br/> $4.45<br/>
+                          </Card.Description>
+                        </Grid.Column>
+                      </Grid>
+                    </Card.Content>
+                  </Card>
+                </div>
               </Card.Group>
-            <div className='buttonspacing'><Button className='show-more-button'>Show More</Button></div>
-          </div>
+              <div className='buttonspacing'><Button className='show-more-button'>Show More</Button></div>
+            </div>
 
-        </Container>
+          </Container>
+        </div>
 
     );
   }
