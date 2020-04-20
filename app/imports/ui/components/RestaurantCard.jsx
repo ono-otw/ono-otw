@@ -10,43 +10,60 @@ class RestaurantCard extends React.Component {
       paddingRight: '5rem',
       paddingBottom: '2rem',
     };
+    const labelCol = {
+      backgroundColor: '#D3E3FC',
+      color: 'black',
+      marginRight: '0.5rem',
+    };
+
+    const rateCol = {
+      backgroundColor: '#00887A',
+      color: 'white',
+      fontWeight: 'bold',
+    };
 
     return (
         <div style={divPad}>
           <Card
-              image='http://res.cloudinary.com/culturemap-com/image/upload/ar_4:3,c_fill,g_faces:center,w_1200/v1543943359/photos/286785_original.jpg'
+              image={this.props.restaurants.image}
               // href='#card-example-link-card'
               header= {
                 <Grid>
                   <Grid.Row>
                     <Grid.Column textAlign='left' width={13}>
                       <a href='#testing'>
-                        <Header inverted >Raising Canes</Header>
+                        <Header inverted >{this.props.restaurants.name}</Header>
                       </a>
                     </Grid.Column>
                     <Grid.Column textAlign='right'>
-                      <Label circular color='green' >
-                        4.5
+                      <Label circular style={rateCol} >
+                        {this.props.restaurants.rating}
                       </Label>
                     </Grid.Column>
                   </Grid.Row>
                 </Grid>
               }
-              meta='2465 Campus Rd #220'
+              meta={this.props.restaurants.address}
               description = {
                 <Grid columns={2}>
                   <Grid.Row>
                     <Grid.Column textAlign='left'>
-                      15 Min
+                      {this.props.restaurants.time}
                     </Grid.Column>
                     <Grid.Column textAlign='right'>
-                      <Rating maxRating={1} clearable icon='heart'/>
+                      <Rating maxRating={1} clearable icon='heart' size='large' className={'favorite_button'}/>
                     </Grid.Column>
                   </Grid.Row>
                 </Grid>
               }
           />
-          <Label color='grey'>Chicken</Label>
+          <div align='right'>
+            {this.props.restaurants.label.map((tags) => (
+                <Label circular key={tags} style={labelCol}>
+                  {tags}
+                </Label>
+            ))}
+          </div>
         </div>
     );
   }
@@ -54,7 +71,7 @@ class RestaurantCard extends React.Component {
 
 /** Require a document to be passed to this component. */
 RestaurantCard.propTypes = {
-  stuff: PropTypes.object.isRequired,
+  restaurants: PropTypes.object.isRequired,
 };
 
 /** Wrap this component in withRouter since we use the <Link> React Router element. */

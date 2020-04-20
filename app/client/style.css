@@ -57,5 +57,14 @@ hr { display: block; height: 1px;
 }
 
 .search_bar > .results {
-  background: red !important;
+  margin-left: 120px !important;
+}
+
+.favorite_button > i.icon {
+  color: rgba(0, 0, 0, 15.15) !important;
+}
+
+.favorite_button > i.active.icon:before {
+  color: #FFCCBC !important;
+  text-shadow: none;
 }
