@@ -22,7 +22,6 @@ hr { display: block; height: 1px;
 }
 
 .ui.form input[type="email"], .ui.form input[type="password"]{
-  /*background: rgba(0, 0, 0, 0.21) !important;*/
   border-radius: 20px !important;
 }
 

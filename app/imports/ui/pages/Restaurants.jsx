@@ -1,17 +1,42 @@
 import React from 'react';
+import _ from 'lodash';
 import { Meteor } from 'meteor/meteor';
-import { Container, Card, Loader, Search, Icon, Header, Button } from 'semantic-ui-react';
+import { Container, Card, Loader, Search, Icon, Header } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Stuffs } from '../../api/stuff/Stuff';
 import RestaurantCard from '../components/RestaurantCard';
 
-/** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
+/* Used to render search results. Atm the required fields for search using native semantic UI:
+* Title, Image, Description, Price
+* Will have figure out how to modify to read from database or change native search names from
+* semantic ui.
+*/
+
+const restaurantSearch = [{
+  title: 'Raising Canes', description: '2615 S King St Unit 102',
+  image: 'https://tinyurl.com/y7adk236',
+  time: '15min', price: '4.5', label: ['Chicken'],
+},
+  {
+    title: 'Bale', description: '2465 Campus Rd #220',
+    image: 'https://s3-media0.fl.yelpcdn.com/bphoto/n3jOrjcJOVoz0npBf_FS1Q/o.jpg',
+    time: '10min', price: '4.1', label: ['Sandwich', 'Pho'],
+  },
+  {
+    title: 'Shaka Shaka', description: '2600 S King St.',
+    image: 'https://s3-media0.fl.yelpcdn.com/bphoto/Uynrx7WT2hkJV8WSDVYfWg/o.jpg',
+    time: '25min', price: '3.2', label: ['Smoothie', 'Tea'],
+  },
+];
+
+const initialState = { isLoading: false, results: [], value: '' };
+/** Renders the list of restaurants */
 class Restaurants extends React.Component {
 
   restaurants = [{
     name: 'Raising Canes', address: '2615 S King St Unit 102',
-    image: 'https://raster-static.postmates.com/?url=com.postmates.img.prod.s3.amazonaws.com/b657a2f8-9549-45fa-a0c7-6826f23ef6bd/orig.jpg&quality=90&w=1500&h=900&mode=crop&format=jpg&v=4',
+    image: 'https://tinyurl.com/y7adk236',
     time: '15min', rating: '4.5', label: ['Chicken'],
      },
     {
@@ -22,9 +47,30 @@ class Restaurants extends React.Component {
     {
       name: 'Shaka Shaka', address: '2600 S King St.',
       image: 'https://s3-media0.fl.yelpcdn.com/bphoto/Uynrx7WT2hkJV8WSDVYfWg/o.jpg',
-      time: '25min', rating: '3.2', label: ['Smoothie'],
+      time: '25min', rating: '3.2', label: ['Smoothie', 'Tea'],
     },
   ];
+
+  state = initialState;
+
+  handleResultSelect = (e, { result }) => this.setState({ value: result.title });
+
+  handleSearchChange = (e, { value }) => {
+    this.setState({ isLoading: true, value });
+
+    // eslint-disable-next-line consistent-return
+    setTimeout(() => {
+      if (this.state.value.length < 1) return this.setState(initialState);
+
+      const re = new RegExp(_.escapeRegExp(this.state.value), 'i');
+      const isMatch = (result) => re.test(result.label);
+
+      this.setState({
+        isLoading: false,
+        results: _.filter(restaurantSearch, isMatch),
+      });
+    }, 300);
+  };
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
@@ -37,10 +83,9 @@ class Restaurants extends React.Component {
       paddingBottom: '5rem',
       paddingTop: '2rem',
     };
-    const buttonCol = {
-      backgroundColor: '#184470',
-      color: 'white',
-  };
+
+    const { isLoading, value, results } = this.state;
+
     return (
         <Container>
           <div align='center'>
@@ -54,18 +99,19 @@ class Restaurants extends React.Component {
           <div align='center' style={searchBar}>
             <Search className='search_bar'
                     input={{ icon: 'search', iconPosition: 'left' }}
+                    loading={isLoading}
+                    onResultSelect={this.handleResultSelect}
+                    onSearchChange={_.debounce(this.handleSearchChange, 500, {
+                      leading: 'true',
+                    })}
+                    results={results}
+                    value={value}
+                    {...this.props}
             />
           </div>
             <Card.Group itemsPerRow='4' centered className='restaurant_card'>
                 {this.restaurants.map((restaurants, index) => <RestaurantCard key={index} restaurants={restaurants}/>)}
             </Card.Group>
-
-          <div align='center'>
-            <Button style={buttonCol}>
-              Load More
-            </Button>
-          </div>
-
         </Container>
     );
   }
