@@ -10,13 +10,13 @@ hr { display: block; height: 1px;
 }
 
 /*Sign in CSS starts here*/
-.signin-form {
+.signin-form, .signup-form {
   background: #D3E3FC !important;
   padding-bottom: 50px !important;
   border-radius: 10px !important;
 }
 
-.ui.stacked.segment.signin-form::after  {
+.ui.stacked.segment.signin-form::after, .ui.stacked.segment.signup-form::after  {
   border: none !important;
   background: none !important;
 }
@@ -30,19 +30,19 @@ hr { display: block; height: 1px;
   color: black !important;
 }
 
-.signin-message {
+.signin-message, .signup-message {
   background: rgba(0, 0, 0, 0.21) !important;
 }
 
-.signin-message a {
+.signin-message a, .signup-message a {
   color: white;
 }
 
-.signin-message a:hover {
+.signin-message a:hover, .signup-message a:hover {
   color: #deffdf;
 }
 
-.signin-button .ui.button {
+.signin-button .ui.button, .signup-button .ui.button {
   background: #184470 !important;
 }
 
