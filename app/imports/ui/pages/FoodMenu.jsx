@@ -1,13 +1,32 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Input, Header, Menu, Loader, Image, Card, Grid, Button } from 'semantic-ui-react';
+import { Container, Input, Header, Menu, Loader, Card, Button } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Stuffs } from '../../api/stuff/Stuff';
 import StuffItem from '../components/StuffItem';
+import MenuitemCard from '../components/MenuitemCard';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
-class ListStuff extends React.Component {
+class FoodMenu extends React.Component {
+
+  menuItems = [{
+    name: 'White Mocha', calories: 240,
+    image: 'https://bit.ly/2VrKeSF',
+    size: 16, price: 4.45,
+  },
+    {
+      name: 'Flat White', calories: 170,
+      image: 'https://bit.ly/3cyLBo3',
+      size: 12, price: 5.45,
+    },
+    {
+      name: 'Americano', calories: 170,
+      image: 'https://bit.ly/2Vo0Ryn',
+      size: 12, price: 5.45,
+    },
+  ];
+
   state = { activeItem: 'Coffee' }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
@@ -19,33 +38,24 @@ class ListStuff extends React.Component {
 
   /** Render the page once subscriptions have been received. */
   renderPage() {
-    const cardHeader = {
-      padding: '10px',
-      fontSize: '15px',
-      fontWeight: 'bold',
-    };
-
-    const cardPad = {
-      padding: '30px',
-    };
-
     const { activeItem } = this.state;
     return (
         <div>
-          <Image fluid src={'/images/starbucks.jpg'}/>
-          <Container>
+          {/* <Image fluid src={'/images/starbucks.jpg'}/> */}
+          <div className='menuimage'><img src='https://bit.ly/2wV9ozB'/></div>
 
+          <Container>
             <div align='center'>
-              <Header style={{ marginTop: '20px' }}>Starbucks</Header>
+              <Header style={{ marginTop: '30px', fontSize: '40px' }}>Starbucks</Header>
               <div className='menu_search_bar'><Input size='large' icon='search'
-                                                      placeholder='Search for a menu item'></Input></div>
+                                                      placeholder='Search for a menu item'/></div>
               <Menu secondary className='menubartext'>
-                <Menu.Item name='Coffee' active={activeItem === 'Coffee'} onClick={this.handleItemClick}></Menu.Item>
-                <Menu.Item name='Tea' active={activeItem === 'Tea'} onClick={this.handleItemClick}></Menu.Item>
+                <Menu.Item name='Coffee' active={activeItem === 'Coffee'} onClick={this.handleItemClick}/>
+                <Menu.Item name='Tea' active={activeItem === 'Tea'} onClick={this.handleItemClick}/>
                 <Menu.Item name='Pastries' active={activeItem === 'Pastries'}
-                           onClick={this.handleItemClick}></Menu.Item>
+                           onClick={this.handleItemClick}/>
                 <Menu.Item name='Sandwiches' active={activeItem === 'Sandwiches'}
-                           onClick={this.handleItemClick}></Menu.Item>
+                           onClick={this.handleItemClick}/>
               </Menu>
 
               <hr style={{ borderTop: '2px solid #184470' }}/>
@@ -71,72 +81,7 @@ class ListStuff extends React.Component {
                 {/*    </Grid.Column> */}
                 {/*  </Grid> */}
                 {/* </Card> */}
-                <div style={cardPad}>
-                  <Card>
-                    <Card.Content>
-                      <Grid columns={2}>
-                        <Grid.Column>
-                          <Image
-                              rounded
-                              floated='left'
-                              size='medium'
-                              src='https://bit.ly/2VGp029'
-                          />
-                        </Grid.Column>
-                        <Grid.Column>
-                          <Card.Header style={cardHeader}>Flat White</Card.Header>
-                          <Card.Description>
-                            240 Cal<br/> 16 oz<br/> $4.45<br/>
-                          </Card.Description>
-                        </Grid.Column>
-                      </Grid>
-                    </Card.Content>
-                  </Card>
-                </div>
-                <div style={cardPad}>
-                  <Card>
-                    <Card.Content>
-                      <Grid columns={2}>
-                        <Grid.Column>
-                          <Image
-                              rounded
-                              floated='left'
-                              size='medium'
-                              src='https://bit.ly/2VGp029'
-                          />
-                        </Grid.Column>
-                        <Grid.Column>
-                          <Card.Header style={cardHeader}>Flat White</Card.Header>
-                          <Card.Description>
-                            240 Cal<br/> 16 oz<br/> $4.45<br/>
-                          </Card.Description>
-                        </Grid.Column>
-                      </Grid>
-                    </Card.Content>
-                  </Card>
-                </div>
-                <div style={cardPad}>
-                  <Card>
-                    <Card.Content>
-                      <Grid columns={2}>
-                        <Grid.Column>
-                          <Image
-                              rounded
-                              floated='left'
-                              size='medium'
-                              src='https://bit.ly/2VGp029'
-                          />
-                        </Grid.Column>
-                        <Grid.Column>
-                          <Card.Header style={cardHeader}>Flat White</Card.Header>
-                          <Card.Description>
-                            240 Cal<br/> 16 oz<br/> $4.45<br/>
-                          </Card.Description>
-                        </Grid.Column>
-                      </Grid>
-                    </Card.Content>
-                  </Card>
-                </div>
+                {this.menuItems.map((menuitem, index) => <MenuitemCard key={index} menuitem={menuitem}/>)}
               </Card.Group>
               <div className='buttonspacing'><Button className='show-more-button'>Show More</Button></div>
             </div>
@@ -149,7 +94,7 @@ class ListStuff extends React.Component {
 }
 
 /** Require an array of Stuff documents in the props. */
-ListStuff.propTypes = {
+FoodMenu.propTypes = {
   stuffs: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
@@ -162,4 +107,4 @@ export default withTracker(() => {
     stuffs: Stuffs.find({}).fetch(),
     ready: subscription.ready(),
   };
-})(ListStuff);
+})(FoodMenu);
