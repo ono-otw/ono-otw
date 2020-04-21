@@ -8,7 +8,9 @@ import NavBar from '../components/NavBar';
 import Signin from '../pages/Signin';
 import Landing from '../pages/Landing';
 import Footer from '../components/Footer';
+import Restaurants from '../pages/Restaurants';
 import Profiles from '../pages/Profiles';
+
 
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
@@ -22,6 +24,7 @@ class App extends React.Component {
               <Route path="/signin" component={Signin}/>
               <Route exact path="/" component={Landing}/>
               <Route path="/profiles" component={Profiles}/>
+              <Route path="/restaurants" component={Restaurants}/>
             </Switch>
             <Footer/>
           </div>
