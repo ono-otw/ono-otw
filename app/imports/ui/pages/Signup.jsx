@@ -39,50 +39,105 @@ class Signup extends React.Component {
       return <Redirect to={from}/>;
     }
     return (
-      <Container>
-        <Grid textAlign="center" verticalAlign="middle" centered columns={2}>
-          <Grid.Column>
-            <Header as="h2" textAlign="center">
-              Register your account
-            </Header>
-            <Form onSubmit={this.submit}>
-              <Segment stacked>
-                <Form.Input
-                  label="Email"
-                  icon="user"
-                  iconPosition="left"
-                  name="email"
-                  type="email"
-                  placeholder="E-mail address"
-                  onChange={this.handleChange}
-                />
-                <Form.Input
-                  label="Password"
-                  icon="lock"
-                  iconPosition="left"
-                  name="password"
-                  placeholder="Password"
-                  type="password"
-                  onChange={this.handleChange}
-                />
+        <Container>
+          <Grid textAlign="center" verticalAlign="middle" centered columns={2}>
+            <Grid.Column>
+              <Header as="h2" textAlign="center">
+                Account Information
+              </Header>
+              <Form onSubmit={this.submit}>
+                <Segment stacked>
+                  <Form.Group widths='equal'>
+                    <Form.Input
+                        fluid label='First Name'
+                        placeholder='First Name'
+                        onChange={this.handleChange}
+                    />
+                    <Form.Input
+                        fluid label='Last Name'
+                        placeholder='Last Name'
+                        onChange={this.handleChange}
+                    />
+                  </Form.Group>
+                  <Form.Input
+                      label="Email"
+                      icon="user"
+                      iconPosition="left"
+                      name="email"
+                      type="email"
+                      placeholder="E-mail address"
+                      onChange={this.handleChange}
+                  />
+                  <Form.Input
+                      label="Password"
+                      icon="lock"
+                      iconPosition="left"
+                      name="password"
+                      placeholder="Password"
+                      type="password"
+                      onChange={this.handleChange}
+                  />
+                </Segment>
+                <Header as="h2" textAlign="center">
+                  Payment Information
+                </Header>
+                <Segment stacked>
+                  <Form.Group inline>
+                    <label>Payment Option</label>
+                    <Form.Radio
+                        label='Debit'
+                        name="radioGroup"
+                        value = 'debit'
+                        checked={this.state.value === 'debit'}
+                        onChange={this.handleChange}
+                    />
+                    <Form.Radio
+                        label='Credit'
+                        name="radioGroup"
+                        value = "credit"
+                        checked={this.state.value === 'credit'}
+                        onChange={this.handleChange}
+                    />
+                  </Form.Group>
+                  <Form.Input
+                      label="Card Number"
+                      icon="credit card"
+                      iconPosition="left"
+                      name="card number"
+                      placeholder="0000-0000-0000"
+                      type="text"
+                      onChange={this.handleChange}
+                  />
+                  <Form.Group widths='equal'>
+                    <Form.Input
+                        fluid label='Expire Date'
+                        placeholder='00/00'
+                        onChange={this.handleChange}
+                    />
+                    <Form.Input
+                        fluid label='CVC'
+                        placeholder='000'
+                        onChange={this.handleChange}
+                    />
+                  </Form.Group>
+                </Segment>
                 <Form.Button content="Submit"/>
-              </Segment>
-            </Form>
-            <Message>
-              Already have an account? Login <Link to="/signin">here</Link>
-            </Message>
-            {this.state.error === '' ? (
-              ''
-            ) : (
-              <Message
-                error
-                header="Registration was not successful"
-                content={this.state.error}
-              />
-            )}
-          </Grid.Column>
-        </Grid>
-      </Container>
+              </Form>
+              <Message>
+                Already have an account? Login <Link to="/signin">here</Link>
+              </Message>
+              {this.state.error === '' ? (
+                  ''
+              ) : (
+                  <Message
+                      error
+                      header="Registration was not successful"
+                      content={this.state.error}
+                  />
+              )}
+            </Grid.Column>
+          </Grid>
+        </Container>
     );
   }
 }

@@ -4,15 +4,6 @@
 }
 
 
-
-.card {
-    height: 20rem;
-    width: 100rem !important;
-    background-color: #F9E784 !important;   
-    margin-top: 5rem !important;
-}
-
-
 .image-offset {
     bottom: 3rem;
     z-index: -1;
