@@ -12,7 +12,7 @@ class FoodMenu extends React.Component {
 
   menuItems = [{
     name: 'White Mocha', calories: 240,
-    image: 'https://bit.ly/2VrKeSF',
+    image: 'https://bit.ly/2XP3dYR',
     size: 16, price: 4.45,
   },
     {
@@ -23,6 +23,11 @@ class FoodMenu extends React.Component {
     {
       name: 'Americano', calories: 170,
       image: 'https://bit.ly/2Vo0Ryn',
+      size: 12, price: 5.45,
+    },
+    {
+      name: 'Cappuccino', calories: 120,
+      image: 'https://bit.ly/2XRhO5X',
       size: 12, price: 5.45,
     },
   ];
@@ -50,7 +55,8 @@ class FoodMenu extends React.Component {
               <div className='menu_search_bar'><Input size='large' icon='search'
                                                       placeholder='Search for a menu item'/></div>
               <Menu secondary className='menubartext'>
-                <Menu.Item name='Coffee' active={activeItem === 'Coffee'} onClick={this.handleItemClick}/>
+                <Menu.Item className='menu_categories' name='Coffee'
+                           active={activeItem === 'Coffee'} onClick={this.handleItemClick}/>
                 <Menu.Item name='Tea' active={activeItem === 'Tea'} onClick={this.handleItemClick}/>
                 <Menu.Item name='Pastries' active={activeItem === 'Pastries'}
                            onClick={this.handleItemClick}/>
@@ -59,31 +65,10 @@ class FoodMenu extends React.Component {
               </Menu>
 
               <hr style={{ borderTop: '2px solid #184470' }}/>
-              <Card.Group>
-                {/* <Card className='card-bg'> */}
-                {/*  <Grid columns={2}> */}
-                {/*    <Grid.Column> */}
-                {/*      <Image */}
-                {/*          rounded */}
-                {/*          floated='left' */}
-                {/*          size='medium' */}
-                {/*          src='https://bit.ly/2VGp029' */}
-                {/*      /> */}
-                {/*    </Grid.Column> */}
-                {/*    <Grid.Column> */}
-                {/*      <Card.Header style={cardHeader}>Flat White</Card.Header> */}
-                {/*      <Card.Description> */}
-                {/*        240 Cal<br/> */}
-                {/*        16 oz<br/> */}
-                {/*        $4.45<br/> */}
-                {/*      </Card.Description> */}
-
-                {/*    </Grid.Column> */}
-                {/*  </Grid> */}
-                {/* </Card> */}
+              <Card.Group centered>
                 {this.menuItems.map((menuitem, index) => <MenuitemCard key={index} menuitem={menuitem}/>)}
               </Card.Group>
-              <div className='buttonspacing'><Button className='show-more-button'>Show More</Button></div>
+              <div style={{ padding: '50px' }}><Button className='dark-blue-button'>Show More</Button></div>
             </div>
 
           </Container>

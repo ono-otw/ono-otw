@@ -47,14 +47,17 @@ hr { display: block; height: 1px;
 }
 /*----------------------------------------- MENU PAGE ------------------------------------------*/
 .menu_search_bar > .ui.input {
-  width: 40% !important;
+  width: 60% !important;
 }
 
+.menu_categories > .ui.menu {
+  font-weight: bold;
+}
 .menubartext {
   font-size: 20px !important;
 }
 
-.show-more-button {
+.dark-blue-button {
   background-color: #184470 !important;
   color: white !important;
 }
@@ -62,9 +65,6 @@ hr { display: block; height: 1px;
 .card-bg {
   background-color: #184470 !important;
   color: white !important;
-}
-.buttonspacing {
-  padding: 20px;
 }
 
 .menuimage img
@@ -74,7 +74,8 @@ hr { display: block; height: 1px;
   height: 500px;
 }
 
-
-
+.ui.modal.item_modal > .content {
+  background: #9ABFFF !important;
+}
 
 /* -------------------------------------------------------------------------------------------------*/
