@@ -43,6 +43,8 @@ export default class Signin extends React.Component {
 
     const paddingDiv = {
       paddingTop: '2rem',
+      paddingRight: '3rem',
+      paddingLeft: '3rem',
       paddingBottom: '2rem',
     };
 
