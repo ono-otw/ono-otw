@@ -67,3 +67,13 @@ hr { display: block; height: 1px;
   color: #FFCCBC !important;
   text-shadow: none;
 }
+
+/*Custom HR*/
+hr.blackBorder {
+  border-top: 2px solid black;
+}
+
+/*Custom HR*/
+hr.tinyBlackBorder {
+  border-top: 1px solid black;
+}
