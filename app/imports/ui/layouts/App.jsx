@@ -22,9 +22,9 @@ class App extends React.Component {
             <NavBar/>
             <Switch>
               <Route path="/signin" component={Signin}/>
-              <Route path="/restaurants" component={Restaurants}/>
               <Route exact path="/" component={Landing}/>
               <Route path="/profiles" component={Profiles}/>
+              <Route path="/restaurants" component={Restaurants}/>
             </Switch>
             <Footer/>
           </div>
