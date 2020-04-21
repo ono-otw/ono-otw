@@ -1,19 +1,15 @@
 import React from 'react';
 import { Grid, Image } from 'semantic-ui-react';
-import Jumbotron from '../components/Landing/Jumbotron'
-import Options from '../components/Landing/Options'
-import BrowseFood from '../components/Landing/BrowseFood'
+import Jumbotron from '../components/Landing/Jumbotron';
 
-class Landing extends React.Component {
-  render() {
-    return (
-        <Grid>
-            <Jumbotron />
-            <Options />
-            <BrowseFood />
-        </Grid>
-    );
-  }
+
+const Landing = () => {
+  return (
+    <div>
+      <Jumbotron />
+    </div>
+  );
 }
+
 
 export default Landing;

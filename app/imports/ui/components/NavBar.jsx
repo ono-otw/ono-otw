@@ -11,6 +11,7 @@ class NavBar extends React.Component {
   render() {
     const menuStyle = {
       backgroundColor: 'transparent',
+      zIndex: "5",
     };
     const navColor = {
       color: '#184470',

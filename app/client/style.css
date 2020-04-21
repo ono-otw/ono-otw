@@ -11,7 +11,7 @@ hr { display: block; height: 1px;
 
 /*Sign in CSS starts here*/
 .signin-form {
-  background: #D3E3FC !important;
+  background: #D3E3FC !important;   
   padding-bottom: 50px !important;
   border-radius: 10px !important;
 }
