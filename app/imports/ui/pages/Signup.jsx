@@ -17,7 +17,7 @@ class Signup extends React.Component {
   /** Update the form controls each time the user interacts with them. */
   handleChange = (e, { name, value }) => {
     this.setState({ [name]: value });
-  }
+  };
 
   /** Handle Signup submission. Create user account and a profile entry, then redirect to the home page. */
   submit = () => {
@@ -29,7 +29,7 @@ class Signup extends React.Component {
         this.setState({ error: '', redirectToReferer: true });
       }
     });
-  }
+  };
 
   /** Display the signup form. Redirect to add page after successful registration and login. */
   render() {
@@ -64,6 +64,7 @@ class Signup extends React.Component {
                     />
                     <Form.Input
                         fluid label='Last Name'
+                        name='lastName'
                         placeholder='Last Name'
                         onChange={this.handleChange}
                     />
@@ -86,56 +87,6 @@ class Signup extends React.Component {
                       type='password'
                       onChange={this.handleChange}
                   />
-                </Segment>
-                <Divider horizontal>
-                 <Header inverted as="h2" textAlign="center">
-                   Payment Information
-                 </Header>
-                </Divider>
-                <Segment className='signup-form' stacked>
-                  <Form.Group>
-                    <label>Payment Option</label>
-                    <Form.Field>
-                      Selected value: <b>{this.state.value}</b>
-                    </Form.Field>
-                    <Form.Radio
-                        label='Debit'
-                        name='card'
-                        value = 'debit'
-                        checked={this.state.value === 'debit'}
-                        onChange={this.handleChange}
-                    />
-                    <Form.Radio
-                        label='Credit'
-                        name='card'
-                        value = "credit"
-                        checked={this.state.value === 'credit'}
-                        onChange={this.handleChange}
-                    />
-                  </Form.Group>
-                  <Form.Input
-                      label='Card Number'
-                      icon='credit card'
-                      iconPosition='left'
-                      name='cardNumber'
-                      placeholder='0000-0000-0000'
-                      type='text'
-                      onChange={this.handleChange}
-                  />
-                  <Form.Group widths='equal'>
-                    <Form.Input
-                        fluid label='Expire Date'
-                        name='expireDate'
-                        placeholder='00/00'
-                        onChange={this.handleChange}
-                    />
-                    <Form.Input
-                        fluid label='CVC'
-                        name='cvc'
-                        placeholder='000'
-                        onChange={this.handleChange}
-                    />
-                  </Form.Group>
                 </Segment>
                 <div align='center'>
                   <Form.Button secondary className='signup-button' content="SIGN UP"/>
