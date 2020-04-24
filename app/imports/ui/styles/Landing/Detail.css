@@ -1,0 +1,9 @@
+.detail {
+    background-color: #184470;
+    border-radius: 20px;
+}
+
+.detail .description {
+    height: 10rem;
+    width: 40rem;
+}

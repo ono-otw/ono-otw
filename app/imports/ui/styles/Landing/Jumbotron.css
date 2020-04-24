@@ -12,3 +12,22 @@
     bottom: 50%;
     position: relative;
 }
+
+
+.jumbotronRoot {
+    height: 60rem;
+}
+
+.topHeader .ui.header {
+    color: white;
+    font-size: 4rem !important;
+    margin-top: 5rem;
+    width: 50rem;
+}
+
+.topDescription .ui.header {
+    color: white;
+    font-size: 3rem;
+    margin-top: 5rem;
+    width: 50rem;
+}

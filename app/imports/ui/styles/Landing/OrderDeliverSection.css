@@ -1,0 +1,26 @@
+.orderDeliver    {
+    background-color: #184470;  
+    height: 30rem;
+}
+
+.orderDeliver .description {
+    color: white !important;
+    font-size: 1.5rem !important;
+    left: 20%;
+    margin-top: 3rem;
+    position: relative;
+    text-align: left;
+    width: 40rem;
+}
+
+.orderDeliver .subHeader {
+    color: white;
+    font-size: 3rem !important;
+}
+
+.orderDeliver .fillerImage {
+    left: 25%;
+    margin-top: 3rem;
+    position: relative;
+}
+
