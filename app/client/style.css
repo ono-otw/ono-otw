@@ -78,3 +78,22 @@ hr.blackBorder {
 hr.tinyBlackBorder {
   border-top: 1px solid black;
 }
+
+/*****Admin CSS starts here**************/
+
+.admin-block {
+  background: white !important;
+  padding: 40px !important;
+  border-radius: 10px !important;
+}
+
+.ui.button.accept {
+  background: #9ABFFF !important;
+  color: white !important;
+  margin-right: 20px;
+}
+
+.ui.button.deny {
+  background: #606262 !important;
+  color: white !important;
+}

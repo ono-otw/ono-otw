@@ -12,6 +12,7 @@ import Restaurants from '../pages/Restaurants';
 import Profiles from '../pages/Profiles';
 import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
+import Admin from '../pages/Admin';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -27,6 +28,7 @@ class App extends React.Component {
               <Route path="/signout" component={Signout}/>
               <Route path="/profiles" component={Profiles}/>
               <Route path="/restaurants" component={Restaurants}/>
+              <AdminProtectedRoute path="/admin" component={Admin}/>
             </Switch>
             <Footer/>
           </div>
