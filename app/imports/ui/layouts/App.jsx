@@ -8,6 +8,8 @@ import NavBar from '../components/NavBar';
 import Signin from '../pages/Signin';
 import Landing from '../pages/Landing';
 import Footer from '../components/Footer';
+import Restaurants from '../pages/Restaurants';
+import Profiles from '../pages/Profiles';
 import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
 
@@ -23,6 +25,8 @@ class App extends React.Component {
               <Route exact path="/" component={Landing}/>
               <Route path="/signup" component={Signup}/>
               <Route path="/signout" component={Signout}/>
+              <Route path="/profiles" component={Profiles}/>
+              <Route path="/restaurants" component={Restaurants}/>
             </Switch>
             <Footer/>
           </div>

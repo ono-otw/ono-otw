@@ -1,15 +1,22 @@
-.jumbo {
-    width: 100%;
-    height: 30rem;
-}
+/*.jumbo {*/
+/*    width: 100%;*/
+/*    height: 30rem;*/
+/*}*/
+/*!*.card {*!*/
+/*!*    height: 20rem;*!*/
+/*!*    width: 100rem !important;*!*/
+/*!*    background-color: #F9E784 !important;   *!*/
+/*!*    margin-top: 5rem !important;*!*/
+/*!*}*!*/
 
 
-.image-offset {
-    bottom: 3rem;
-    z-index: -1;
-}
+/*.image-offset {*/
+/*    bottom: 3rem;*/
+/*    z-index: -1;*/
+/*!*}*!*/
 
-.image {
-    height: 30rem;
-    width: 25rem;
-}
+/*.image {*/
+/*    height: 30rem;*/
+/*    width: 25rem;*/
+/*}*/
+

@@ -22,8 +22,8 @@ hr { display: block; height: 1px;
 }
 
 .ui.form input[type="email"], .ui.form input[type="password"], .ui.form input[type="text"] {
-  /*background: rgba(0, 0, 0, 0.21) !important;*/
   border-radius: 20px !important;
+
 }
 
 .ui.form input[type="email"]::placeholder , .ui.form input[type="password"]::placeholder {
@@ -46,4 +46,35 @@ hr { display: block; height: 1px;
   background: #184470 !important;
 }
 
+/*Restaurant CSS starts here*/
+.restaurant_card > div > .ui.card > .content, .restaurant_card > .ui.card > .content > .header, .restaurant_card > div > .ui.card > .content > .meta, .restaurant_card > div > .ui.card > .content > .description  {
+  background-color: #184470 !important;
+  color: white !important;
+}
 
+.search_bar > .ui.input {
+  width: 80% !important;
+}
+
+.search_bar > .results {
+  margin-left: 120px !important;
+}
+
+.favorite_button > i.icon {
+  color: rgba(0, 0, 0, 15.15) !important;
+}
+
+.favorite_button > i.active.icon:before {
+  color: #FFCCBC !important;
+  text-shadow: none;
+}
+
+/*Custom HR*/
+hr.blackBorder {
+  border-top: 2px solid black;
+}
+
+/*Custom HR*/
+hr.tinyBlackBorder {
+  border-top: 1px solid black;
+}
