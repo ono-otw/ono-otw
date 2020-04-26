@@ -1,11 +1,13 @@
 import React from 'react';
 import { Card, Grid, Image, Modal, Header, Button, Dropdown } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class MenuitemCard extends React.Component {
+
   render() {
+
     const cardHeader = {
       padding: '10px',
       fontSize: '15px',
@@ -15,6 +17,7 @@ class MenuitemCard extends React.Component {
     const cardPadding = {
       padding: '30px',
     };
+
     const sizeOptions = [
       {
         key: 'Tall (12 oz)',
@@ -33,11 +36,8 @@ class MenuitemCard extends React.Component {
       },
     ];
 
-    const modal = {
-
-    }
     return (
-        <div style={cardPadding}>
+        <div style={cardPadding} className='itemcard_text'>
           {/* --------------------ALTERNATIVE CARD FORMAT------------------------------*/}
           {/* <Card className='card-bg'> */}
           {/*  <Grid columns={2}> */}
@@ -61,9 +61,36 @@ class MenuitemCard extends React.Component {
           {/*  </Grid> */}
           {/* </Card> */}
 
-          <Modal size='tiny' className='item_modal' trigger={<Button>Show Modal</Button>}>
+          {/* ----------------------MODAL--------------------------- */}
+          {/* the modal is triggered by pressing on the card, which is why I encased the entire card in the trigger */}
+          {/* function */}
+
+          <Modal size='mini' className='item_modal' closeIcon trigger={
+            <Card raised className='itemcard_text'>
+              <Card.Content>
+                <Grid columns={2}>
+                  <Grid.Column>
+                    <Image
+                        rounded
+                        floated='left'
+                        size='medium'
+                        src={this.props.menuitem.image}
+                    />
+                  </Grid.Column>
+                  <Grid.Column >
+                    <Card.Header style={cardHeader}>{this.props.menuitem.name}</Card.Header>
+                    <Card.Description>
+                      {this.props.menuitem.calories} Cal<br/>
+                      {this.props.menuitem.size} oz<br/>
+                      ${this.props.menuitem.price}<br/>
+                    </Card.Description>
+                  </Grid.Column>
+                </Grid>
+              </Card.Content>
+            </Card>
+          }>
             <Modal.Content>
-              <Image fluid rounded src={this.props.menuitem.image}/>
+              <Image rounded size='medium' centered src={this.props.menuitem.image}/>
 
               <Header textAlign='center' as='h1' inverted>{this.props.menuitem.name}</Header>
               <Header inverted>Size</Header>
@@ -82,34 +109,11 @@ class MenuitemCard extends React.Component {
             </Modal.Content>
           </Modal>
 
-          <Card raised>
-            <Card.Content>
-              <Grid columns={2}>
-                <Grid.Column>
-                  <Image
-                      rounded
-                      floated='left'
-                      size='medium'
-                      src={this.props.menuitem.image}
-                  />
-                </Grid.Column>
-                <Grid.Column>
-                  <Card.Header style={cardHeader}>{this.props.menuitem.name}</Card.Header>
-                  <Card.Description>
-                    {this.props.menuitem.calories} Cal<br/>
-                    {this.props.menuitem.size} oz<br/>
-                    ${this.props.menuitem.price}<br/>
-                  </Card.Description>
-                </Grid.Column>
-              </Grid>
-            </Card.Content>
-          </Card>
         </div>
     );
   }
 }
 
-/** Require a document to be passed to this component. */
 MenuitemCard.propTypes = {
   menuitem: PropTypes.object.isRequired,
 };

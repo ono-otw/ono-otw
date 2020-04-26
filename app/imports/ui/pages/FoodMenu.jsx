@@ -5,7 +5,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Stuffs } from '../../api/stuff/Stuff';
 import StuffItem from '../components/StuffItem';
-import MenuitemCard from '../components/MenuitemCard';
+import MenuitemCard from '../components/MenuItems/MenuitemCard';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class FoodMenu extends React.Component {
@@ -46,7 +46,6 @@ class FoodMenu extends React.Component {
     const { activeItem } = this.state;
     return (
         <div>
-          {/* <Image fluid src={'/images/starbucks.jpg'}/> */}
           <div className='menuimage'><img src='https://bit.ly/2wV9ozB'/></div>
 
           <Container>
@@ -65,7 +64,7 @@ class FoodMenu extends React.Component {
               </Menu>
 
               <hr style={{ borderTop: '2px solid #184470' }}/>
-              <Card.Group centered>
+              <Card.Group>
                 {this.menuItems.map((menuitem, index) => <MenuitemCard key={index} menuitem={menuitem}/>)}
               </Card.Group>
               <div style={{ padding: '50px' }}><Button className='dark-blue-button'>Show More</Button></div>
