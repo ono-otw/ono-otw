@@ -1,0 +1,20 @@
+.mobileSection .description {
+    background-color: #D3E3FC;
+    border-radius: 20px;
+    height: 30rem;
+    position: relative !important;
+    top: 15%;
+}
+
+
+.mobileSection .descriptionBkg {
+    background-color: #D3E3FC;
+    border-radius: 20px;
+    bottom: 43%;
+    height: 30rem;
+    opacity: 50%;
+    position: relative;
+    right: 9%;
+    width: 38rem !important;
+    z-index: -1;
+}

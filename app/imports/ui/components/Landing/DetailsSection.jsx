@@ -24,13 +24,12 @@ let state = {
    ]
 }
 
-
 const DetailsSection = () => {
     return (
         <Grid className="detailsSection" centered>
             <Grid.Row>
             {state.temp.map(items => (
-                <Detail header={items.text} description={items.description} image={items.image} />
+                <Detail header={items.header} description={items.description} image={items.image} />
             ))}
             </Grid.Row>
         </Grid>

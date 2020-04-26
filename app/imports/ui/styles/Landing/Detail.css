@@ -8,17 +8,14 @@
 .detail .descriptionBkg {
     background-color: #D3E3FC;
     border-radius: 20px;
+    bottom: 58%;
     height: 14rem;
+    position: relative;
+    right: 5%;
     width: 52rem !important;
     z-index: -1;
-    position: relative;
-    bottom: 35%;
-    right: 5%;
 }
 
 .detail .descriptionContent {
     z-index: 1;
-}
-.detail .fillerImage {
-
 }
