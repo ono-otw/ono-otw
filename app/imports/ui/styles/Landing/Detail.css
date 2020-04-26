@@ -1,9 +1,24 @@
-.detail {
+.detail .description {
     background-color: #184470;
     border-radius: 20px;
+    height: 15rem;
+    width: 60rem !important;
 }
 
-.detail .description {
-    height: 10rem;
-    width: 40rem;
+.detail .descriptionBkg {
+    background-color: #D3E3FC;
+    border-radius: 20px;
+    height: 14rem;
+    width: 52rem !important;
+    z-index: -1;
+    position: relative;
+    bottom: 35%;
+    right: 5%;
+}
+
+.detail .descriptionContent {
+    z-index: 1;
+}
+.detail .fillerImage {
+
 }
