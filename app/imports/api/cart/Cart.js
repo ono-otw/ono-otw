@@ -11,7 +11,7 @@ const CartSchema = new SimpleSchema({
   vendor: String,
   price: String,
   quantity: String,
-  MenuId: String,
+  size: String,
 }, { tracker: Tracker });
 
 /** Attach this schema to the collection. */

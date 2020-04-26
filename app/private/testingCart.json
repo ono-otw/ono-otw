@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Mocha Frappe",
+    "vendor": "Starbucks",
+    "quantity": "2",
+    "price": "3.25"
+  },
+  {
+    "name": "Milk Tea",
+    "vendor": "Shaka Shaka",
+    "quantity": "1",
+    "price": "5.25"
+  }
+]
