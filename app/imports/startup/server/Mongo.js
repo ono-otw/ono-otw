@@ -1,7 +1,10 @@
 import { Meteor } from 'meteor/meteor';
 import { Stuffs } from '../../api/stuff/Stuff.js';
+import { Restaurant } from '../../api/restaurant/Restaurant';
 
 /* eslint-disable no-console */
+
+const defaultRestaurants = JSON.parse(Assets.getText('defaultRestaurants.json'));
 
 /** Initialize the database with a default data document. */
 function addData(data) {
@@ -15,4 +18,14 @@ if (Stuffs.find().count() === 0) {
     console.log('Creating default data.');
     Meteor.settings.defaultData.map(data => addData(data));
   }
+}
+
+/** Initialize the database with a default restaurants document. */
+function addRestaurants(data) {
+  console.log(` Adding: Restaurant listing: ${data.name} for ${data.owner}`);
+  Restaurant.insert(data);
+}
+
+if (Restaurant.find().count() === 0) {
+  defaultRestaurants.map(data => addRestaurants(data));
 }

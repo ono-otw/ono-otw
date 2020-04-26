@@ -1,0 +1,32 @@
+[
+  {
+    "owner": "starbucks@foo.com",
+    "name": "Starbucks",
+    "address": "2465 Campus Rd #220",
+    "image": "https://assets.change.org/photos/7/ou/zi/OlOuziNRVcXqzpX-800x450-noPad.jpg?1531499872",
+    "rating":  4.5,
+    "time": 8,
+    "label": ["Coffee", "Tea"],
+    "approved": true
+  },
+  {
+    "owner": "raisingcanes@foo.com",
+    "name": "Raising Canes",
+    "address": "2615 S King St Unit 102",
+    "image": "https://tinyurl.com/y7adk236",
+    "rating":  4.5,
+    "time": 25,
+    "label": ["Smoothie", "Tea"],
+    "approved": true
+  },
+  {
+    "owner": "bale@foo.com",
+    "name": "Bale",
+    "address": "2465 Campus Rd #220",
+    "image": "https://s3-media0.fl.yelpcdn.com/bphoto/n3jOrjcJOVoz0npBf_FS1Q/o.jpg",
+    "rating":  4.1,
+    "time": 10,
+    "label": ["Sandwich", "Pho"],
+    "approved": false
+  }
+]
