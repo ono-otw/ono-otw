@@ -1,7 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 import { Meteor } from 'meteor/meteor';
-import { Container, Card, Loader, Search, Icon, Header } from 'semantic-ui-react';
+import { Container, Card, Loader, Search, Icon, Header, Message } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Restaurant } from '../../api/restaurant/Restaurant';
@@ -24,9 +24,9 @@ const restaurantSearch = [{
     time: '10min', price: '4.1', label: ['Sandwich', 'Pho'],
   },
   {
-    title: 'Shaka Shaka', description: '2600 S King St.',
-    image: 'https://s3-media0.fl.yelpcdn.com/bphoto/Uynrx7WT2hkJV8WSDVYfWg/o.jpg',
-    time: '25min', price: '3.2', label: ['Smoothie', 'Tea'],
+    title: 'Starbucks', description: '2465 Campus Rd #220.',
+    image: 'https://assets.change.org/photos/7/ou/zi/OlOuziNRVcXqzpX-800x450-noPad.jpg?1531499872',
+    time: '8min', price: '4.5', label: ['Coffee', 'Tea'],
   },
 ];
 
@@ -67,6 +67,13 @@ class Restaurants extends React.Component {
       paddingTop: '2rem',
     };
 
+    const messagePad = {
+      paddingTop: '1rem',
+      paddingRight: '8rem',
+      paddingLeft: '8rem',
+    };
+
+
     const { isLoading, value, results } = this.state;
 
     return (
@@ -78,6 +85,16 @@ class Restaurants extends React.Component {
                 <Icon name='food'/>
               </Header.Content>
             </Header>
+          </div>
+          <div style={messagePad}>
+            <Message className='restaurant-message'>
+              <Message.Header>To Search....</Message.Header>
+              <Message.List>
+                <Message.Item>Search by food category</Message.Item>
+                {/* eslint-disable-next-line react/no-unescaped-entities */}
+                <Message.Item>Clicking on Restaurant's title will bring you to the menu page. </Message.Item>
+              </Message.List>
+            </Message>
           </div>
           <div align='center' style={searchBar}>
             <Search className='search_bar'
