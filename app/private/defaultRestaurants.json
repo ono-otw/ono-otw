@@ -4,7 +4,7 @@
     "name": "Starbucks",
     "address": "2465 Campus Rd #220",
     "image": "https://assets.change.org/photos/7/ou/zi/OlOuziNRVcXqzpX-800x450-noPad.jpg?1531499872",
-    "rating":  4.5,
+    "rating":  4.1,
     "time": 8,
     "label": ["Coffee", "Tea"],
     "approved": true
@@ -16,7 +16,7 @@
     "image": "https://tinyurl.com/y7adk236",
     "rating":  4.5,
     "time": 25,
-    "label": ["Smoothie", "Tea"],
+    "label": ["Chicken"],
     "approved": true
   },
   {
