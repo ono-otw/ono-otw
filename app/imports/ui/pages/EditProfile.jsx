@@ -6,15 +6,16 @@ import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import 'uniforms-bridge-simple-schema-2'; // required for Uniforms
-import { Stuffs, StuffSchema } from '../../api/stuff/Stuff';
+import { Link } from 'react-router-dom';
+import { Profile, ProfileSchema } from '../../api/profile/Profile';
 
 /** Renders the Page for editing a single document. */
 class EditProfile extends React.Component {
 
   /** On successful submit, insert the data. */
   submit(data) {
-    const { name, email, condition, _id } = data;
-    Stuffs.update(_id, { $set: { name, quantity, condition } }, (error) => (error ?
+    const { firstName, lastName, image, venmo, _id } = data;
+    Profile.update(_id, { $set: { firstName, lastName, image, venmo } }, (error) => (error ?
         swal('Error', error.message, 'error') :
         swal('Success', 'Item updated successfully', 'success')));
   }
@@ -65,37 +66,32 @@ class EditProfile extends React.Component {
                   Edit Profile
                 </Header>
               </Divider>
-              <AutoForm schema={StuffSchema} onSubmit={data => this.submit(data)} model={this.props.doc}>
+              <AutoForm schema={ProfileSchema} onSubmit={data => this.submit(data)} model={this.props.doc}>
                 <Segment className='signup-form' style={formPad}>
                   <Grid columns={2} style={rowPad}>
                     <Grid.Column>
                       <TextField
-                          fluid label='First Name'
-                          name='name'/>
+                          label='First Name'
+                          name='firstName'/>
                     </Grid.Column>
                     <Grid.Column>
                       <TextField
-                          fluid label='Last Name'
-                          name='name'/>
+                          label='Last Name'
+                          name='lastName'/>
                     </Grid.Column>
                   </Grid>
                   <TextField
-                      fluid label='Email'
-                      name='name'/>
+                      label='Profile Image'
+                      name='image'/>
                   <TextField
-                      fluid label='Password'
-                      name='name'/>
-                  <TextField
-                      fluid label='Profile Image'
-                      name='name'/>
-                  <TextField
-                      fluid label='Venmo'
-                      name='name'/>
+                      label='Venmo'
+                      name='venmo'/>
                   <div align='center'>
                     <SubmitField value='SUBMIT' style={button}/>
                   </div>
                   <ErrorsField/>
                   <HiddenField name='owner' />
+                  <Link to={'/profiles'}>Click to go back</Link>
                 </Segment>
               </AutoForm>
             </Grid.Column>
@@ -117,9 +113,9 @@ export default withTracker(({ match }) => {
   // Get the documentID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
   const documentId = match.params._id;
   // Get access to Stuff documents.
-  const subscription = Meteor.subscribe('Stuff');
+  const subscription = Meteor.subscribe('Profile');
   return {
-    doc: Stuffs.findOne(documentId),
+    doc: Profile.findOne(documentId),
     ready: subscription.ready(),
   };
 })(EditProfile);
