@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link, Redirect } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Container, Radio, Grid, Header, Card } from 'semantic-ui-react';
+import { Container, Grid, Header } from 'semantic-ui-react';
 import { Carts } from '../../api/cart/Carts';
-import MenuTable from '../components/MenuTable';
+import CartTable from '../components/CartTable';
 /**
  * Profiles page overrides the form’s submit event and call Meteor’s loginWithPassword().
  * Authentication errors modify the component’s state to be displayed
@@ -38,7 +37,22 @@ class Cart extends React.Component {
           <div style={innerContainer}>
             <Header>Order</Header>
             <hr className='blackBorder'/>
-            {this.props.cartItems.map((cartItems, index) => <MenuTable key={index} cartItems={cartItems}/>)}
+            {this.props.cartItems.map((cartItems, index) => <CartTable key={index} cartItems={cartItems}/>)}
+
+            <hr className='blackBorder'/>
+            <Grid columns='2'>
+              <Grid.Column>
+                <Header as='h4'>Tax</Header>
+                <Header as='h4'>Delivery Fee</Header>
+
+              </Grid.Column>
+              <Grid.Column textAlign='right'>
+                <div>
+
+                </div>
+
+              </Grid.Column>
+            </Grid>
           </div>
          </Container>
     );
