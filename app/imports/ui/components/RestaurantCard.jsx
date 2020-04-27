@@ -1,10 +1,22 @@
 import React from 'react';
 import { Card, Grid, Header, Label, Rating } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class RestaurantCard extends React.Component {
+
+  state = { rating: 0 };
+
+  handleRate = (e, { rating, maxRating }) => this.setState(
+      { rating, maxRating },
+      console.log('You clicked me'),
+  );
+
+  handleChange = (e) => this.setState(
+      { rating: e.target.value },
+  );
+
   render() {
     const divPad = {
       paddingRight: '5rem',
@@ -31,7 +43,7 @@ class RestaurantCard extends React.Component {
                 <Grid>
                   <Grid.Row>
                     <Grid.Column textAlign='left' width={13}>
-                      <a href='#testing'>
+                      <a href={`#/${this.props.restaurant.name}`} >
                         <Header inverted >{this.props.restaurant.name}</Header>
                       </a>
                     </Grid.Column>
@@ -51,7 +63,14 @@ class RestaurantCard extends React.Component {
                       {this.props.restaurant.time} min
                     </Grid.Column>
                     <Grid.Column textAlign='right'>
-                      <Rating maxRating={1} clearable icon='heart' size='large' className={'favorite_button'}/>
+                      <Rating
+                          onRate={this.handleRate}
+                          maxRating={1}
+                          clearable
+                          icon='heart'
+                          size='large'
+                          rating={this.state.rating}
+                          className={'favorite_button'}/>
                     </Grid.Column>
                   </Grid.Row>
                 </Grid>

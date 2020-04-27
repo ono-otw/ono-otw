@@ -69,6 +69,18 @@ hr { display: block; height: 1px;
   text-shadow: none;
 }
 
+.restaurantHover a:hover {
+  color: black !important;
+}
+
+.restaurant-message li, .restaurant-message {
+  color: #011423 !important;
+}
+
+.restaurant-message {
+  background: #ffffff8f !important;
+}
+
 /*Custom HR*/
 hr.blackBorder {
   border-top: 2px solid black;
