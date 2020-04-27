@@ -1,0 +1,21 @@
+.detail .description {
+    background-color: #184470;
+    border-radius: 20px;
+    height: 15rem;
+    width: 60rem !important;
+}
+
+.detail .descriptionBkg {
+    background-color: #D3E3FC;
+    border-radius: 20px;
+    bottom: 58%;
+    height: 14rem;
+    position: relative;
+    right: 5%;
+    width: 52rem !important;
+    z-index: -1;
+}
+
+.detail .descriptionContent {
+    z-index: 1;
+}
