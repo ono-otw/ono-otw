@@ -24,8 +24,10 @@ class NavBar extends React.Component {
             <Image src="images/Logo.png" size='small' />
           </Menu.Item>
           {this.props.currentUser ? (
-              [<Menu.Item as={NavLink} activeClassName="active" exact to="/add" key='add'>Add Stuff</Menu.Item>,
-                <Menu.Item as={NavLink} activeClassName="active" exact to="/list" key='list'>List Stuff</Menu.Item>]
+              [<Menu.Item as={NavLink} style={navColor} activeClassName="active" exact to="/add" key='add'>Add Stuff</Menu.Item>,
+                <Menu.Item as={NavLink} style={navColor} activeClassName="active" exact to="/list" key='list'>List Stuff</Menu.Item>,
+                <Menu.Item as={NavLink} style={navColor} activeClassName="active" exact to="/restaurants" key='restaurants'>Restaurants</Menu.Item>]
+
           ) : ''}
           {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
               <Menu.Item as={NavLink} activeClassName="active" exact to="/admin" key='admin'>Admin</Menu.Item>
@@ -39,8 +41,9 @@ class NavBar extends React.Component {
                   </Dropdown.Menu>
                 </Dropdown>
             ) : (
-                <Dropdown text={this.props.currentUser} pointing="top right" icon={'user'}>
+                <Dropdown text={this.props.currentUser} pointing="top right" icon={'user'} style={navColor}>
                   <Dropdown.Menu>
+                    <Dropdown.Item icon="user" text="Profile" as={NavLink} exact to="/profiles"/>
                     <Dropdown.Item icon="sign out" text="Sign Out" as={NavLink} exact to="/signout"/>
                   </Dropdown.Menu>
                 </Dropdown>
