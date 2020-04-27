@@ -25,30 +25,30 @@ class RestaurantCard extends React.Component {
     return (
         <div style={divPad}>
           <Card
-              image={this.props.restaurants.image}
+              image={this.props.restaurant.image}
               // href='#card-example-link-card'
               header= {
                 <Grid>
                   <Grid.Row>
                     <Grid.Column textAlign='left' width={13}>
                       <a href='#testing'>
-                        <Header inverted >{this.props.restaurants.name}</Header>
+                        <Header inverted >{this.props.restaurant.name}</Header>
                       </a>
                     </Grid.Column>
                     <Grid.Column textAlign='right'>
                       <Label circular style={rateCol} >
-                        {this.props.restaurants.rating}
+                        {this.props.restaurant.rating}
                       </Label>
                     </Grid.Column>
                   </Grid.Row>
                 </Grid>
               }
-              meta={this.props.restaurants.address}
+              meta={this.props.restaurant.address}
               description = {
                 <Grid columns={2}>
                   <Grid.Row>
                     <Grid.Column textAlign='left'>
-                      {this.props.restaurants.time}
+                      {this.props.restaurant.time} min
                     </Grid.Column>
                     <Grid.Column textAlign='right'>
                       <Rating maxRating={1} clearable icon='heart' size='large' className={'favorite_button'}/>
@@ -58,7 +58,7 @@ class RestaurantCard extends React.Component {
               }
           />
           <div align='right'>
-            {this.props.restaurants.label.map((tags) => (
+            {this.props.restaurant.label.map((tags) => (
                 <Label circular key={tags} style={labelCol}>
                   {tags}
                 </Label>
@@ -71,7 +71,7 @@ class RestaurantCard extends React.Component {
 
 /** Require a document to be passed to this component. */
 RestaurantCard.propTypes = {
-  restaurants: PropTypes.object.isRequired,
+  restaurant: PropTypes.object.isRequired,
 };
 
 /** Wrap this component in withRouter since we use the <Link> React Router element. */

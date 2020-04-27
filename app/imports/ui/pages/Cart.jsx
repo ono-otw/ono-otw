@@ -8,7 +8,7 @@ import { Container, Radio, Grid, Header } from 'semantic-ui-react';
  * Profiles page overrides the form’s submit event and call Meteor’s loginWithPassword().
  * Authentication errors modify the component’s state to be displayed
  */
-export default class Cart extends React.Component {
+class Cart extends React.Component {
 
   /** Render the Cart form. */
   render() {
@@ -53,5 +53,15 @@ export default class Cart extends React.Component {
 
 /** Ensure that the React Router location object is available in case we need to redirect. */
 Cart.propTypes = {
-  location: PropTypes.object,
+
 };
+
+/** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
+export default withTracker(() => {
+  // Get access to Stuff documents.
+  const subscription = Meteor.subscribe('MenuItems');
+  return {
+    menuitems: MenuItems.find({}).fetch(),
+    ready: subscription.ready(),
+  };
+})(Cart);
