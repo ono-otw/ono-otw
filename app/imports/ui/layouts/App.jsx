@@ -28,7 +28,7 @@ class App extends React.Component {
               <Route path="/signup" component={Signup}/>
               <Route path="/signout" component={Signout}/>
               <Route path="/profiles" component={Profiles}/>
-              <Route path="/edit" component={EditProfile}/>
+              <Route path="/edit/:_id" component={EditProfile}/>
               <Route path="/restaurants" component={Restaurants}/>
               <AdminProtectedRoute path="/admin" component={Admin}/>
             </Switch>
