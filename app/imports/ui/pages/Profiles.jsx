@@ -84,6 +84,7 @@ class Profiles extends React.Component {
                 <div style={profileIMG} align='center'>
                   <Image size='small' circular src='https://tinyurl.com/y2df4joo'/>
                   <p>{this.props.profile.firstName} {this.props.profile.lastName} </p>
+                  <p>{this.props.profile.venmo}</p>
                   <Rating icon='star' defaultRating={3} maxRating={4} />
                 </div>
               </Grid.Column>

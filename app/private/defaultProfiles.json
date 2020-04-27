@@ -1,16 +1,16 @@
-{
-  "defaultProfiles": [
-    {
-      "owner": "admin@foo.com",
-      "firstName": "Admin",
-      "lastName": "Foo",
-      "venmo": "adminvenmo"
-    },
-    {
-      "owner": "john@foo.com",
-      "firstName": "John",
-      "lastName": "Doe",
-      "venmo": "johnd1"
-    }
-  ]
-}
+[
+  {
+    "owner": "admin@foo.com",
+    "firstName": "Admin",
+    "lastName": "Foo",
+    "image": "https://i.insider.com/5df126b679d7570ad2044f3e?width=1100&format=jpeg&auto=webp",
+    "venmo": "adminvenmo"
+  },
+  {
+    "owner": "john@foo.com",
+    "firstName": "John",
+    "lastName": "Doe",
+    "image": "https://i.insider.com/5df126b679d7570ad2044f3e?width=1100&format=jpeg&auto=webp",
+    "venmo": "johnd1"
+  }
+]
