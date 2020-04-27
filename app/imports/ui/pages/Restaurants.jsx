@@ -4,7 +4,7 @@ import { Meteor } from 'meteor/meteor';
 import { Container, Card, Loader, Search, Icon, Header } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import { Stuffs } from '../../api/stuff/Stuff';
+import { Restaurant } from '../../api/restaurant/Restaurant';
 import RestaurantCard from '../components/RestaurantCard';
 
 /* Used to render search results. Atm the required fields for search using native semantic UI:
@@ -33,23 +33,6 @@ const restaurantSearch = [{
 const initialState = { isLoading: false, results: [], value: '' };
 /** Renders the list of restaurants */
 class Restaurants extends React.Component {
-
-  restaurants = [{
-    name: 'Raising Canes', address: '2615 S King St Unit 102',
-    image: 'https://tinyurl.com/y7adk236',
-    time: '15min', rating: '4.5', label: ['Chicken'],
-     },
-    {
-      name: 'Bale', address: '2465 Campus Rd #220',
-      image: 'https://s3-media0.fl.yelpcdn.com/bphoto/n3jOrjcJOVoz0npBf_FS1Q/o.jpg',
-      time: '10min', rating: '4.1', label: ['Sandwich', 'Pho'],
-    },
-    {
-      name: 'Shaka Shaka', address: '2600 S King St.',
-      image: 'https://s3-media0.fl.yelpcdn.com/bphoto/Uynrx7WT2hkJV8WSDVYfWg/o.jpg',
-      time: '25min', rating: '3.2', label: ['Smoothie', 'Tea'],
-    },
-  ];
 
   state = initialState;
 
@@ -110,7 +93,7 @@ class Restaurants extends React.Component {
             />
           </div>
             <Card.Group itemsPerRow='4' centered className='restaurant_card'>
-                {this.restaurants.map((restaurants, index) => <RestaurantCard key={index} restaurants={restaurants}/>)}
+                {this.props.restaurant.map((restaurant, index) => <RestaurantCard key={index} restaurant={restaurant}/>)}
             </Card.Group>
         </Container>
     );
@@ -119,16 +102,16 @@ class Restaurants extends React.Component {
 
 /** Require an array of Stuff documents in the props. */
 Restaurants.propTypes = {
-  stuffs: PropTypes.array.isRequired,
+  restaurant: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
 export default withTracker(() => {
-  // Get access to Stuff documents.
-  const subscription = Meteor.subscribe('Stuff');
+  // Get access to Restaurant documents.
+  const subscription = Meteor.subscribe('Restaurant');
   return {
-    stuffs: Stuffs.find({}).fetch(),
+    restaurant: Restaurant.find({}).fetch(),
     ready: subscription.ready(),
   };
 })(Restaurants);
