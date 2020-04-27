@@ -27,7 +27,7 @@ if (Stuffs.find().count() === 0) {
 /** Initialize the database with a default data document. */
 function addCart(data) {
   console.log(`  Adding: ${data.name} (${data.owner})`);
-  Stuffs.insert(data);
+  Carts.insert(data);
 }
 
 if (Carts.find().count() === 0) {

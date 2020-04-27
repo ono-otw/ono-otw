@@ -4,13 +4,15 @@
     "vendor": "Starbucks",
     "owner": "john@foo.com",
     "quantity": "2",
-    "price": "3.25"
+    "price": "3.25",
+    "size": "Small"
   },
   {
     "name": "Milk Tea",
     "vendor": "Shaka Shaka",
     "owner": "john@foo.com",
     "quantity": "1",
-    "price": "5.25"
+    "price": "5.25",
+    "size": "Small"
   }
 ]
