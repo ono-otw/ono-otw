@@ -1,10 +1,10 @@
 import { Meteor } from 'meteor/meteor';
 import { Stuffs } from '../../api/stuff/Stuff.js';
-import { Cart } from '../../api/cart/Cart.js';
+import { Carts } from '../../api/cart/Carts.js';
+import { Restaurant } from '../../api/restaurant/Restaurant';
 /* eslint-disable no-console */
 
 const testingCart = JSON.parse(Assets.getText('testingCart.json'));
-import { Restaurant } from '../../api/restaurant/Restaurant';
 
 /* eslint-disable no-console */
 
@@ -30,11 +30,13 @@ function addCart(data) {
   Stuffs.insert(data);
 }
 
-if (Cart.find().count() === 0) {
+if (Carts.find().count() === 0) {
   if (testingCart) {
     console.log('Creating testing cart data.');
     testingCart.map(data => addCart(data));
   }
+}
+
 /** Initialize the database with a default restaurants document. */
 function addRestaurants(data) {
   console.log(` Adding: Restaurant listing: ${data.name} for ${data.owner}`);
