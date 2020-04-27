@@ -1,0 +1,16 @@
+{
+  "defaultProfiles": [
+    {
+      "owner": "admin@foo.com",
+      "firstName": "Admin",
+      "lastName": "Foo",
+      "venmo": "adminvenmo"
+    },
+    {
+      "owner": "john@foo.com",
+      "firstName": "John",
+      "lastName": "Doe",
+      "venmo": "johnd1"
+    }
+  ]
+}

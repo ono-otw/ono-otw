@@ -3,12 +3,16 @@ import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
 import { Container, Radio, Grid, Header, Image, Rating, Transition } from 'semantic-ui-react';
+import { withTracker } from 'meteor/react-meteor-data';
+import { Profile } from '../../api/profile/Profile';
+import { Stuffs } from '../../api/stuff/Stuff';
 
 /**
  * Profiles page overrides the form’s submit event and call Meteor’s loginWithPassword().
  * Authentication errors modify the component’s state to be displayed
  */
-export default class Profiles extends React.Component {
+class Profiles extends React.Component {
+
   state = { visibleConsumer: true, visibleDeliverer: false };
 
 
@@ -79,7 +83,7 @@ export default class Profiles extends React.Component {
               <Grid.Column>
                 <div style={profileIMG} align='center'>
                   <Image size='small' circular src='https://tinyurl.com/y2df4joo'/>
-                  <p>John Doe</p>
+                  <p>{this.props.profile.firstName} {this.props.profile.lastName} </p>
                   <Rating icon='star' defaultRating={3} maxRating={4} />
                 </div>
               </Grid.Column>
@@ -136,4 +140,15 @@ export default class Profiles extends React.Component {
 /** Ensure that the React Router location object is available in case we need to redirect. */
 Profiles.propTypes = {
   location: PropTypes.object,
+  profile: PropTypes.object,
 };
+
+/** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
+export default withTracker(() => {
+  // Get access to Profile documents.
+  const subscription = Meteor.subscribe('Profile');
+  return {
+    profile: Profile.find({}).fetch(),
+    ready: subscription.ready(),
+  };
+})(Profiles);
