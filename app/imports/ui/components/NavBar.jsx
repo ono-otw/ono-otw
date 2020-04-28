@@ -28,10 +28,6 @@ class NavBar extends React.Component {
             Restaurants
           </Menu.Item>
 
-          {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
-              <Menu.Item as={NavLink} style={navColor} activeClassName="active" exact to="/admin" key='admin'>Admin</Menu.Item>
-          ) : ''}
-
           {this.props.currentUser ? (
               [<Menu.Item as={NavLink} style={navColor} activeClassName="active" exact to="/deliver" key='deliver'>
                 <Icon name='truck'/>
@@ -50,6 +46,13 @@ class NavBar extends React.Component {
                   Tracking
                 </Menu.Item>]
 
+          ) : ''}
+
+          {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
+              <Menu.Item as={NavLink} style={navColor} activeClassName="active" exact to="/admin" key='admin'>
+                <Icon name='user secret'/>
+                Admin
+              </Menu.Item>
           ) : ''}
 
           {this.props.currentUser === '' ? (
