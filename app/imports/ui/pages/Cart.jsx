@@ -31,7 +31,7 @@ class Cart extends React.Component {
             swal('Error', error.message, 'error');
           } else {
             swal('Success', 'Order has been confirmed!', 'success');
-            Carts.remove(Carts.findOne({ MenuId: props.cartItems._id })._id);
+            Carts.remove(Carts.findOne({ MenuId: this.props.cartItems._id })._id);
             this.forceUpdate();
           }
         });
@@ -47,7 +47,7 @@ class Cart extends React.Component {
     })
         .then((willDelete) => {
           if (willDelete) {
-            Carts.remove(Carts.findOne({ MenuId: props.cartItems._id })._id);
+            Carts.remove(Carts.findOne({ MenuId: this.props.cartItems._id })._id);
             this.forceUpdate();
             swal('This order has been cancelled!', {
               icon: 'success',
