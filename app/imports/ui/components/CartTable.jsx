@@ -17,7 +17,9 @@ class CartTable extends React.Component {
       backgroundColor: 'white',
       borderRadius: '20px',
     };
-    const priceProduct = this.props.cartItems.quantity * this.props.cartItems.price;
+
+    const priceProduct = (this.props.cartItems.quantity * this.props.cartItems.price).toFixed(2);
+
     return (
           <div style={innerContainer}>
             <Grid columns='2'>

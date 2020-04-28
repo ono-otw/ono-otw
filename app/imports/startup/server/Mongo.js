@@ -38,6 +38,7 @@ if (Carts.find().count() === 0) {
     console.log('Creating testing cart data.');
     testingCart.map(data => addCart(data));
   }
+}
 
 /** Initialize the database with a default data document. */
 function addProfiles(data) {
