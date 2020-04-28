@@ -10,6 +10,7 @@ import Landing from '../pages/Landing';
 import Footer from '../components/Footer';
 import Restaurants from '../pages/Restaurants';
 import Profiles from '../pages/Profiles';
+import EditProfile from '../pages/EditProfile';
 import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
 import Cart from '../pages/Cart';
@@ -28,6 +29,7 @@ class App extends React.Component {
               <Route path="/signup" component={Signup}/>
               <Route path="/signout" component={Signout}/>
               <Route path="/profiles" component={Profiles}/>
+              <Route path="/edit/:_id" component={EditProfile}/>
               <Route path="/restaurants" component={Restaurants}/>
               <Route path="/cart" component={Cart}/>
               <AdminProtectedRoute path="/admin" component={Admin}/>

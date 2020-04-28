@@ -1,27 +1,28 @@
-import { Grid, Image, Card, Header } from 'semantic-ui-react';
 import React from 'react';
-import "../../styles/Landing/Jumbotron";
+import { Grid, Image, Header } from 'semantic-ui-react';
+import '../../styles/Landing/Jumbotron';
 
-const Jumbotron = props => {
+const Jumbotron = () => {
     return (
-    <Grid className="jumbo">
-            <Grid.Row styles={"paddingTop: 0px !important"}>
-                <Grid.Column className="image-offset" width={6}>
-                    <Image className="image" src="images/Filler.png"/>
+       <Grid className="jumbotronRoot" centered>
+           <Grid.Row>
+                <Grid.Column>
+                    <div className="topHeader">
+                        <Header as="h1" content="Fast and Convient Delivery" />
+                    </div>
+                    <div className="topDescription">
+                        <Header as="h3"> 
+                            Place an order and get in it in matter of minutes. Getting Food has 
+                            never been this convient and fast. 
+                        </Header>
+                    </div>
                 </Grid.Column>
-                <Grid.Column width={7}>
-                    <Card className="card">
-                        <Card.Header as="h1" size="huge" textAlign="center">Fast and Convienet Delivery</Card.Header>
-                        <Card.Description as="h2" textAlign="center">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab architecto delectus reiciendis 
-                            aperiam soluta possimus harum vitae dolor est vero. Impedit quod voluptatum, placeat magnam 
-                            natus nostrum delectus laudantium alias!
-                        </Card.Description>
-                    </Card>
-                </Grid.Column>
-            </Grid.Row>
-           
-        </Grid>
+                <Grid.Column></Grid.Column>
+                <Grid.Column></Grid.Column>
+                <Image className="blob" src='images/Blob.png' />
+                <Image className="deliveryMan" src='images/DeliveryMan.svg' />
+           </Grid.Row>
+       </Grid>
     );
 }
 
