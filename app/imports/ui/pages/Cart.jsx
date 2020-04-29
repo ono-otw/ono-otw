@@ -16,22 +16,12 @@ import { Profile } from '../../api/profile/Profile';
 class Cart extends React.Component {
 
   confirm() {
-    const owner = this.props.cartItems.owner;
-    const store = this.props.cartItems.vendor;
-    const profile = Profile.findOne({ owner: this.props.cartItems.owner });
-    console.log(profile);
-    const quantity = this.props.cartItems.quantity;
-    const image = profile.image;
-    const firstName = profile.firstName;
-    const lastName = profile.lastName;
-    const personWhoOrdered = this.props.cartItems.owner;
-    const location = 'test';
-    const name = this.props.cartItems.name;
 
-    const initialPrice = this.props.cartItems.reduce((total, current) => total + (current.price * current.quantity), 0);
-    const tax = (initialPrice * 0.045).toFixed(2);
-    const deliveryPrice = (2.50).toFixed(2);
-    const totalPrice = (+initialPrice + +tax + +deliveryPrice).toFixed(2);
+    //
+    // const initialPrice = this.props.cartItems.reduce((total, current) => total + (current.price * current.quantity), 0);
+    // const tax = (initialPrice * 0.045).toFixed(2);
+    // const deliveryPrice = (2.50).toFixed(2);
+    // const totalPrice = (+initialPrice + +tax + +deliveryPrice).toFixed(2);
 
     swal({
       title: 'Are you sure?',
@@ -44,6 +34,18 @@ class Cart extends React.Component {
           let total = this.props.total;
           if (yes) {
             while (total !== 0) {
+              const order = Carts.findOne({ MenuId: this.props.cartItems._id });
+              const store = order.store;
+              const profile = Profile.findOne({ owner: order.owner });
+              const quantity = order.quantity;
+              const owner = profile.owner;
+              const image = profile.image;
+              const firstName = profile.firstName;
+              const lastName = profile.lastName;
+              const personWhoOrdered = order.owner;
+              const location = 'test';
+              const name = order.name;
+              console.log("inserting...");
               AcceptOrders.insert({
                     name,
                     firstName,
@@ -60,20 +62,19 @@ class Cart extends React.Component {
                       swal('Error', error.message, 'error');
                     } else {
                       swal('Success', 'Order has been confirmed!', 'success');
-                      Carts.remove(Carts.findOne({ MenuId: this.props.cartItems._id })._id);
-                      this.forceUpdate();
+                      // this.forceUpdate();
                     }
                   });
-              Carts.remove(Carts.findOne({ MenuId: this.props.cartItems._id })._id);
+              // Carts.remove(Carts.findOne({ MenuId: this.props.cartItems._id })._id);
               console.log(total);
               total--;
             }
             this.forceUpdate();
-            swal('This order has been cancelled!', {
+            swal('This order has been confirmed!', {
               icon: 'success',
             });
           } else {
-            swal('Order is not cancelled!');
+            swal('Order was not submitted.');
           }
         });
 
@@ -83,7 +84,7 @@ class Cart extends React.Component {
   cancel() {
     swal({
       title: 'Are you sure?',
-      text: 'It will disappear from your Favorites page, but you can re-favorite at any time in the Food Options page!',
+      text: 'Are you sure you want to cancel your order?',
       icon: 'warning',
       buttons: true,
       dangerMode: true,
@@ -91,17 +92,17 @@ class Cart extends React.Component {
         .then((willDelete) => {
           let total = this.props.total;
           if (willDelete) {
-            while (total !== 0) {
-              Carts.remove(Carts.findOne({ MenuId: this.props.cartItems._id })._id);
-              // console.log(total)
-              total--;
-            }
+            // while (total !== 0) {
+            //   Carts.remove(Carts.findOne({ MenuId: this.props.cartItems._id })._id);
+            //   // console.log(total)
+            //   total--;
+            // }
             this.forceUpdate();
             swal('This order has been cancelled!', {
               icon: 'success',
             });
           } else {
-            swal('Order is not cancelled!');
+            swal('Order was not cancelled!');
           }
         });
   }
@@ -228,11 +229,12 @@ Cart.propTypes = {
 export default withTracker(() => {
   // Get access to Stuff documents.
   const subscription = Meteor.subscribe('Carts');
+  const subscription3 = Meteor.subscribe('AcceptOrders');
   const subscription2 = Meteor.subscribe('Profile');
   return {
     cartItems: Carts.find({}).fetch(),
     profile: Profile.find({}).fetch(),
     total: Carts.find({}).count(),
-    ready: subscription.ready() && subscription2.ready(),
+    ready: subscription.ready() && subscription2.ready() && subscription3.ready(),
   };
 })(Cart);
