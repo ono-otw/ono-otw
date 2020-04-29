@@ -7,10 +7,10 @@ import { Search, Grid } from 'semantic-ui-react';
 const SearchBar = () => {
     return (
         <Grid.Row centered>
-           <Search />   
+           <Search />
 
         </Grid.Row>
-    );  
+    );
 }
 
 export default SearchBar;

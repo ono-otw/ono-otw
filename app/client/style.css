@@ -26,10 +26,6 @@ hr { display: block; height: 1px;
 
 }
 
-.ui.form input[type="email"]::placeholder , .ui.form input[type="password"]::placeholder {
-  color: black !important;
-}
-
 .signin-message, .signup-message {
   background: rgba(0, 0, 0, 0.21) !important;
 }
@@ -108,4 +104,12 @@ hr.tinyBlackBorder {
 .ui.button.deny {
   background: #606262 !important;
   color: white !important;
+}
+
+.cancel_button .ui.button{
+  background-color: #DADADA !important;
+}
+
+.submit_button .ui.button{
+  background-color: #184470 !important;
 }

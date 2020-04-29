@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Mocha Frappe",
+    "vendor": "Starbucks",
+    "owner": "john@foo.com",
+    "quantity": "2",
+    "price": "3.25",
+    "size": "Small"
+  },
+  {
+    "name": "Milk Tea",
+    "vendor": "Shaka Shaka",
+    "owner": "john@foo.com",
+    "quantity": "1",
+    "price": "5.25",
+    "size": "Small"
+  },
+  {
+    "name": "Mocha Frappe",
+    "vendor": "Starbucks",
+    "owner": "admin@foo.com",
+    "quantity": "2",
+    "price": "3.25",
+    "size": "Small"
+  },
+  {
+    "name": "Milk Tea",
+    "vendor": "Shaka Shaka",
+    "owner": "admin@foo.com",
+    "quantity": "3",
+    "price": "5.25",
+    "size": "Small"
+  },
+  {
+    "name": "Milk Tea",
+    "vendor": "Shaka Shaka",
+    "owner": "test@foo.com",
+    "quantity": "3",
+    "price": "5.25",
+    "size": "Small"
+  },
+  {
+    "name": "Milk Tea",
+    "vendor": "Shaka Shaka",
+    "owner": "mocha@foo.com",
+    "quantity": "3",
+    "price": "5.25",
+    "size": "Small"
+  },
+  {
+    "name": "Milk Tea",
+    "vendor": "Shaka Shaka",
+    "owner": "hello@foo.com",
+    "quantity": "3",
+    "price": "5.25",
+    "size": "Small"
+  }
+]

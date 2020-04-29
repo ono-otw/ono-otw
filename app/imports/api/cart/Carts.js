@@ -3,19 +3,20 @@ import SimpleSchema from 'simpl-schema';
 import { Tracker } from 'meteor/tracker';
 
 /** Define a Mongo collection to hold the data. */
-const Profile = new Mongo.Collection('Profile');
+const Carts = new Mongo.Collection('Carts');
 
 /** Define a schema to specify the structure of each document in the collection. */
-const ProfileSchema = new SimpleSchema({
-  firstName: String,
-  lastName: String,
-  image: { type: String, defaultValue: 'https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png'},
-  venmo: String,
+const CartSchema = new SimpleSchema({
+  name: String,
+  vendor: String,
   owner: String,
+  price: String,
+  quantity: String,
+  size: String,
 }, { tracker: Tracker });
 
 /** Attach this schema to the collection. */
-Profile.attachSchema(ProfileSchema);
+Carts.attachSchema(CartSchema);
 
 /** Make the collection and schema available to other code. */
-export { Profile, ProfileSchema };
+export { Carts, CartSchema };
