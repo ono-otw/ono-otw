@@ -17,6 +17,7 @@ import Cart from '../pages/Cart';
 import Admin from '../pages/Admin';
 import Menu from '../pages/FoodMenu';
 import ResturantSignup from '../pages/ResturantSignup';
+import ListStuff from '../pages/ListStuff';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -30,6 +31,7 @@ class App extends React.Component {
               <Route path="/menu" component={Menu}/>
               <Route exact path="/" component={Landing}/>
               <Route path="/signup" component={Signup}/>
+              <Route path="/list" component={ListStuff}/>
               <Route path="/signout" component={Signout}/>
               <Route path="/profiles" component={Profiles}/>
               <Route path="/edit/:_id" component={EditProfile}/>
