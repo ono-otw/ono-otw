@@ -24,11 +24,11 @@ class Signup extends React.Component {
   /** Handle Signup submission. Create user account and a profile entry, then redirect to the home page. */
   submit = () => {
     const { firstName, lastName, email, password, venmo } = this.state;
-    Accounts.createUser({ firstName, lastName, email, username: firstName, password }, (err) => {
+    Accounts.createUser({ firstName, lastName, username: email, password }, (err) => {
       if (err) {
         this.setState({ error: err.reason });
       } else {
-        Profile.insert({ firstName, lastName, venmo }, (err2) => {
+        Profile.insert({ owner: email, firstName, lastName, venmo }, (err2) => {
           if (err2) {
             this.setState({ error: err2.reason });
           } else {
@@ -51,6 +51,13 @@ class Signup extends React.Component {
       paddingBottom: '5rem',
     };
 
+    const paddingDiv = {
+      paddingTop: '2rem',
+      paddingRight: '3rem',
+      paddingLeft: '3rem',
+      paddingBottom: '2rem',
+    };
+
     return (
         <Container style={signContainer}>
           <Grid textAlign="center" verticalAlign="middle" centered columns={2}>
@@ -62,46 +69,48 @@ class Signup extends React.Component {
               </Divider>
               <Form onSubmit={this.submit}>
                 <Segment className='signup-form' stacked>
-                  <Form.Group widths='equal'>
+                  <div style={paddingDiv}>
+                    <Form.Group widths='equal'>
+                      <Form.Input
+                          fluid label='First Name'
+                          name='firstName'
+                          placeholder='First Name'
+                          onChange={this.handleChange}
+                      />
+                      <Form.Input
+                          fluid label='Last Name'
+                          name='lastName'
+                          placeholder='Last Name'
+                          onChange={this.handleChange}
+                      />
+                    </Form.Group>
                     <Form.Input
-                        fluid label='First Name'
-                        name='firstName'
-                        placeholder='First Name'
+                        label='Email'
+                        icon='user'
+                        iconPosition='left'
+                        name='email'
+                        type='email'
+                        placeholder='E-mail address'
                         onChange={this.handleChange}
                     />
                     <Form.Input
-                        fluid label='Last Name'
-                        name='lastName'
-                        placeholder='Last Name'
+                        label='Password'
+                        icon='lock'
+                        iconPosition='left'
+                        name='password'
+                        placeholder='Password'
+                        type='password'
                         onChange={this.handleChange}
                     />
-                  </Form.Group>
-                  <Form.Input
-                      label='Email'
-                      icon='user'
-                      iconPosition='left'
-                      name='email'
-                      type='email'
-                      placeholder='E-mail address'
-                      onChange={this.handleChange}
-                  />
-                  <Form.Input
-                      label='Password'
-                      icon='lock'
-                      iconPosition='left'
-                      name='password'
-                      placeholder='Password'
-                      type='password'
-                      onChange={this.handleChange}
-                  />
-                  <Form.Input
-                      fluid label='Venmo'
-                      icon='payment'
-                      iconPosition='left'
-                      name='venmo'
-                      placeholder='Venmo'
-                      onChange={this.handleChange}
-                  />
+                    <Form.Input
+                        fluid label='Venmo'
+                        icon='payment'
+                        iconPosition='left'
+                        name='venmo'
+                        placeholder='Venmo'
+                        onChange={this.handleChange}
+                    />
+                  </div>
                 </Segment>
                 <div align='center'>
                   <Form.Button secondary className='signup-button' content="SIGN UP"/>
