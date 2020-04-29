@@ -2,7 +2,9 @@ import React from 'react';
 import { Button, Card, Header, Image, Rating } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
+import swal from 'sweetalert';
 import { Profile } from '../../api/profile/Profile';
+import { Carts } from '../../api/cart/Carts';
 
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
@@ -12,6 +14,27 @@ class AcceptOrderCard extends React.Component {
     // let profile = Profile.findOne({ owner: this.props.pendingOrder.personWhoOrdered });
     // console.log(profile['image']);
     console.log(this.props.pendingOrder.personWhoOrdered);
+  }
+
+  acceptOrder() {
+    swal({
+      title: 'Are you sure?',
+      text: 'Are you sure you want to accept this order?',
+      icon: 'warning',
+      buttons: true,
+      dangerMode: true,
+    })
+        .then((willDelete) => {
+          if (willDelete) {
+            console.log('Accepting order');
+            this.forceUpdate();
+            swal('Order accepted.', {
+              icon: 'success',
+            });
+          } else {
+            swal('Order was not accepted.');
+          }
+        });
   }
 
   render() {
@@ -50,7 +73,7 @@ class AcceptOrderCard extends React.Component {
             </Card.Content>
             <Card.Content extra>
               <div align={'center'}>
-                <Button color={'teal'}>Accept</Button>
+                <Button color={'teal'} onClick={() => this.acceptOrder()}>Accept</Button>
               </div>
             </Card.Content>
           </Card>
