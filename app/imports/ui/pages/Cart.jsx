@@ -35,6 +35,8 @@ class Cart extends React.Component {
           if (yes) {
             while (total !== 0) {
               const order = Carts.findOne({ MenuId: this.props.cartItems._id });
+              console.log(order);
+              console.log(Carts.remove(Carts.findOne({ MenuId: this.props.cartItems._id })._id));
               const store = order.vendor;
               const profile = Profile.findOne({ owner: order.owner });
               const quantity = order.quantity;
@@ -62,7 +64,9 @@ class Cart extends React.Component {
                     if (error) {
                       swal('Error', error.message, 'error');
                     } else {
-                      Carts.remove(Carts.findOne({ MenuId: this.props.cartItems._id })._id);
+                      // console.log(Carts.findOne({ MenuId: this.props.cartItems._id }));
+                      // console.log(Carts.remove(Carts.findOne({ MenuId: this.props.cartItems._id })._id));
+                      console.log('how many times')
                       swal('Success', 'Order has been confirmed!', 'success');
                       this.forceUpdate();
                     }
@@ -93,11 +97,11 @@ class Cart extends React.Component {
         .then((willDelete) => {
           let total = this.props.total;
           if (willDelete) {
-            // while (total !== 0) {
-            //   Carts.remove(Carts.findOne({ MenuId: this.props.cartItems._id })._id);
-            //   // console.log(total)
-            //   total--;
-            // }
+            while (total !== 0) {
+              Carts.remove(Carts.findOne({ MenuId: this.props.cartItems._id })._id);
+              // console.log(total)
+              total--;
+            }
             this.forceUpdate();
             swal('This order has been cancelled!', {
               icon: 'success',

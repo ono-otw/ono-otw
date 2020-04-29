@@ -54,7 +54,7 @@ class AcceptOrder extends React.Component {
               </Message.List>
             </Message>
           </div>
-          <Card.Group className='accept_card'>
+          <Card.Group className='accept_card' centered>
             {this.props.pendingOrder.map((pendingOrder, index) => <AcceptOrderCard key={index} pendingOrder={pendingOrder}/>)}
 
           </Card.Group>

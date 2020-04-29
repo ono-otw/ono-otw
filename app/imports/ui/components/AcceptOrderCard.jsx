@@ -23,7 +23,7 @@ class AcceptOrderCard extends React.Component {
     return (
         <div style={divPad}>
           <Card>
-            <Card.Content>
+            <Card.Content >
               <div align={'center'}>
                 <Header as='h2' inverted>
                   <Image circular src={this.props.pendingOrder.image} /> {this.props.pendingOrder.firstName} {this.props.pendingOrder.lastName}
