@@ -15,6 +15,7 @@ import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
 import Cart from '../pages/Cart';
 import Admin from '../pages/Admin';
+import Menu from '../pages/FoodMenu';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -25,6 +26,7 @@ class App extends React.Component {
             <NavBar/>
             <Switch>
               <Route path="/signin" component={Signin}/>
+              <Route path="/menu" component={Menu}/>
               <Route exact path="/" component={Landing}/>
               <Route path="/signup" component={Signup}/>
               <Route path="/signout" component={Signout}/>

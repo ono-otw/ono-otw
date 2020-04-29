@@ -41,6 +41,22 @@ hr { display: block; height: 1px;
 .signin-button .ui.button, .signup-button .ui.button {
   background: #184470 !important;
 }
+/*----------------------------------------- MENU PAGE ------------------------------------------*/
+.menu_search_bar > .ui.input {
+  width: 60% !important;
+}
+
+.menu_categories > .ui.menu {
+  font-weight: bold;
+}
+.menubartext {
+  font-size: 20px !important;
+}
+
+.dark-blue-button {
+  background-color: #184470 !important;
+  color: white !important;
+}
 
 /*Restaurant CSS starts here*/
 .restaurant_card > div > .ui.card > .content, .restaurant_card > .ui.card > .content > .header, .restaurant_card > div > .ui.card > .content > .meta, .restaurant_card > div > .ui.card > .content > .description  {
@@ -113,3 +129,23 @@ hr.tinyBlackBorder {
 .submit_button .ui.button{
   background-color: #184470 !important;
 }
+/*.card-bg {*/
+/*  background-color: #184470 !important;*/
+/*  color: white !important;*/
+/*}*/
+
+.menuimage img {
+  object-fit: cover;
+  width: 100%;
+  height: 500px;
+}
+
+.ui.modal.item_modal > .content {
+  background: #9ABFFF !important;
+}
+
+.ui.itemcard_text {
+  color: black !important;
+}
+/* --------------------------------------------------------------------------------*/
+
