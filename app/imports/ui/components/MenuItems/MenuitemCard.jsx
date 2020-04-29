@@ -80,9 +80,9 @@ class MenuitemCard extends React.Component {
                   <Grid.Column >
                     <Card.Header style={cardHeader}>{this.props.menuitem.name}</Card.Header>
                     <Card.Description>
-                      {this.props.menuitem.calories} Cal<br/>
-                      {this.props.menuitem.size} oz<br/>
-                      ${this.props.menuitem.price}<br/>
+                      {/* {this.props.menuitem.calories} Cal<br/> */}
+                      {/* {this.props.menuitem.size} oz<br/> */}
+                      {/* ${this.props.menuitem.price}<br/> */}
                     </Card.Description>
                   </Grid.Column>
                 </Grid>

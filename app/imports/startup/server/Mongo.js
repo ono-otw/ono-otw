@@ -3,6 +3,7 @@ import { Stuffs } from '../../api/stuff/Stuff.js';
 import { Carts } from '../../api/cart/Carts.js';
 import { Profile } from '../../api/profile/Profile';
 import { Restaurant } from '../../api/restaurant/Restaurant';
+import { FoodMenu } from '../../api/foodmenu/Menu';
 /* eslint-disable no-console */
 
 const testingCart = JSON.parse(Assets.getText('testingCart.json'));
@@ -11,6 +12,7 @@ const testingCart = JSON.parse(Assets.getText('testingCart.json'));
 
 const defaultRestaurants = JSON.parse(Assets.getText('defaultRestaurants.json'));
 const defaultProfiles = JSON.parse(Assets.getText('defaultProfiles.json'));
+const defaultMenuItems = JSON.parse(Assets.getText('defaultMenuItems.json'));
 
 
 /** Initialize the database with a default data document. */
@@ -58,4 +60,14 @@ function addRestaurants(data) {
 
 if (Restaurant.find().count() === 0) {
   defaultRestaurants.map(data => addRestaurants(data));
+}
+
+/** Initialize the database with a default restaurants document. */
+function addMenuItems(data) {
+  console.log(` Adding Menu Item: ${data.name} for ${data.owner}`);
+  FoodMenu.insert(data);
+}
+
+if (FoodMenu.find().count() === 0) {
+  defaultMenuItems.map(data => addMenuItems(data));
 }

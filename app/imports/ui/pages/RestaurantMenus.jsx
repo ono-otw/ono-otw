@@ -6,9 +6,10 @@ import PropTypes from 'prop-types';
 import { Stuffs } from '../../api/stuff/Stuff';
 import StuffItem from '../components/StuffItem';
 import MenuitemCard from '../components/MenuItems/MenuitemCard';
+import { FoodMenu } from '../../api/foodmenu/Menu';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
-class FoodMenu extends React.Component {
+class RestaurantMenus extends React.Component {
 
   menuItems = [{
     name: 'White Mocha', calories: 240,
@@ -78,17 +79,17 @@ class FoodMenu extends React.Component {
 }
 
 /** Require an array of Stuff documents in the props. */
-FoodMenu.propTypes = {
-  stuffs: PropTypes.array.isRequired,
+RestaurantMenus.propTypes = {
+  menuitem: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
 export default withTracker(() => {
   // Get access to Stuff documents.
-  const subscription = Meteor.subscribe('Stuff');
+  const subscription = Meteor.subscribe('FoodMenu');
   return {
-    stuffs: Stuffs.find({}).fetch(),
+    menuitem: FoodMenu.find({}).fetch(),
     ready: subscription.ready(),
   };
-})(FoodMenu);
+})(RestaurantMenus);
