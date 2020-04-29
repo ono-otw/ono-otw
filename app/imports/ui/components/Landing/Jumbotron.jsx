@@ -2,18 +2,17 @@ import React from 'react';
 import { Grid, Image, Header } from 'semantic-ui-react';
 import '../../styles/Landing/Jumbotron';
 
-const Jumbotron = () => {
-    return (
+const Jumbotron = () => (
        <Grid className="jumbotronRoot" centered>
            <Grid.Row>
                 <Grid.Column>
                     <div className="topHeader">
-                        <Header as="h1" content="Fast and Convient Delivery" />
+                        <Header as="h1" content="Fast and Convenient Delivery" />
                     </div>
                     <div className="topDescription">
-                        <Header as="h3"> 
-                            Place an order and get in it in matter of minutes. Getting Food has 
-                            never been this convient and fast. 
+                        <Header as="h3">
+                            Place an order and get it in matter of minutes. Getting food has
+                            never been this convenient and fast!
                         </Header>
                     </div>
                 </Grid.Column>
@@ -24,7 +23,6 @@ const Jumbotron = () => {
            </Grid.Row>
        </Grid>
     );
-}
 
 
 export default Jumbotron;

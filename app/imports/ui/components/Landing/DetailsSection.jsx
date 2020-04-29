@@ -4,28 +4,27 @@ import '../../styles/Landing/DetailsSection';
 import Detail from './Detail';
 
 
-let state = {
+const state = {
    temp: [
         {
-            header: "Easy Order",
-            image: "images/temp1.png",
-            description: "That's it! Never has been more simple!"
+            header: 'Easy Order',
+            image: 'images/temp1.png',
+            description: "That's it! Never has been more simple!",
         },
         {
-            header: "Fast Delivery",
-            image: "images/temp2.png",
-            description: "Delivery's made by your fellow UH Students"
+            header: 'Fast Delivery',
+            image: 'images/temp2.png',
+            description: "Delivery's made by your fellow UH Students",
         },
         {
-            header: "Support Local Business",
-            image: "images/temp3.png",
-            description: "Looking for a Place to Eat? Or support Local Business?"
-        }
-   ]
-}
+            header: 'Support Local Business',
+            image: 'images/temp3.png',
+            description: 'Looking for a Place to Eat? Or support Local Business?',
+        },
+   ],
+};
 
-const DetailsSection = () => {
-    return (
+const DetailsSection = () => (
         <Grid className="detailsSection" centered>
             <Grid.Row>
             {state.temp.map(items => (
@@ -33,8 +32,7 @@ const DetailsSection = () => {
             ))}
             </Grid.Row>
         </Grid>
-    )
-}
+    );
 
 
 export default DetailsSection;
