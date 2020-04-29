@@ -105,3 +105,11 @@ hr.tinyBlackBorder {
   background: #606262 !important;
   color: white !important;
 }
+
+.cancel_button .ui.button{
+  background-color: #DADADA !important;
+}
+
+.submit_button .ui.button{
+  background-color: #184470 !important;
+}
