@@ -35,7 +35,7 @@ class Cart extends React.Component {
           if (yes) {
             while (total !== 0) {
               const order = Carts.findOne({ MenuId: this.props.cartItems._id });
-              const store = order.store;
+              const store = order.vendor;
               const profile = Profile.findOne({ owner: order.owner });
               const quantity = order.quantity;
               const owner = profile.owner;
@@ -45,27 +45,28 @@ class Cart extends React.Component {
               const personWhoOrdered = order.owner;
               const location = 'test';
               const name = order.name;
-              console.log("inserting...");
-              AcceptOrders.insert({
-                    name,
-                    firstName,
-                lastName,
-                image,
-                store,
-                owner,
-                quantity,
-                personWhoOrdered,
-                location,
-                  },
+              // console.log(store);
+              // console.log(profile);
+              // console.log(quantity);
+              // console.log(owner);
+              // console.log(image);
+              // console.log(firstName);
+              // console.log(lastName);
+              // console.log(personWhoOrdered);
+              // console.log(location);
+              // console.log(name);
+
+              AcceptOrders.insert({ name, firstName, lastName, image, store, owner, quantity,
+                personWhoOrdered, location },
                   (error) => {
                     if (error) {
                       swal('Error', error.message, 'error');
                     } else {
+                      Carts.remove(Carts.findOne({ MenuId: this.props.cartItems._id })._id);
                       swal('Success', 'Order has been confirmed!', 'success');
-                      // this.forceUpdate();
+                      this.forceUpdate();
                     }
                   });
-              // Carts.remove(Carts.findOne({ MenuId: this.props.cartItems._id })._id);
               console.log(total);
               total--;
             }

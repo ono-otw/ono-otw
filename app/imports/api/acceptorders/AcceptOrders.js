@@ -23,4 +23,3 @@ AcceptOrders.attachSchema(AcceptOrdersSchema);
 
 /** Make the collection and schema available to other code. */
 export { AcceptOrders, AcceptOrdersSchema };
-
