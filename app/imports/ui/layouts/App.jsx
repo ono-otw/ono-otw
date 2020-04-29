@@ -16,7 +16,7 @@ import Signout from '../pages/Signout';
 import Cart from '../pages/Cart';
 import Admin from '../pages/Admin';
 import AcceptOrder from '../pages/AcceptOrder';
-import Tracking from '../pages/Tracking'
+// import Tracking from '../pages/Tracking'
 import Menu from '../pages/FoodMenu';
 import ResturantSignup from '../pages/ResturantSignup';
 import ListStuff from '../pages/ListStuff';
@@ -38,7 +38,7 @@ class App extends React.Component {
               <Route path="/profiles" component={Profiles}/>
               <Route path="/edit/:_id" component={EditProfile}/>
               <Route path="/restaurants" component={Restaurants}/>
-              <Route path="/tracking" component={Tracking}/>
+              {/*<Route path="/tracking" component={Tracking}/>*/}
               <Route path="/resturant-signup" component={ResturantSignup}/>              
               <Route path="/cart" component={Cart}/>
               <Route path="/accept" component={AcceptOrder}/>

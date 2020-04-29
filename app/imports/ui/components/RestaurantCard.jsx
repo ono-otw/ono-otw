@@ -43,7 +43,7 @@ class RestaurantCard extends React.Component {
                 <Grid>
                   <Grid.Row>
                     <Grid.Column textAlign='left' width={13}>
-                      <a href={`#/${this.props.restaurant.name}`} >
+                      <a href="#/menu" >
                         <Header inverted >{this.props.restaurant.name}</Header>
                       </a>
                     </Grid.Column>
