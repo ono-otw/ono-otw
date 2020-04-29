@@ -3,6 +3,7 @@ import { Stuffs } from '../../api/stuff/Stuff.js';
 import { Carts } from '../../api/cart/Carts.js';
 import { Profile } from '../../api/profile/Profile';
 import { Restaurant } from '../../api/restaurant/Restaurant';
+import { AcceptOrders } from '../../api/acceptorders/AcceptOrders';
 /* eslint-disable no-console */
 
 const testingCart = JSON.parse(Assets.getText('testingCart.json'));
@@ -11,7 +12,7 @@ const testingCart = JSON.parse(Assets.getText('testingCart.json'));
 
 const defaultRestaurants = JSON.parse(Assets.getText('defaultRestaurants.json'));
 const defaultProfiles = JSON.parse(Assets.getText('defaultProfiles.json'));
-
+const defaultAcceptOrders = JSON.parse(Assets.getText('defaultAcceptOrder.json'));
 
 /** Initialize the database with a default data document. */
 function addData(data) {
@@ -58,4 +59,14 @@ function addRestaurants(data) {
 
 if (Restaurant.find().count() === 0) {
   defaultRestaurants.map(data => addRestaurants(data));
+}
+
+/** Initialize the database with a default pending orders document. */
+function addAcceptOrders(data) {
+  console.log(` Adding: Pending orders: ${data.name} for ${data.owner}`);
+  AcceptOrders.insert(data);
+}
+
+if (AcceptOrders.find().count() === 0) {
+  defaultAcceptOrders.map(data => addAcceptOrders(data));
 }

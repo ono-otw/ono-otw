@@ -4,6 +4,7 @@ import { Stuffs } from '../../api/stuff/Stuff';
 import { Profile } from '../../api/profile/Profile';
 import { Restaurant } from '../../api/restaurant/Restaurant';
 import { Carts } from '../../api/cart/Carts';
+import { AcceptOrders } from '../../api/acceptorders/AcceptOrders';
 
 /** This subscription publishes only the documents associated with the logged in user */
 Meteor.publish('Stuff', function publish() {
@@ -31,9 +32,12 @@ Meteor.publish('Profile', function publish() {
   return this.ready();
 });
 
-  
 Meteor.publish('Restaurant', function publish() {
   return Restaurant.find({ approved: true });
+});
+
+Meteor.publish('AcceptOrders', function publish() {
+  return AcceptOrders.find({});
 });
 
 /** This subscription publishes only the documents associated with the logged in user */

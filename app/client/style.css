@@ -113,3 +113,9 @@ hr.tinyBlackBorder {
 .submit_button .ui.button{
   background-color: #184470 !important;
 }
+
+/*Accept Order CSS starts here*/
+.accept_card > div > .ui.card > .content, .accept_card > div > .ui.card > .content > .header, .accept_card > div > .ui.card > .content > .meta, .accept_card > div > .ui.card > .content > .description {
+  background-color: #184470 !important;
+  color: white !important;
+}

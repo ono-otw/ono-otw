@@ -7,6 +7,8 @@ import swal from 'sweetalert';
 import { Link, Redirect } from 'react-router-dom';
 import { Carts } from '../../api/cart/Carts';
 import CartTable from '../components/CartTable';
+import { AcceptOrders } from '../../api/acceptorders/AcceptOrders';
+import { Profile } from '../../api/profile/Profile';
 /**
  * Profiles page overrides the form’s submit event and call Meteor’s loginWithPassword().
  * Authentication errors modify the component’s state to be displayed
@@ -15,13 +17,21 @@ class Cart extends React.Component {
 
   confirm() {
     const owner = this.props.cartItems.owner;
-    const itemId = this.props.cartItems._id;
-    const vendor = this.props.cartItems.vendor;
+    const store = this.props.cartItems.vendor;
+    const profile = Profile.findOne({ owner: this.props.cartItems.owner });
+    console.log(profile);
+    const quantity = this.props.cartItems.quantity;
+    const image = profile.image;
+    const firstName = profile.firstName;
+    const lastName = profile.lastName;
+    const personWhoOrdered = this.props.cartItems.owner;
+    const location = 'test';
+    const name = this.props.cartItems.name;
+
     const initialPrice = this.props.cartItems.reduce((total, current) => total + (current.price * current.quantity), 0);
     const tax = (initialPrice * 0.045).toFixed(2);
     const deliveryPrice = (2.50).toFixed(2);
     const totalPrice = (+initialPrice + +tax + +deliveryPrice).toFixed(2);
-    const personWhoOrdered = this.props.cartItems.owner;
 
     swal({
       title: 'Are you sure?',
@@ -34,12 +44,16 @@ class Cart extends React.Component {
           let total = this.props.total;
           if (yes) {
             while (total !== 0) {
-              acceptOrder.insert({
-                    personWhoOrdered,
-                    owner,
-                    vendor,
-                    totalPrice,
-                    itemId,
+              AcceptOrders.insert({
+                    name,
+                    firstName,
+                lastName,
+                image,
+                store,
+                owner,
+                quantity,
+                personWhoOrdered,
+                location,
                   },
                   (error) => {
                     if (error) {
@@ -207,15 +221,18 @@ Cart.propTypes = {
   cartItems: PropTypes.array.isRequired,
   total: PropTypes.number.isRequired,
   ready: PropTypes.bool.isRequired,
+  profile: PropTypes.array.isRequired,
 };
 
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
 export default withTracker(() => {
   // Get access to Stuff documents.
   const subscription = Meteor.subscribe('Carts');
+  const subscription2 = Meteor.subscribe('Profile');
   return {
     cartItems: Carts.find({}).fetch(),
+    profile: Profile.find({}).fetch(),
     total: Carts.find({}).count(),
-    ready: subscription.ready(),
+    ready: subscription.ready() && subscription2.ready(),
   };
 })(Cart);

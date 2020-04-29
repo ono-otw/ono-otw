@@ -1,0 +1,35 @@
+[
+  {
+    "name": "Bread",
+    "firstName": "John",
+    "lastName": "Doe",
+    "image": "https://i.insider.com/5df126b679d7570ad2044f3e?width=1100&format=jpeg&auto=webp",
+    "store": "Starbucks",
+    "owner": "admin@foo.com",
+    "quantity": "2",
+    "personWhoOrdered": "john@foo.com",
+    "location": "POST 314. I'm the one wearing the green hat."
+  },
+  {
+    "name": "Coffee",
+    "firstName": "John",
+    "lastName": "Doe",
+    "image": "https://i.insider.com/5df126b679d7570ad2044f3e?width=1100&format=jpeg&auto=webp",
+    "store": "Starbucks",
+    "owner": "admin@foo.com",
+    "quantity": "1",
+    "personWhoOrdered": "john@foo.com",
+    "location": "POST 314. I'm the one wearing the green hat."
+  },
+  {
+    "name": "Chicken",
+    "firstName": "Admin",
+    "lastName": "Doe",
+    "image": "https://react.semantic-ui.com/images/avatar/large/patrick.png",
+    "store": "Bale",
+    "owner": "john@foo.com",
+    "quantity": "2",
+    "personWhoOrdered": "admin@foo.com",
+    "location": "Sinclair Library."
+  }
+]
