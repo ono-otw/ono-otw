@@ -7,6 +7,8 @@ import swal from 'sweetalert';
 import { Link, Redirect } from 'react-router-dom';
 import { Carts } from '../../api/cart/Carts';
 import CartTable from '../components/CartTable';
+import { AcceptOrders } from '../../api/acceptorders/AcceptOrders';
+import { Profile } from '../../api/profile/Profile';
 /**
  * Profiles page overrides the form’s submit event and call Meteor’s loginWithPassword().
  * Authentication errors modify the component’s state to be displayed
@@ -14,14 +16,12 @@ import CartTable from '../components/CartTable';
 class Cart extends React.Component {
 
   confirm() {
-    const owner = this.props.cartItems.owner;
-    const itemId = this.props.cartItems._id;
-    const vendor = this.props.cartItems.vendor;
-    const initialPrice = this.props.cartItems.reduce((total, current) => total + (current.price * current.quantity), 0);
-    const tax = (initialPrice * 0.045).toFixed(2);
-    const deliveryPrice = (2.50).toFixed(2);
-    const totalPrice = (+initialPrice + +tax + +deliveryPrice).toFixed(2);
-    const personWhoOrdered = this.props.cartItems.owner;
+
+    //
+    // const initialPrice = this.props.cartItems.reduce((total, current) => total + (current.price * current.quantity), 0);
+    // const tax = (initialPrice * 0.045).toFixed(2);
+    // const deliveryPrice = (2.50).toFixed(2);
+    // const totalPrice = (+initialPrice + +tax + +deliveryPrice).toFixed(2);
 
     swal({
       title: 'Are you sure?',
@@ -34,32 +34,49 @@ class Cart extends React.Component {
           let total = this.props.total;
           if (yes) {
             while (total !== 0) {
-              acceptOrder.insert({
-                    personWhoOrdered,
-                    owner,
-                    vendor,
-                    totalPrice,
-                    itemId,
-                  },
+              const order = Carts.findOne({ MenuId: this.props.cartItems._id });
+              console.log(order);
+              console.log(Carts.remove(Carts.findOne({ MenuId: this.props.cartItems._id })._id));
+              const store = order.vendor;
+              const profile = Profile.findOne({ owner: order.owner });
+              const quantity = order.quantity;
+              const owner = profile.owner;
+              const image = profile.image;
+              const firstName = profile.firstName;
+              const lastName = profile.lastName;
+              const personWhoOrdered = order.owner;
+              const location = 'test';
+              const name = order.name;
+              // console.log(store);
+              // console.log(profile);
+              // console.log(quantity);
+              // console.log(owner);
+              // console.log(image);
+              // console.log(firstName);
+              // console.log(lastName);
+              // console.log(personWhoOrdered);
+              // console.log(location);
+              // console.log(name);
+
+              AcceptOrders.insert({ name, firstName, lastName, image, store, owner, quantity,
+                personWhoOrdered, location },
                   (error) => {
                     if (error) {
                       swal('Error', error.message, 'error');
                     } else {
                       swal('Success', 'Order has been confirmed!', 'success');
-                      Carts.remove(Carts.findOne({ MenuId: this.props.cartItems._id })._id);
                       this.forceUpdate();
                     }
                   });
-              Carts.remove(Carts.findOne({ MenuId: this.props.cartItems._id })._id);
               console.log(total);
               total--;
             }
             this.forceUpdate();
-            swal('This order has been cancelled!', {
+            swal('This order has been confirmed!', {
               icon: 'success',
             });
           } else {
-            swal('Order is not cancelled!');
+            swal('Order was not submitted.');
           }
         });
 
@@ -69,7 +86,7 @@ class Cart extends React.Component {
   cancel() {
     swal({
       title: 'Are you sure?',
-      text: 'It will disappear from your Favorites page, but you can re-favorite at any time in the Food Options page!',
+      text: 'Are you sure you want to cancel your order?',
       icon: 'warning',
       buttons: true,
       dangerMode: true,
@@ -87,7 +104,7 @@ class Cart extends React.Component {
               icon: 'success',
             });
           } else {
-            swal('Order is not cancelled!');
+            swal('Order was not cancelled!');
           }
         });
   }
@@ -207,15 +224,19 @@ Cart.propTypes = {
   cartItems: PropTypes.array.isRequired,
   total: PropTypes.number.isRequired,
   ready: PropTypes.bool.isRequired,
+  profile: PropTypes.array.isRequired,
 };
 
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
 export default withTracker(() => {
   // Get access to Stuff documents.
   const subscription = Meteor.subscribe('Carts');
+  const subscription3 = Meteor.subscribe('AcceptOrders');
+  const subscription2 = Meteor.subscribe('Profile');
   return {
     cartItems: Carts.find({}).fetch(),
+    profile: Profile.find({}).fetch(),
     total: Carts.find({}).count(),
-    ready: subscription.ready(),
+    ready: subscription.ready() && subscription2.ready() && subscription3.ready(),
   };
 })(Cart);
