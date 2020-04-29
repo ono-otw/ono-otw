@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 import { Container, Form, Grid, Header, Message, Segment, Divider } from 'semantic-ui-react';
 import { Accounts } from 'meteor/accounts-base';
+import { Profile } from '../../api/profile/Profile';
 
 /**
  * Signup component is similar to signin component, but we create a new user instead.
@@ -11,7 +12,8 @@ class Signup extends React.Component {
   /** Initialize state fields. */
   constructor(props) {
     super(props);
-    this.state = { firstName: '', lastName: '', email: '', password: '', error: '', redirectToReferer: false };
+    this.state = { firstName: '', lastName: '', email: '',
+      password: '', venmo: '', error: '', redirectToReferer: false };
   }
 
   /** Update the form controls each time the user interacts with them. */
@@ -21,15 +23,21 @@ class Signup extends React.Component {
 
   /** Handle Signup submission. Create user account and a profile entry, then redirect to the home page. */
   submit = () => {
-    const { firstName, lastName, email, password } = this.state;
+    const { firstName, lastName, email, password, venmo } = this.state;
     Accounts.createUser({ firstName, lastName, email, username: firstName, password }, (err) => {
       if (err) {
         this.setState({ error: err.reason });
       } else {
-        this.setState({ error: '', redirectToReferer: true });
+        Profile.insert({ firstName, lastName, venmo }, (err2) => {
+          if (err2) {
+            this.setState({ error: err2.reason });
+          } else {
+            this.setState({ error: '', redirectToReferer: true });
+          }
+        });
       }
     });
-  };
+  }
 
   /** Display the signup form. Redirect to add page after successful registration and login. */
   render() {
@@ -38,7 +46,6 @@ class Signup extends React.Component {
     if (this.state.redirectToReferer) {
       return <Redirect to={from}/>;
     }
-
 
     const signContainer = {
       paddingBottom: '5rem',
@@ -85,6 +92,14 @@ class Signup extends React.Component {
                       name='password'
                       placeholder='Password'
                       type='password'
+                      onChange={this.handleChange}
+                  />
+                  <Form.Input
+                      fluid label='Venmo'
+                      icon='payment'
+                      iconPosition='left'
+                      name='venmo'
+                      placeholder='Venmo'
                       onChange={this.handleChange}
                   />
                 </Segment>

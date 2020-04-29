@@ -9,7 +9,7 @@ const Profile = new Mongo.Collection('Profile');
 const ProfileSchema = new SimpleSchema({
   firstName: String,
   lastName: String,
-  image: String,
+  image: { type: String, optional: true, defaultValue: 'https://bit.ly/3bIfwu2' },
   venmo: String,
   owner: String,
 }, { tracker: Tracker });
