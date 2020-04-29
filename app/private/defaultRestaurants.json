@@ -27,6 +27,36 @@
     "rating":  4.1,
     "time": 10,
     "label": ["Sandwich", "Pho"],
-    "approved": false
+    "approved": true
+  },
+  {
+    "owner": "jerseymikes@foo.com",
+    "name": "Jersey Mikes",
+    "address": "2615 S King St space no 6",
+    "image": "https://bit.ly/2yUX7LW",
+    "rating":  4.4,
+    "time": 25,
+    "label": ["Sandwich", "Beef"],
+    "approved": true
+  },
+  {
+    "owner": "pieology@foo.com",
+    "name": "Pieology",
+    "address": "2615 S King St",
+    "image": "https://www.qsrmagazine.com/sites/default/files/styles/story_page/public/news-image/pieology-signs-deal-expand-china.jpg?itok=3f1p0_mc",
+    "rating":  4.5,
+    "time": 25,
+    "label": ["Pizza"],
+    "approved": true
+  },
+  {
+    "owner": "subway@foo.com",
+    "name": "Subway",
+    "address": "2465 Campus Rd Cc 213",
+    "image": "https://media.farandwide.com/30/5c/305cd21f532d448388f10e807d153a29.jpeg",
+    "rating":  3.8,
+    "time": 8,
+    "label": ["Sandwich"],
+    "approved": true
   }
 ]
