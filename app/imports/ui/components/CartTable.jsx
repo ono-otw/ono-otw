@@ -18,16 +18,21 @@ class CartTable extends React.Component {
       borderRadius: '20px',
     };
 
+    const padding = {
+      paddingLeft: '1.5rem',
+      paddingRight: '1.5rem',
+    };
+
     const priceProduct = (this.props.cartItems.quantity * this.props.cartItems.price).toFixed(2);
 
     return (
           <div style={innerContainer}>
             <Grid columns='2'>
-              <Grid.Column>
+              <Grid.Column style={padding}>
                 <Header as='h4' content={`${this.props.cartItems.quantity} ${this.props.cartItems.name} `}/>
               </Grid.Column>
-              <Grid.Column textAlign='right'>
-                <Header as='h4' content={priceProduct}/>
+              <Grid.Column textAlign='right' style={padding}>
+                  <Header as='h4' content={`$ ${priceProduct}`}/>
               </Grid.Column>
             </Grid>
           </div>
