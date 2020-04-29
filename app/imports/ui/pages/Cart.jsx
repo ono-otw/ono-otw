@@ -64,9 +64,6 @@ class Cart extends React.Component {
                     if (error) {
                       swal('Error', error.message, 'error');
                     } else {
-                      // console.log(Carts.findOne({ MenuId: this.props.cartItems._id }));
-                      // console.log(Carts.remove(Carts.findOne({ MenuId: this.props.cartItems._id })._id));
-                      console.log('how many times')
                       swal('Success', 'Order has been confirmed!', 'success');
                       this.forceUpdate();
                     }
