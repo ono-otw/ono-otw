@@ -1,12 +1,18 @@
 import React from 'react';
-import { Card, Grid, Image, Modal, Header, Button, Dropdown } from 'semantic-ui-react';
+import { Card, Grid, Image, Modal, Header, Button, Form, Radio } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class MenuitemCard extends React.Component {
+  state = {}
+
+  handleChange = (e, { value }) => this.setState({ value })
 
   render() {
+    const { value } = this.state;
+
+    let valueCost = {};
 
     const cardHeader = {
       padding: '10px',
@@ -18,23 +24,13 @@ class MenuitemCard extends React.Component {
       padding: '30px',
     };
 
-    const sizeOptions = [
-      {
-        key: 'Tall (12 oz)',
-        text: 'Tall (12 oz)',
-        value: 'Tall (12 oz)',
-      },
-      {
-        key: 'Grande (16 oz)',
-        text: 'Grande (16 oz)',
-        value: 'Grande (16 oz)',
-      },
-      {
-        key: 'Venti (24 oz)',
-        text: 'Venti (24 oz)',
-        value: 'Venti (24 oz)',
-      },
-    ];
+    if (value === 'sm') {
+      valueCost = 0;
+    } else if (value === 'md') {
+      valueCost = 1;
+    } else if (value === 'lg') {
+      valueCost = 2;
+    }
 
     return (
         <div style={cardPadding} className='itemcard_text'>
@@ -77,13 +73,8 @@ class MenuitemCard extends React.Component {
                         src={this.props.menuitem.image}
                     />
                   </Grid.Column>
-                  <Grid.Column >
+                  <Grid.Column>
                     <Card.Header style={cardHeader}>{this.props.menuitem.name}</Card.Header>
-                    <Card.Description>
-                      {/* {this.props.menuitem.calories} Cal<br/> */}
-                      {/* {this.props.menuitem.size} oz<br/> */}
-                      {/* ${this.props.menuitem.price}<br/> */}
-                    </Card.Description>
                   </Grid.Column>
                 </Grid>
               </Card.Content>
@@ -95,16 +86,26 @@ class MenuitemCard extends React.Component {
               <Header textAlign='center' as='h1' inverted>{this.props.menuitem.name}</Header>
               <Header inverted>Size</Header>
               <hr/>
-              <Dropdown fluid placeholder='Select Size' selection options={sizeOptions}></Dropdown>
-              <Header inverted>Milk</Header>
-              <hr/>
-              <Dropdown fluid placeholder='Select Size' selection options={sizeOptions}></Dropdown>
-              <Header inverted>Expresso</Header>
-              <hr/>
-              <Dropdown fluid placeholder='Select Size' selection options={sizeOptions}></Dropdown>
+              <Form>
+                <Form.Field>
+                  <Form.Radio label={this.props.menuitem.size[0]}
+                              value='sm'
+                              checked={value === 'sm'}
+                              onChange={this.handleChange}/>
+                  <Form.Radio label={this.props.menuitem.size[1]}
+                              value='md'
+                              checked={value === 'md'}
+                              onChange={this.handleChange}/>
+                  <Form.Radio label={this.props.menuitem.size[2]}
+                              value='lg'
+                              checked={value === 'lg'}
+                              onChange={this.handleChange}
+                  />
+                </Form.Field>
+              </Form>
 
-              <div align='center' style={{ marginTop: '100px' }}>
-                <Button className='dark-blue-button'>Add to Cart</Button>
+              <div align='center' style={{ marginTop: '75px' }}>
+                <Button className='dark-blue-button'>Add to Cart - ${this.props.menuitem.cost[valueCost]}</Button>
               </div>
             </Modal.Content>
           </Modal>

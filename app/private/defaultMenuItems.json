@@ -5,7 +5,7 @@
     "image": "https://bit.ly/2XP3dYR",
     "cost": [3.25, 3.95, 4.45],
     "calories": [340, 430, 530],
-    "size": ["tall", "grande", "venti"]
+    "size": ["Tall", "Grande", "Venti"]
   },
   {
     "owner": "starbucks@foo.com",
@@ -13,7 +13,7 @@
     "image": "https://bit.ly/3cyLBo3",
     "cost": [3.25, 3.95, 4.45],
     "calories": [340, 430, 530],
-    "size": ["tall", "grande", "venti"]
+    "size": ["Tall", "Grande", "Venti"]
   },
   {
     "owner": "starbucks@foo.com",
@@ -21,7 +21,7 @@
     "image": "https://bit.ly/2Vo0Ryn",
     "cost": [3.25, 3.95, 4.45],
     "calories": [340, 430, 530],
-    "size": ["tall", "grande", "venti"]
+    "size": ["Tall", "Grande", "Venti"]
   },
   {
     "owner": "starbucks@foo.com",
@@ -29,7 +29,7 @@
     "image": "https://bit.ly/2XRhO5X",
     "cost": [3.25, 3.95, 4.45],
     "calories": [340, 430, 530],
-    "size": ["tall", "grande", "venti"]
+    "size": ["Tall", "Grande", "Venti"]
   }
 
 ]

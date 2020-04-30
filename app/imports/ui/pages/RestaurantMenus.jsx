@@ -4,32 +4,11 @@ import { Container, Input, Header, Menu, Loader, Card, Button } from 'semantic-u
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { FoodMenu } from '../../api/foodmenu/FoodMenu';
+import { Restaurant } from '../../api/restaurant/Restaurant';
 import MenuitemCard from '../components/MenuItems/MenuitemCard';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class RestaurantMenus extends React.Component {
-
-  menuItems = [{
-    name: 'White Mocha', calories: 240,
-    image: 'https://bit.ly/2XP3dYR',
-    size: 16, price: 4.45,
-  },
-    {
-      name: 'Flat White', calories: 170,
-      image: 'https://bit.ly/3cyLBo3',
-      size: 12, price: 5.45,
-    },
-    {
-      name: 'Americano', calories: 170,
-      image: 'https://bit.ly/2Vo0Ryn',
-      size: 12, price: 5.45,
-    },
-    {
-      name: 'Cappuccino', calories: 120,
-      image: 'https://bit.ly/2XRhO5X',
-      size: 12, price: 5.45,
-    },
-  ];
 
   state = { activeItem: 'Coffee' }
 
@@ -63,8 +42,9 @@ class RestaurantMenus extends React.Component {
               </Menu>
 
               <hr style={{ borderTop: '2px solid #184470' }}/>
+
               <Card.Group>
-                {this.props.menuitem.map((menuitem, index) => <MenuitemCard key={index} menuitem={menuitem}/>)}
+                {this.props.menuitems.map((menuitem, index) => <MenuitemCard key={index} menuitem={menuitem}/>)}
               </Card.Group>
               <div style={{ padding: '50px' }}><Button className='dark-blue-button'>Show More</Button></div>
             </div>
@@ -78,7 +58,7 @@ class RestaurantMenus extends React.Component {
 
 /** Require an array of Stuff documents in the props. */
 RestaurantMenus.propTypes = {
-  menuitem: PropTypes.array.isRequired,
+  menuitems: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
@@ -87,7 +67,7 @@ export default withTracker(() => {
   // Get access to Stuff documents.
   const subscription = Meteor.subscribe('FoodMenu');
   return {
-    menuitem: FoodMenu.find({}).fetch(),
+    menuitems: FoodMenu.find({}).fetch(),
     ready: subscription.ready(),
   };
 })(RestaurantMenus);
