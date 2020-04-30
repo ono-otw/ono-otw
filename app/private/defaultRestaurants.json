@@ -2,6 +2,7 @@
   {
     "owner": "starbucks@foo.com",
     "name": "Starbucks",
+    "bgimg": "https://bit.ly/2wV9ozB",
     "address": "2465 Campus Rd #220",
     "image": "https://assets.change.org/photos/7/ou/zi/OlOuziNRVcXqzpX-800x450-noPad.jpg?1531499872",
     "rating":  4.1,
@@ -12,6 +13,7 @@
   {
     "owner": "raisingcanes@foo.com",
     "name": "Raising Canes",
+    "bgimg": "https://www.raisingcanes.com/sites/default/files/13664_Quality_SitePhotos_CaniacCombo_Final.jpg",
     "address": "2615 S King St Unit 102",
     "image": "https://tinyurl.com/y7adk236",
     "rating":  4.5,
@@ -22,6 +24,7 @@
   {
     "owner": "bale@foo.com",
     "name": "Bale",
+    "bgimg": "https://media-cdn.tripadvisor.com/media/photo-s/01/4f/75/29/sign-in-the-food-court.jpg",
     "address": "2465 Campus Rd #220",
     "image": "https://s3-media0.fl.yelpcdn.com/bphoto/n3jOrjcJOVoz0npBf_FS1Q/o.jpg",
     "rating":  4.1,
@@ -32,6 +35,7 @@
   {
     "owner": "jerseymikes@foo.com",
     "name": "Jersey Mikes",
+    "bgimg": "https://bit.ly/2wV9ozB",
     "address": "2615 S King St space no 6",
     "image": "https://bit.ly/2yUX7LW",
     "rating":  4.4,
@@ -42,6 +46,7 @@
   {
     "owner": "pieology@foo.com",
     "name": "Pieology",
+    "bgimg": "https://bit.ly/2wV9ozB",
     "address": "2615 S King St",
     "image": "https://www.qsrmagazine.com/sites/default/files/styles/story_page/public/news-image/pieology-signs-deal-expand-china.jpg?itok=3f1p0_mc",
     "rating":  4.5,
@@ -52,6 +57,7 @@
   {
     "owner": "subway@foo.com",
     "name": "Subway",
+    "bgimg": "https://bit.ly/2wV9ozB",
     "address": "2465 Campus Rd Cc 213",
     "image": "https://media.farandwide.com/30/5c/305cd21f532d448388f10e807d153a29.jpeg",
     "rating":  3.8,

@@ -21,15 +21,19 @@ class RestaurantMenus extends React.Component {
 
   /** Render the page once subscriptions have been received. */
   renderPage() {
-    const { activeItem } = this.state;
 
+    const currentRestaurant = _.findWhere(this.props.restaurants, { owner: this.props.menuitems[0].owner });
+    const currentHeader = currentRestaurant.name;
+    const background = currentRestaurant.bgimg;
+
+    const { activeItem } = this.state;
     return (
         <div>
-          <div className='menuimage'><img src='https://bit.ly/2wV9ozB'/></div>
+          <div className='menuimage'><img src={background}/></div>
 
           <Container>
             <div align='center'>
-              <Header style={{ marginTop: '30px', fontSize: '40px' }}>Starbucks</Header>
+              <Header style={{ marginTop: '30px', fontSize: '40px' }}>{currentHeader}</Header>
               <div className='menu_search_bar'><Input size='large' icon='search'
                                                       placeholder='Search for a menu item'/></div>
               <Menu secondary className='menubartext'>
@@ -70,23 +74,9 @@ export default withTracker(({ match }) => {
   const subscription1 = Meteor.subscribe('AllMenuItems');
   const subscription2 = Meteor.subscribe('Restaurant');
   const documentId = match.params._id;
-  console.log(documentId);
 
   const restaurant = Restaurant.find({ _id: documentId }).fetch();
-  console.log(restaurant);
 
-  // if (undefined === restaurant[0]) {
-  //   restaurant[0] = {
-  //     owner: 'starbucks@foo.com',
-  //     name: 'Starbucks',
-  //     address: '2465 Campus Rd #220',
-  //     image: 'https://assets.change.org/photos/7/ou/zi/OlOuziNRVcXqzpX-800x450-noPad.jpg?1531499872',
-  //     rating: 4.1,
-  //     time: 8,
-  //     label: ['Coffee', 'Tea'],
-  //     approved: true,
-  //   };
-  // }
   // console.log(restaurant[0]);
 
   return {
