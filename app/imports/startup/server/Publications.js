@@ -3,6 +3,7 @@ import { Roles } from 'meteor/alanning:roles';
 import { Stuffs } from '../../api/stuff/Stuff';
 import { Profile } from '../../api/profile/Profile';
 import { Restaurant } from '../../api/restaurant/Restaurant';
+import { FoodMenu } from '../../api/foodmenu/FoodMenu';
 import { Carts } from '../../api/cart/Carts';
 
 /** This subscription publishes only the documents associated with the logged in user */
@@ -33,6 +34,10 @@ Meteor.publish('Profile', function publish() {
 
 Meteor.publish('Restaurant', function publish() {
   return Restaurant.find({ approved: true });
+});
+
+Meteor.publish('FoodMenu', function publish() {
+  return FoodMenu.find();
 });
 
 /** This subscription publishes only the documents associated with the logged in user */

@@ -3,7 +3,7 @@ import { Stuffs } from '../../api/stuff/Stuff.js';
 import { Carts } from '../../api/cart/Carts.js';
 import { Profile } from '../../api/profile/Profile';
 import { Restaurant } from '../../api/restaurant/Restaurant';
-import { FoodMenu } from '../../api/foodmenu/Menu';
+import { FoodMenu } from '../../api/foodmenu/FoodMenu';
 /* eslint-disable no-console */
 
 const testingCart = JSON.parse(Assets.getText('testingCart.json'));

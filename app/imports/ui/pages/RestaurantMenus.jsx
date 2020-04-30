@@ -3,10 +3,8 @@ import { Meteor } from 'meteor/meteor';
 import { Container, Input, Header, Menu, Loader, Card, Button } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import { Stuffs } from '../../api/stuff/Stuff';
-import StuffItem from '../components/StuffItem';
+import { FoodMenu } from '../../api/foodmenu/FoodMenu';
 import MenuitemCard from '../components/MenuItems/MenuitemCard';
-import { FoodMenu } from '../../api/foodmenu/Menu';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class RestaurantMenus extends React.Component {
@@ -66,7 +64,7 @@ class RestaurantMenus extends React.Component {
 
               <hr style={{ borderTop: '2px solid #184470' }}/>
               <Card.Group>
-                {this.menuItems.map((menuitem, index) => <MenuitemCard key={index} menuitem={menuitem}/>)}
+                {this.props.menuitem.map((menuitem, index) => <MenuitemCard key={index} menuitem={menuitem}/>)}
               </Card.Group>
               <div style={{ padding: '50px' }}><Button className='dark-blue-button'>Show More</Button></div>
             </div>
