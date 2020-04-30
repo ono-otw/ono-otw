@@ -2,12 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
-import { Container, Loader } from 'semantic-ui-react';
+import {
+  Container,
+  Grid,
+  Header,
+  Image,
+  Loader,
+  Radio,
+  Rating,
+  Transition,
+} from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import ProfileCard from '../components/ProfileCard';
 import { Profile } from '../../api/profile/Profile';
 import { Favorites } from '../../api/favorites/Favorites';
 import ListFavorites from '../components/ListFavorites';
+import ProfileMeta from '../components/ProfileMeta';
 
 
 /**
@@ -16,6 +26,13 @@ import ListFavorites from '../components/ListFavorites';
  */
 class Profiles extends React.Component {
 
+  state = { visibleConsumer: true, visibleDeliverer: false };
+
+
+  toggleVisibility = () => this.setState((prevState) => (
+      { visibleConsumer: !prevState.visibleConsumer,
+        visibleDeliverer: !prevState.visibleDeliverer }));
+
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
     return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
@@ -23,6 +40,8 @@ class Profiles extends React.Component {
 
   /** Render the Profiles form. */
   renderPage() {
+
+    const { visibleConsumer, visibleDeliverer } = this.state;
 
     const blueContainer = {
       marginTop: '5rem',
@@ -40,28 +59,95 @@ class Profiles extends React.Component {
 
     const inLine = {
       display: 'inline-flex',
-    }
+    };
 
     const favoritePadding = {
       paddingBottom: '2.5rem',
     };
     const order = {
       paddingLeft: '2.7rem',
+      paddingRight: '2.7rem',
+    };
+
+    const togglePad = {
+      paddingLeft: '1.5rem',
+      paddingTop: '1.5rem',
+      paddingRight: '1.5rem',
+    };
+
+    const pastOrder = {
+      paddingBottom: '5rem',
     };
 
     // Otherwise return the Login form.
     return (
         <Container style={blueContainer}>
+
           <div style={innerContainer}>
-            {this.props.profile.map((profile, index) => <ProfileCard key={index} profile={profile}/>)}
-            <div style={order}>
-              <div style={favoritePadding}>
-                <div style={inLine}>
-                  {this.props.favorites.map((favorites, index) => <ListFavorites key={index} favorites={favorites}/>)}
+            <div align='right' style={togglePad}>
+              <Radio toggle
+                     label = {visibleConsumer ? 'Consumer' : 'Deliverer'}
+                     content={visibleConsumer ? 'Hide' : 'Show'}
+                     onClick={this.toggleVisibility}/>
+              <br/>
+            </div>
+            {this.props.profile.map((profile, index) => <ProfileMeta key={index} profile={profile}/>)}
+            <Transition animation='horizontal flip' duration={500} visible={visibleConsumer}>
+              <div style={order}>
+                <div style={pastOrder}>
+                  <Header>Recent Orders</Header>
+                  <hr className='blackBorder'/>
+                  <Grid columns='2'>
+                    <Grid.Column>
+                      <Header as='h4'>Bale</Header>
+                      <p>Sunday, March 29 | 2 item(s)</p>
+                    </Grid.Column>
+                    <Grid.Column textAlign='right'>
+                      <p>$12.43</p>
+                    </Grid.Column>
+                  </Grid>
+                  <hr className='tinyBlackBorder'/>
+                </div>
+                <div style={favoritePadding}>
+                  <Header>Favorites</Header>
+                  <hr className='blackBorder'/>
+                  <div style={inLine}>
+                    {this.props.favorites.map((favorites, index) => <ListFavorites key={index} favorites={favorites}/>)}
+                  </div>
                 </div>
               </div>
-            </div>
+            </Transition>
+            <Transition animation='horizontal flip' duration={500} visible={visibleDeliverer}>
+              <div style={order}>
+                <div style={pastOrder}>
+                  <Header>Recent Deliveries</Header>
+                  <hr className='blackBorder'/>
+                  <Grid columns='2'>
+                    <Grid.Column>
+                      <Header as='h4'>Starbucks</Header>
+                      <p>Friday, March 27 | 1 item(s)</p>
+                    </Grid.Column>
+                    <Grid.Column textAlign='right'>
+                      <p>$4.00</p>
+                    </Grid.Column>
+                  </Grid>
+                  <hr className='tinyBlackBorder'/>
+                </div>
+              </div>
+            </Transition>
           </div>
+
+
+          {/* <div style={innerContainer}> */}
+          {/*  {this.props.profile.map((profile, index) => <ProfileCard key={index} profile={profile}/>)} */}
+          {/*  <div style={order}> */}
+          {/*    <div style={favoritePadding}> */}
+          {/*      <div style={inLine}> */}
+          {/*        {this.props.favorites.map((favorites, index) => <ListFavorites key={index} favorites={favorites}/>)} */}
+          {/*      </div> */}
+          {/*    </div> */}
+          {/*  </div> */}
+          {/* </div> */}
          </Container>
     );
   }

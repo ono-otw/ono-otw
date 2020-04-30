@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
-import { Radio, Grid, Header, Image, Rating, Transition } from 'semantic-ui-react';
+import { Label } from 'semantic-ui-react';
 import { Favorites } from '../../api/favorites/Favorites';
 
 
@@ -30,15 +30,16 @@ class ListFavorites extends React.Component {
 
     // Otherwise return the Login form.
     return (
-        <p>{` \u00a0 ${this.props.favorites.vendor}  | `}   </p>
+        <Label as='a' basic>
+          {this.props.favorites.vendor}
+        </Label>
     );
   }
 }
 
 /** Require a document to be passed to this component. */
 ListFavorites.propTypes = {
-  profile: PropTypes.array.isRequired,
-  favorites: PropTypes.array.isRequired,
+  favorites: PropTypes.object.isRequired,
 };
 
 /** Wrap this component in withRouter since we use the <Link> React Router element. */
