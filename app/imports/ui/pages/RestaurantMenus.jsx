@@ -60,31 +60,38 @@ class RestaurantMenus extends React.Component {
 /** Require an array of Stuff documents in the props. */
 RestaurantMenus.propTypes = {
   menuitems: PropTypes.array.isRequired,
+  restaurants: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
 export default withTracker(({ match }) => {
   // Get access to Stuff documents.
-  const subscription = Meteor.subscribe('AllMenuItems');
+  const subscription1 = Meteor.subscribe('AllMenuItems');
+  const subscription2 = Meteor.subscribe('Restaurant');
   const documentId = match.params._id;
+  console.log(documentId);
+
   const restaurant = Restaurant.find({ _id: documentId }).fetch();
-  if (undefined === restaurant[0]) {
-    restaurant[0] = {
-      owner: 'starbucks@foo.com',
-      name: 'Starbucks',
-      address: '2465 Campus Rd #220',
-      image: 'https://assets.change.org/photos/7/ou/zi/OlOuziNRVcXqzpX-800x450-noPad.jpg?1531499872',
-      rating: 4.1,
-      time: 8,
-      label: ['Coffee', 'Tea'],
-      approved: true,
-    };
-  }
+  console.log(restaurant);
+
+  // if (undefined === restaurant[0]) {
+  //   restaurant[0] = {
+  //     owner: 'starbucks@foo.com',
+  //     name: 'Starbucks',
+  //     address: '2465 Campus Rd #220',
+  //     image: 'https://assets.change.org/photos/7/ou/zi/OlOuziNRVcXqzpX-800x450-noPad.jpg?1531499872',
+  //     rating: 4.1,
+  //     time: 8,
+  //     label: ['Coffee', 'Tea'],
+  //     approved: true,
+  //   };
+  // }
   // console.log(restaurant[0]);
 
   return {
-    menuitems: MenuItems.find({}).fetch(),
-    ready: subscription.ready(),
+    menuitems: MenuItems.find({ owner: restaurant[0].owner }).fetch(),
+    restaurants: Restaurant.find({}).fetch(),
+    ready: subscription1.ready() && subscription2.ready(),
   };
 })(RestaurantMenus);
