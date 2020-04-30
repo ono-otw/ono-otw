@@ -2,6 +2,9 @@ import React from 'react';
 import { Card, Grid, Header, Label, Rating } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
+import { Meteor } from 'meteor/meteor';
+import swal from 'sweetalert';
+import { Favorites } from '../../api/favorites/Favorites';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class RestaurantCard extends React.Component {
@@ -10,12 +13,71 @@ class RestaurantCard extends React.Component {
 
   handleRate = (e, { rating, maxRating }) => this.setState(
       { rating, maxRating },
-      console.log('You clicked me'),
   );
 
-  handleChange = (e) => this.setState(
-      { rating: e.target.value },
-  );
+  favorite() {
+
+    const owner = Meteor.user().username;
+    const vendor = this.props.restaurant.name;
+
+    // console.log(this.props.restaurant._id);
+    // console.log(vendor)
+    // console.log(owner)
+
+    const fav = Favorites.findOne({ vendor: this.props.restaurant.name });
+    if (typeof (fav) === 'undefined') {
+      console.log('Not in favorites');
+      Favorites.insert({ owner, vendor });
+    } else {
+      swal({
+        title: 'Are you sure?',
+        text: 'Are you sure you want to remove this favorite?',
+        icon: 'warning',
+        buttons: true,
+        dangerMode: true,
+      })
+          .then((willDelete) => {
+            if (willDelete) {
+              Favorites.remove(Favorites.findOne({ vendor: this.props.restaurant.name })._id);
+              this.forceUpdate();
+              swal('Favorite removed.', {
+                icon: 'success',
+              });
+            } else {
+              swal('Did not remove favorite.');
+            }
+          });
+      console.log('Already in favorites');
+    }
+  }
+
+  isFavorite() {
+    const fav = Favorites.findOne({ vendor: this.props.restaurant.name });
+    if (typeof (fav) === 'undefined') {
+      return (
+          <Rating
+              maxRating={1}
+              icon='heart'
+              size='large'
+              rating={0}
+              className={'favorite_button'}
+              onClick={() => this.favorite()}
+              onRate={this.handleRate}
+      />);
+    } else {
+      return (
+          <Rating
+              maxRating={1}
+              icon='heart'
+              size='large'
+              rating={1}
+              className={'favorite_button'}
+              onClick={() => this.favorite()}
+              onRate={this.handleRate}
+          />
+      );
+    }
+  }
 
   render() {
     const divPad = {
@@ -63,14 +125,7 @@ class RestaurantCard extends React.Component {
                       {this.props.restaurant.time} min
                     </Grid.Column>
                     <Grid.Column textAlign='right'>
-                      <Rating
-                          onRate={this.handleRate}
-                          maxRating={1}
-                          clearable
-                          icon='heart'
-                          size='large'
-                          rating={this.state.rating}
-                          className={'favorite_button'}/>
+                      {this.isFavorite()}
                     </Grid.Column>
                   </Grid.Row>
                 </Grid>

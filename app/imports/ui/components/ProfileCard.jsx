@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
 import { Radio, Grid, Header, Image, Rating, Transition } from 'semantic-ui-react';
-
+import { Favorites } from '../../api/favorites/Favorites';
 
 /**
  * ProfileCard page overrides the form’s submit event and call Meteor’s loginWithPassword().
@@ -17,9 +17,15 @@ class ProfileCard extends React.Component {
       { visibleConsumer: !prevState.visibleConsumer,
         visibleDeliverer: !prevState.visibleDeliverer }));
 
+  listFavorites() {
+    const favCursor = Favorites.find();
+    console.log(favCursor.collection.queries);
+  }
+
 
   /** Render the ProfileCard form. */
   render() {
+
     const { visibleConsumer, visibleDeliverer } = this.state;
 
     const paddingDiv = {
@@ -74,8 +80,6 @@ class ProfileCard extends React.Component {
                   <Rating icon='star' defaultRating={3} maxRating={5} disabled />
                 </div>
               </Grid.Column>
-              <Grid.Column style={paddingDiv}>
-              </Grid.Column>
             </Grid>
             <Transition animation='horizontal flip' duration={500} visible={visibleConsumer}>
               <div style={order}>
@@ -126,6 +130,7 @@ class ProfileCard extends React.Component {
 /** Require a document to be passed to this component. */
 ProfileCard.propTypes = {
   profile: PropTypes.array.isRequired,
+  favorites: PropTypes.array.isRequired,
 };
 
 /** Wrap this component in withRouter since we use the <Link> React Router element. */
