@@ -5,23 +5,24 @@ import { Profile } from '../../api/profile/Profile';
 import { Restaurant } from '../../api/restaurant/Restaurant';
 import { Carts } from '../../api/cart/Carts';
 import { AcceptOrders } from '../../api/acceptorders/AcceptOrders';
+import { Favorites } from '../../api/favorites/Favorites';
 
-/** This subscription publishes only the documents associated with the logged in user */
-Meteor.publish('Stuff', function publish() {
-  if (this.userId) {
-    const username = Meteor.users.findOne(this.userId).username;
-    return Stuffs.find({ owner: username });
-  }
-  return this.ready();
-});
-
-/** This subscription publishes all documents regardless of user, but only if the logged in user is the Admin. */
-Meteor.publish('StuffAdmin', function publish() {
-  if (this.userId && Roles.userIsInRole(this.userId, 'admin')) {
-    return Stuffs.find();
-  }
-  return this.ready();
-});
+// /** This subscription publishes only the documents associated with the logged in user */
+// Meteor.publish('Stuff', function publish() {
+//   if (this.userId) {
+//     const username = Meteor.users.findOne(this.userId).username;
+//     return Stuffs.find({ owner: username });
+//   }
+//   return this.ready();
+// });
+//
+// /** This subscription publishes all documents regardless of user, but only if the logged in user is the Admin. */
+// Meteor.publish('StuffAdmin', function publish() {
+//   if (this.userId && Roles.userIsInRole(this.userId, 'admin')) {
+//     return Stuffs.find();
+//   }
+//   return this.ready();
+// });
 
 /** This subscription publishes only the documents associated with the logged in user */
 Meteor.publish('Profile', function publish() {
@@ -45,6 +46,15 @@ Meteor.publish('Carts', function publish() {
   if (this.userId) {
     const username = Meteor.users.findOne(this.userId).username;
     return Carts.find({ owner: username });
+  }
+  return this.ready();
+});
+
+/** This subscription publishes only the documents associated with the logged in user */
+Meteor.publish('Favorites', function publish() {
+  if (this.userId) {
+    const username = Meteor.users.findOne(this.userId).username;
+    return Favorites.find({ owner: username });
   }
   return this.ready();
 });

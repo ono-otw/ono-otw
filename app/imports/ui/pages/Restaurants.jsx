@@ -6,6 +6,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Restaurant } from '../../api/restaurant/Restaurant';
 import RestaurantCard from '../components/RestaurantCard';
+import { Profile } from '../../api/profile/Profile';
 
 /* Used to render search results. Atm the required fields for search using native semantic UI:
 * Title, Image, Description, Price
@@ -126,9 +127,11 @@ Restaurants.propTypes = {
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
 export default withTracker(() => {
   // Get access to Restaurant documents.
+  const subscription1 = Meteor.subscribe('Favorites');
   const subscription = Meteor.subscribe('Restaurant');
   return {
     restaurant: Restaurant.find({}).fetch(),
-    ready: subscription.ready(),
+    profile: Profile.find({}).fetch(),
+    ready: subscription.ready() && subscription1.ready(),
   };
 })(Restaurants);
