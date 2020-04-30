@@ -1,19 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link, Redirect } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
 import {
   Container,
   Grid,
   Header,
-  Image,
   Loader,
   Radio,
-  Rating,
   Transition,
 } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
-import ProfileCard from '../components/ProfileCard';
 import { Profile } from '../../api/profile/Profile';
 import { Favorites } from '../../api/favorites/Favorites';
 import ListFavorites from '../components/ListFavorites';
@@ -97,6 +93,9 @@ class Profiles extends React.Component {
                 <div style={pastOrder}>
                   <Header>Recent Orders</Header>
                   <hr className='blackBorder'/>
+
+                  {/* Render via components here for recent orders */}
+
                   <Grid columns='2'>
                     <Grid.Column>
                       <Header as='h4'>Bale</Header>
@@ -107,6 +106,9 @@ class Profiles extends React.Component {
                     </Grid.Column>
                   </Grid>
                   <hr className='tinyBlackBorder'/>
+
+                  {/* Render via components here for recent orders */}
+
                 </div>
                 <div style={favoritePadding}>
                   <Header>Favorites</Header>
@@ -122,6 +124,9 @@ class Profiles extends React.Component {
                 <div style={pastOrder}>
                   <Header>Recent Deliveries</Header>
                   <hr className='blackBorder'/>
+
+                  {/* Render via components here for recent deliveries */}
+
                   <Grid columns='2'>
                     <Grid.Column>
                       <Header as='h4'>Starbucks</Header>
@@ -132,22 +137,13 @@ class Profiles extends React.Component {
                     </Grid.Column>
                   </Grid>
                   <hr className='tinyBlackBorder'/>
+
+                  {/* Render via components here for recent orders */}
+
                 </div>
               </div>
             </Transition>
           </div>
-
-
-          {/* <div style={innerContainer}> */}
-          {/*  {this.props.profile.map((profile, index) => <ProfileCard key={index} profile={profile}/>)} */}
-          {/*  <div style={order}> */}
-          {/*    <div style={favoritePadding}> */}
-          {/*      <div style={inLine}> */}
-          {/*        {this.props.favorites.map((favorites, index) => <ListFavorites key={index} favorites={favorites}/>)} */}
-          {/*      </div> */}
-          {/*    </div> */}
-          {/*  </div> */}
-          {/* </div> */}
          </Container>
     );
   }

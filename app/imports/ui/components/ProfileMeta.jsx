@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
-import { Radio, Grid, Header, Image, Rating, Transition } from 'semantic-ui-react';
+import { Grid, Image, Rating } from 'semantic-ui-react';
 
 /**
  * ProfileMeta page overrides the form’s submit event and call Meteor’s loginWithPassword().
