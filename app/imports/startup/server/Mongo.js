@@ -3,7 +3,7 @@ import { Stuffs } from '../../api/stuff/Stuff.js';
 import { Carts } from '../../api/cart/Carts.js';
 import { Profile } from '../../api/profile/Profile';
 import { Restaurant } from '../../api/restaurant/Restaurant';
-import { FoodMenu } from '../../api/foodmenu/FoodMenu';
+import { MenuItems } from '../../api/foodmenu/MenuItems';
 /* eslint-disable no-console */
 
 const testingCart = JSON.parse(Assets.getText('testingCart.json'));
@@ -65,9 +65,9 @@ if (Restaurant.find().count() === 0) {
 /** Initialize the database with a default restaurants document. */
 function addMenuItems(data) {
   console.log(` Adding Menu Item: ${data.name} for ${data.owner}`);
-  FoodMenu.insert(data);
+  MenuItems.insert(data);
 }
 
-if (FoodMenu.find().count() === 0) {
+if (MenuItems.find().count() === 0) {
   defaultMenuItems.map(data => addMenuItems(data));
 }

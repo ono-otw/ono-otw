@@ -3,7 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { Container, Input, Header, Menu, Loader, Card, Button } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import { FoodMenu } from '../../api/foodmenu/FoodMenu';
+import { MenuItems } from '../../api/foodmenu/MenuItems';
 import { Restaurant } from '../../api/restaurant/Restaurant';
 import MenuitemCard from '../components/MenuItems/MenuitemCard';
 
@@ -22,6 +22,7 @@ class RestaurantMenus extends React.Component {
   /** Render the page once subscriptions have been received. */
   renderPage() {
     const { activeItem } = this.state;
+
     return (
         <div>
           <div className='menuimage'><img src='https://bit.ly/2wV9ozB'/></div>
@@ -63,11 +64,27 @@ RestaurantMenus.propTypes = {
 };
 
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
-export default withTracker(() => {
+export default withTracker(({ match }) => {
   // Get access to Stuff documents.
-  const subscription = Meteor.subscribe('FoodMenu');
+  const subscription = Meteor.subscribe('AllMenuItems');
+  const documentId = match.params._id;
+  const restaurant = Restaurant.find({ _id: documentId }).fetch();
+  if (undefined === restaurant[0]) {
+    restaurant[0] = {
+      owner: 'starbucks@foo.com',
+      name: 'Starbucks',
+      address: '2465 Campus Rd #220',
+      image: 'https://assets.change.org/photos/7/ou/zi/OlOuziNRVcXqzpX-800x450-noPad.jpg?1531499872',
+      rating: 4.1,
+      time: 8,
+      label: ['Coffee', 'Tea'],
+      approved: true,
+    };
+  }
+  // console.log(restaurant[0]);
+
   return {
-    menuitems: FoodMenu.find({}).fetch(),
+    menuitems: MenuItems.find({}).fetch(),
     ready: subscription.ready(),
   };
 })(RestaurantMenus);

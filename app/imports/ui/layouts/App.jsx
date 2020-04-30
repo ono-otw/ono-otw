@@ -28,15 +28,15 @@ class App extends React.Component {
           <div>
             <NavBar/>
             <Switch>
-              <Route path="/signin" component={Signin}/>
-              <Route path="/menu" component={Menu}/>
               <Route exact path="/" component={Landing}/>
+              <Route path="/signin" component={Signin}/>
               <Route path="/signup" component={Signup}/>
               <Route path="/list" component={ListStuff}/>
               <Route path="/signout" component={Signout}/>
               <Route path="/profiles" component={Profiles}/>
               <Route path="/edit/:_id" component={EditProfile}/>
               <Route path="/restaurants" component={Restaurants}/>
+              <Route path="/menu/:_id" component={Menu}/>
               {/* <Route path="/tracking" component={Tracking}/> */}
               <Route path="/resturant-signup" component={ResturantSignup}/>
               <Route path="/cart" component={Cart}/>

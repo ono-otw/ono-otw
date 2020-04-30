@@ -1,7 +1,10 @@
 import React from 'react';
 import { Card, Grid, Header, Label, Rating } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+import { withTracker } from 'meteor/react-meteor-data';
+import { Meteor } from 'meteor/meteor';
+import { Link } from 'react-router-dom';
+
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class RestaurantCard extends React.Component {
@@ -43,9 +46,8 @@ class RestaurantCard extends React.Component {
                 <Grid>
                   <Grid.Row>
                     <Grid.Column textAlign='left' width={13}>
-                      <a href={`#/${this.props.restaurant.name}`} >
                         <Header inverted >{this.props.restaurant.name}</Header>
-                      </a>
+                      <Header><Link to={`/menu/${this.props.restaurant._id}`}>See Menu</Link></Header>
                     </Grid.Column>
                     <Grid.Column textAlign='right'>
                       <Label circular style={rateCol} >
@@ -94,4 +96,4 @@ RestaurantCard.propTypes = {
 };
 
 /** Wrap this component in withRouter since we use the <Link> React Router element. */
-export default withRouter(RestaurantCard);
+export default RestaurantCard;

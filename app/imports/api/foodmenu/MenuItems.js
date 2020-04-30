@@ -3,7 +3,7 @@ import SimpleSchema from 'simpl-schema';
 import { Tracker } from 'meteor/tracker';
 
 /** Define a Mongo collection to hold the data. */
-const FoodMenu = new Mongo.Collection('FoodMenu');
+const MenuItems = new Mongo.Collection('MenuItems');
 
 /** Define a schema to specify the structure of each document in the collection. */
 const MenuSchema = new SimpleSchema({
@@ -19,7 +19,7 @@ const MenuSchema = new SimpleSchema({
 }, { tracker: Tracker });
 
 /** Attach this schema to the collection. */
-FoodMenu.attachSchema(MenuSchema);
+MenuItems.attachSchema(MenuSchema);
 
 /** Make the collection and schema available to other code. */
-export { FoodMenu, MenuSchema };
+export { MenuItems, MenuSchema };
