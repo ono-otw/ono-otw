@@ -4,7 +4,6 @@
     "name": "White Mocha",
     "image": "https://bit.ly/2XP3dYR",
     "cost": [3.25, 3.95, 4.45],
-    "calories": [340, 430, 530],
     "size": ["Tall", "Grande", "Venti"]
   },
   {
@@ -12,7 +11,6 @@
     "name": "Flat White",
     "image": "https://bit.ly/3cyLBo3",
     "cost": [3.25, 3.95, 4.45],
-    "calories": [340, 430, 530],
     "size": ["Tall", "Grande", "Venti"]
   },
   {
@@ -20,7 +18,6 @@
     "name": "Americano",
     "image": "https://bit.ly/2Vo0Ryn",
     "cost": [3.25, 3.95, 4.45],
-    "calories": [340, 430, 530],
     "size": ["Tall", "Grande", "Venti"]
   },
   {
@@ -28,7 +25,6 @@
     "name": "Cappuccino",
     "image": "https://bit.ly/2XRhO5X",
     "cost": [3.25, 3.95, 4.45],
-    "calories": [340, 430, 530],
     "size": ["Tall", "Grande", "Venti"]
   },
   {
@@ -36,7 +32,6 @@
     "name": "Chicken Fingers",
     "image": "https://tinyurl.com/y7adk236",
     "cost": [3.25, 3.95, 4.45],
-    "calories": [340, 430, 530],
     "size": ["Small", "Medium", "Large"]
   },
   {
@@ -44,7 +39,62 @@
     "name": "Pho",
     "image": "https://s3-media0.fl.yelpcdn.com/bphoto/n3jOrjcJOVoz0npBf_FS1Q/o.jpg",
     "cost": [3.25, 3.95, 4.45],
-    "calories": [340, 430, 530],
     "size": ["Small", "Medium", "Large"]
+  },
+  {
+    "owner": "bale@foo.com",
+    "name": "Char Siu Fried Rice",
+    "image": "http://www.balemaui.com/images/624_KC_Fried_Rice.JPG",
+    "cost": [3.25, 3.95, 4.45],
+    "size": ["Small", "Medium", "Large"]
+  },
+  {
+    "owner": "jerseymikes@foo.com",
+    "name": "Jersey Shore's Favorite",
+    "image": "https://www.jerseymikes.com/media/static/menu/products/lg/2-jersey-fav-reg.jpg",
+    "cost": [9.30, 16.70, 9.30],
+    "size": ["Regular", "Giant", "Tub"]
+  },
+  {
+    "owner": "jerseymikes@foo.com",
+    "name": "Mike's Famous Philly",
+    "image": "https://www.jerseymikes.com/media/static/menu/products/lg/17-philly-cheesesteak-reg.jpg",
+    "cost": [9.30, 16.70, 9.30],
+    "size": ["Regular", "Giant", "Tub"]
+  },
+  {
+    "owner": "jerseymikes@foo.com",
+    "name": "BBQ Beef",
+    "image": "https://www.jerseymikes.com/media/static/menu/products/sm/bbq-beef-reg.jpg",
+    "cost": [9.50, 17.20, 9.50],
+    "size": ["Regular", "Giant", "Tub"]
+  },
+  {
+    "owner": "shakashaka@foo.com",
+    "name": "Avocado Smoothie",
+    "image": "http://shakashakateaexpress.com/wp-content/uploads/2014/09/ShakaShaka_15.jpg",
+    "cost": [5.49, 6.49, 6.99],
+    "size": ["Large", "Medium", "XL"]
+  },
+  {
+    "owner": "shakashaka@foo.com",
+    "name": "Banana Smoothie",
+    "image": "http://shakashakateaexpress.com/wp-content/uploads/2014/09/ShakaShaka_30.jpg",
+    "cost": [5.49, 6.49, 6.99],
+    "size": ["Large", "Medium", "XL"]
+  },
+  {
+    "owner": "subway@foo.com",
+    "name": "Italian BMT",
+    "image": "https://www.subway.com/ns/images/menu/MRT/ENG/RPLC_BMT_BrownEdge_B.jpg",
+    "cost": [3.75, 5.50],
+    "size": ["6-inch", "Footlong"]
+  },
+  {
+    "owner": "pieology@foo.com",
+    "name": "Smokin Buffalo Chicken",
+    "image": "https://olo-images-live.imgix.net/ca/ca857f43cdf54f0c907ecc0c917561da.jpg?auto=format%2Ccompress&q=60&cs=tinysrgb&w=350&h=233&fit=fill&fm=png32&bg=transparent&s=4a9c3e572b5e82405d2d091bee0ca91b",
+    "cost": [10.95],
+    "size": ["11-inch"]
   }
 ]

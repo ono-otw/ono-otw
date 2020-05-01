@@ -12,8 +12,6 @@ const MenuSchema = new SimpleSchema({
   image: String,
   cost: Array,
   'cost.$': Number,
-  calories: Array,
-  'calories.$': Number,
   size: Array,
   'size.$': String,
 }, { tracker: Tracker });

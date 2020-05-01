@@ -74,10 +74,7 @@ export default withTracker(({ match }) => {
   const subscription1 = Meteor.subscribe('AllMenuItems');
   const subscription2 = Meteor.subscribe('Restaurant');
   const documentId = match.params._id;
-
   const restaurant = Restaurant.find({ _id: documentId }).fetch();
-
-  // console.log(restaurant[0]);
 
   return {
     menuitems: MenuItems.find({ owner: restaurant[0].owner }).fetch(),

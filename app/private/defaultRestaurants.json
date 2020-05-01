@@ -35,7 +35,7 @@
   {
     "owner": "jerseymikes@foo.com",
     "name": "Jersey Mikes",
-    "bgimg": "https://bit.ly/2wV9ozB",
+    "bgimg": "https://www.jerseymikes.com/media/static/bag-cut-subs.jpg",
     "address": "2615 S King St space no 6",
     "image": "https://bit.ly/2yUX7LW",
     "rating":  4.4,
@@ -46,7 +46,7 @@
   {
     "owner": "pieology@foo.com",
     "name": "Pieology",
-    "bgimg": "https://bit.ly/2wV9ozB",
+    "bgimg": "https://raster-static.postmates.com/?url=com.postmates.img.prod.s3.amazonaws.com/be9018f7-cee7-4938-9c36-30da039a7aa5/orig.jpg&quality=90&w=1500&h=900&mode=crop&format=jpg&v=4",
     "address": "2615 S King St",
     "image": "https://www.qsrmagazine.com/sites/default/files/styles/story_page/public/news-image/pieology-signs-deal-expand-china.jpg?itok=3f1p0_mc",
     "rating":  4.5,
@@ -57,7 +57,7 @@
   {
     "owner": "subway@foo.com",
     "name": "Subway",
-    "bgimg": "https://bit.ly/2wV9ozB",
+    "bgimg": "https://rde-stanford-edu.s3.amazonaws.com/Hospitality/Images/subway-header.jpg",
     "address": "2465 Campus Rd Cc 213",
     "image": "https://media.farandwide.com/30/5c/305cd21f532d448388f10e807d153a29.jpeg",
     "rating":  3.8,
