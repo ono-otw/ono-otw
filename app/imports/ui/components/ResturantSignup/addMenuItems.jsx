@@ -6,14 +6,14 @@ import SimpleSchema from 'simpl-schema';
 import { number } from 'prop-types';
 
 // New Schema
-const menuItemsSchema = new SimpleSchema({
-    name: String,
-    prices: {
-        small: number,
-        medium: number,
-        large: number
-    },
-});
+// const menuItemsSchema = new SimpleSchema({
+//     name: String,
+//     prices: {
+//         small: number,
+//         medium: number,
+//         large: number
+//     },
+// });
 
 const addMenuItems = () => {
     
