@@ -4,11 +4,13 @@ import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Container, Grid, Header, Form, Message } from 'semantic-ui-react';
 import swal from 'sweetalert';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Carts } from '../../api/cart/Carts';
 import CartTable from '../components/CartTable';
 import { AcceptOrders } from '../../api/acceptorders/AcceptOrders';
 import { Profile } from '../../api/profile/Profile';
+import { PastOrder } from '../../api/pastorder/PastOrder';
+
 /**
  * Profiles page overrides the form’s submit event and call Meteor’s loginWithPassword().
  * Authentication errors modify the component’s state to be displayed
@@ -16,12 +18,6 @@ import { Profile } from '../../api/profile/Profile';
 class Cart extends React.Component {
 
   confirm() {
-
-    //
-    // const initialPrice = this.props.cartItems.reduce((total, current) => total + (current.price * current.quantity), 0);
-    // const tax = (initialPrice * 0.045).toFixed(2);
-    // const deliveryPrice = (2.50).toFixed(2);
-    // const totalPrice = (+initialPrice + +tax + +deliveryPrice).toFixed(2);
 
     swal({
       title: 'Are you sure?',
@@ -31,16 +27,44 @@ class Cart extends React.Component {
       dangerMode: true,
     })
         .then((yes) => {
-          let total = this.props.total;
           if (yes) {
+            const initialPrice = this.props.cartItems.reduce((total, current) => total + (current.price * current.quantity), 0);
+            const tax = (initialPrice * 0.045).toFixed(2);
+            const deliveryPrice = (2.50).toFixed(2);
+            const cost = (+initialPrice + +tax + +deliveryPrice).toFixed(2);
+
+            let total = this.props.total;
+            const item = this.props.total;
+            const user = Meteor.user().username;
+            const prof = Profile.findOne({ owner: user });
+            const owner = prof.owner;
+            const pOrder = Carts.findOne({ MenuId: this.props.cartItems._id });
+            const store = pOrder.vendor;
+
+            const orderTime = new Date();
+            const monthOption = { month: 'long' };
+            const month = new Intl.DateTimeFormat('en-US', monthOption).format(orderTime);
+            const day = orderTime.getDate();
+            const weekdayOption = { weekday: 'long' };
+            const weekday = new Intl.DateTimeFormat('en-US', weekdayOption).format(orderTime);
+
+            console.log(day);
+            console.log(month);
+            console.log(weekday);
+            console.log(item);
+            console.log(cost);
+            console.log(owner);
+            console.log(store);
+            PastOrder.insert({ owner, store, month, day, weekday, item, cost });
+
             while (total !== 0) {
               const order = Carts.findOne({ MenuId: this.props.cartItems._id });
               console.log(order);
               console.log(Carts.remove(Carts.findOne({ MenuId: this.props.cartItems._id })._id));
-              const store = order.vendor;
+              // store = order.vendor;
               const profile = Profile.findOne({ owner: order.owner });
               const quantity = order.quantity;
-              const owner = profile.owner;
+              // owner = profile.owner;
               const image = profile.image;
               const firstName = profile.firstName;
               const lastName = profile.lastName;

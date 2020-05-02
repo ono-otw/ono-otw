@@ -6,6 +6,7 @@ import { Restaurant } from '../../api/restaurant/Restaurant';
 import { Carts } from '../../api/cart/Carts';
 import { AcceptOrders } from '../../api/acceptorders/AcceptOrders';
 import { Favorites } from '../../api/favorites/Favorites';
+import { PastOrder } from '../../api/pastorder/PastOrder';
 
 // /** This subscription publishes only the documents associated with the logged in user */
 // Meteor.publish('Stuff', function publish() {
@@ -55,6 +56,15 @@ Meteor.publish('Favorites', function publish() {
   if (this.userId) {
     const username = Meteor.users.findOne(this.userId).username;
     return Favorites.find({ owner: username });
+  }
+  return this.ready();
+});
+
+/** This subscription publishes only the documents associated with the logged in user */
+Meteor.publish('PastOrder', function publish() {
+  if (this.userId) {
+    const username = Meteor.users.findOne(this.userId).username;
+    return PastOrder.find({ owner: username });
   }
   return this.ready();
 });

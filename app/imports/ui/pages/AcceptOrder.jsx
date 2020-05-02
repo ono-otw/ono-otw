@@ -48,7 +48,7 @@ class AcceptOrder extends React.Component {
             <Message className='restaurant-message'>
               <Message.Header>To Accept an Order...</Message.Header>
               <Message.List>
-                <Message.Item>Click on "Accept" to accept the order.</Message.Item>
+                <Message.Item>Click on &quot;Accept&quot; to accept the order.</Message.Item>
                 {/* eslint-disable-next-line react/no-unescaped-entities */}
                 <Message.Item>Accepting the order will provide you with more information about it.</Message.Item>
               </Message.List>

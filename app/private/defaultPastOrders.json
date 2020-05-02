@@ -1,0 +1,20 @@
+[
+  {
+    "owner": "admin@foo.com",
+    "store": "Bale",
+    "month": "April",
+    "day": "10",
+    "weekday": "Friday",
+    "item": 3,
+    "cost": 23.12
+  },
+  {
+    "owner": "john@foo.com",
+    "store": "Pieology",
+    "month": "April",
+    "day": "25",
+    "weekday": "Saturday",
+    "item": 1,
+    "cost": 12.12
+  }
+]
