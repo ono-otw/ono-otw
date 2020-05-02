@@ -14,7 +14,7 @@ import { Profile } from '../../api/profile/Profile';
 import { Favorites } from '../../api/favorites/Favorites';
 import { PastOrder } from '../../api/pastorder/PastOrder';
 import ListFavorites from '../components/ListFavorites';
-import ProfileMeta from '../components/ProfileMeta'
+import ProfileMeta from '../components/ProfileMeta';
 import PastOrderTable from '../components/PastOrderTable';
 
 

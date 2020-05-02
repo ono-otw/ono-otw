@@ -16,6 +16,7 @@ class PastOrderTable extends React.Component {
           <Grid columns='2'>
             <Grid.Column>
               <Header as='h4'>{this.props.pastorder.store}</Header>
+              {/* eslint-disable-next-line max-len */}
               <p>{this.props.pastorder.weekday}, {this.props.pastorder.month} {this.props.pastorder.day} | {this.props.pastorder.item} item(s)</p>
             </Grid.Column>
             <Grid.Column textAlign='right'>
