@@ -4,17 +4,10 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import swal from 'sweetalert';
 import { Profile } from '../../api/profile/Profile';
-import { Carts } from '../../api/cart/Carts';
-
+import { Carts } from '../../api/cart/Carts'
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class AcceptOrderCard extends React.Component {
-
-  getName() {
-    // let profile = Profile.findOne({ owner: this.props.pendingOrder.personWhoOrdered });
-    // console.log(profile['image']);
-    console.log(this.props.pendingOrder.personWhoOrdered);
-  }
 
   acceptOrder() {
     swal({
@@ -49,8 +42,8 @@ class AcceptOrderCard extends React.Component {
             <Card.Content >
               <div align={'center'}>
                 <Header as='h2' inverted>
-                  <Image circular src={this.props.pendingOrder.image} /> {this.props.pendingOrder.firstName} {this.props.pendingOrder.lastName}
-                  {this.getName()}
+                  <Image circular src={this.props.pendingOrder.image} />
+                  {this.props.pendingOrder.firstName} {this.props.pendingOrder.lastName}
                 </Header>
                 <Rating icon='star' defaultRating={3} maxRating={5} disabled />
               </div>
@@ -86,7 +79,6 @@ class AcceptOrderCard extends React.Component {
 /** Require a document to be passed to this component. */
 AcceptOrderCard.propTypes = {
   pendingOrder: PropTypes.object.isRequired,
-  profile: PropTypes.array.isRequired,
 };
 
 /** Wrap this component in withRouter since we use the <Link> React Router element. */
