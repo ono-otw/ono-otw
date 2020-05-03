@@ -1,14 +1,57 @@
 import React from 'react';
 import { Card, Grid, Image, Modal, Header, Button, Form } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import { _ } from 'meteor/underscore';
+import swal from 'sweetalert';
+import { Meteor } from 'meteor/meteor';
+import { Carts } from '../../../api/cart/Carts';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class MenuitemCard extends React.Component {
-  state = {}
+  state = {};
 
-  handleChange = (e, { value }) => this.setState({ value })
+  handleChange = (e, { value }) => this.setState({ value });
+
+  // eslint-disable-next-line consistent-return
+  submitOrder(name, vendor, price, quantity, size) {
+    if (Meteor.user()) {
+      const owner = Meteor.user().username;
+      swal({
+        title: 'Are you sure?',
+        text: 'Are you sure you want to add this to your cart?',
+        icon: 'warning',
+        buttons: true,
+        dangerMode: true,
+      })
+          .then((yes) => {
+            if (yes) {
+              console.log(name)
+              console.log(vendor)
+              console.log(owner)
+              console.log(price)
+              console.log(quantity)
+              console.log(size)
+              Carts.insert({ name, vendor, owner, price, quantity, size });
+              this.forceUpdate();
+              swal('Order has been added to the cart.', {
+                icon: 'success',
+              });
+            } else {
+              swal('Order was not added to cart');
+            }
+          });
+    } else {
+      console.log('User is not logged in.');
+      swal({
+        title: 'You are not logged in!',
+        text: 'Please login to order.',
+        icon: 'warning',
+        buttons: false,
+        dangerMode: true,
+      });
+    }
+  }
 
   render() {
     const { value } = this.state;
@@ -32,8 +75,6 @@ class MenuitemCard extends React.Component {
     };
 
     return (
-
-
         <div style={cardPadding} className='itemcard_text'>
 
           {/* ----------------------MODAL--------------------------- */}
@@ -83,7 +124,12 @@ class MenuitemCard extends React.Component {
               </Form>
 
               <div align='center' style={{ marginTop: '75px' }}>
-                <Button className='dark-blue-button'>Add to Cart - ${this.props.menuitem.cost[valueCost]}</Button>
+                <Button className='dark-blue-button'
+                        onClick={() => this.submitOrder(this.props.menuitem.name,
+                            this.props.menuitem.owner, this.props.menuitem.cost[valueCost],
+                            1, this.props.menuitem.size[valueCost])}>
+                  Add to Cart - ${this.props.menuitem.cost[valueCost]}
+                </Button>
               </div>
             </Modal.Content>
           </Modal>
