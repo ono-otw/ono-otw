@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
-import { Container, Form, Grid, Header, Message, Segment, Divider, Button } from 'semantic-ui-react';
+import { Container, Form, Grid, Header, Message, Segment, Divider } from 'semantic-ui-react';
 import { Accounts } from 'meteor/accounts-base';
 import { Profile } from '../../api/profile/Profile';
 
