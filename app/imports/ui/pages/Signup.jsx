@@ -132,7 +132,6 @@ class Signup extends React.Component {
               )}
             </Grid.Column>
           </Grid>
-          <Button color=''>Submit</Button>
         </Container>
     );
   }
