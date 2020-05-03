@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Input, Header, Menu, Loader, Card, Button } from 'semantic-ui-react';
+import { Container, Input, Header, Menu, Loader, Card, Message } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { MenuItems } from '../../api/foodmenu/MenuItems';
@@ -10,17 +10,34 @@ import MenuitemCard from '../components/MenuItems/MenuitemCard';
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class RestaurantMenus extends React.Component {
 
-  state = { activeItem: 'Coffee' }
+  state = { activeItem: '' };
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
     return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
   }
 
+  display(tabName) {
+    const restaurantOwner = this.props.restaurant.owner;
+    // console.log(restaurantOwner);
+    // console.log(this.props.menuitems);
+    const menuItems = _.filter(this.props.menuitems, (entry) => entry.owner === restaurantOwner);
+    const categories = _.where(menuItems, { label: tabName });
+    // console.log(categories)
+    // console.log(tabName)
+    // console.log('Yes coffee')
+    return (
+        <Card.Group>
+        {categories.map((p, index) => <MenuitemCard key={index} menuitem={p}/>)}
+         </Card.Group>
+      );
+  }
+
   /** Render the page once subscriptions have been received. */
   renderPage() {
+
 
     const restaurantOwner = this.props.restaurant.owner;
     // console.log(restaurantOwner);
@@ -28,12 +45,14 @@ class RestaurantMenus extends React.Component {
     const menuItems = _.filter(this.props.menuitems, (entry) => entry.owner === restaurantOwner);
 
     const categories = _.uniq(_.pluck(menuItems, 'label'));
-    console.log(categories);
 
     const { activeItem } = this.state;
+
     return (
         <div>
-          <div className='menuimage'><img src={this.props.restaurant.bgimg}/></div>
+          <div className='menuimage'>
+            <img style={{height: '200px'}} src={this.props.restaurant.bgimg}/>
+          </div>
 
           <Container>
             <div align='center'>
@@ -59,10 +78,13 @@ class RestaurantMenus extends React.Component {
 
               <hr style={{ borderTop: '2px solid #184470' }}/>
 
-              <Card.Group>
-                 {menuItems.map((menuitem, index) => <MenuitemCard key={index} menuitem={menuitem}/>)}
-              </Card.Group>
-              <div style={{ padding: '50px' }}><Button className='dark-blue-button'>Show More</Button></div>
+              <Message className='restaurant-message'>
+                <Message.Header>Click on the tabs to start looking!</Message.Header>
+              </Message>
+              {this.display(activeItem)}
+
+              <div style={{ padding: '50px' }}>
+              </div>
             </div>
 
           </Container>

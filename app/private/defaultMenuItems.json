@@ -32,11 +32,27 @@
     "size": ["Tall", "Grande", "Venti"]
   },
   {
+    "owner": "starbucks@foo.com",
+    "name": "Earl Grey Tea",
+    "image": "https://globalassets.starbucks.com/assets/6f780d5d392542c6b9b1a4412881cecc.jpg?impolicy=1by1_wide_1242",
+    "cost": [3.25, 3.95, 4.45],
+    "label": "Tea",
+    "size": ["Tall", "Grande", "Venti"]
+  },
+  {
+    "owner": "starbucks@foo.com",
+    "name": "Matcha Green Tea Latte",
+    "image": "https://globalassets.starbucks.com/assets/8b1b6d808cca4787afd2b30cf8dd5676.jpg?impolicy=1by1_wide_1242",
+    "cost": [3.25, 3.95, 4.45],
+    "label": "Tea",
+    "size": ["Tall", "Grande", "Venti"]
+  },
+  {
     "owner": "raisingcanes@foo.com",
     "name": "Chicken Fingers",
     "image": "https://tinyurl.com/y7adk236",
     "cost": [3.25, 3.95, 4.45],
-    "label": "Coffee",
+    "label": "Chicken",
     "size": ["Small", "Medium", "Large"]
   },
   {
@@ -52,7 +68,7 @@
     "name": "Char Siu Fried Rice",
     "image": "http://www.balemaui.com/images/624_KC_Fried_Rice.JPG",
     "cost": [3.25, 3.95, 4.45],
-    "label": "Coffee",
+    "label": "Rice",
     "size": ["Small", "Medium", "Large"]
   },
   {
@@ -60,7 +76,7 @@
     "name": "Jersey Shore's Favorite",
     "image": "https://www.jerseymikes.com/media/static/menu/products/lg/2-jersey-fav-reg.jpg",
     "cost": [9.30, 16.70, 9.30],
-    "label": "Coffee",
+    "label": "Hot Subs",
     "size": ["Regular", "Giant", "Tub"]
   },
   {
@@ -84,7 +100,7 @@
     "name": "Avocado Smoothie",
     "image": "http://shakashakateaexpress.com/wp-content/uploads/2014/09/ShakaShaka_15.jpg",
     "cost": [5.49, 6.49, 6.99],
-    "label": "Coffee",
+    "label": "Smoothie",
     "size": ["Large", "Medium", "XL"]
   },
   {
@@ -92,7 +108,7 @@
     "name": "Banana Smoothie",
     "image": "http://shakashakateaexpress.com/wp-content/uploads/2014/09/ShakaShaka_30.jpg",
     "cost": [5.49, 6.49, 6.99],
-    "label": "Coffee",
+    "label": "Smoothie",
     "size": ["Large", "Medium", "XL"]
   },
   {
@@ -100,7 +116,7 @@
     "name": "Orange C-Booster",
     "image": "https://i.pinimg.com/originals/40/9f/13/409f1353ae0f78556a2ea7aa97712fb2.jpg",
     "cost": [6.42, 7.24, 8.06],
-    "label": "Coffee",
+    "label": "Juice",
     "size": ["Small", "Medium", "Large"]
   },
   {
@@ -108,7 +124,7 @@
     "name": "Apple 'N Greens",
     "image": "https://i.pinimg.com/originals/9e/76/01/9e76016e91e61ae186f96326ffd0e0d6.jpg",
     "cost": [5.84, 6.66, 7.71],
-    "label": "Coffee",
+    "label": "Juice",
     "size": ["Small", "Medium", "Large"]
   },
   {
@@ -116,7 +132,7 @@
     "name": "Strawberry Wild",
     "image": "https://jambajuice.ph/wp-content/uploads/SWild.jpg",
     "cost": [5.49, 6.31, 7.13],
-    "label": "Coffee",
+    "label": "Juice",
     "size": ["Small", "Medium", "Large"]
   },
   {
@@ -124,7 +140,7 @@
     "name": "Matcha Green Tea",
     "image": "https://i.pinimg.com/originals/7e/2f/89/7e2f8925530b1767c4a167869aa8d999.jpg",
     "cost": [6.42, 7.24, 8.06],
-    "label": "Coffee",
+    "label": "Tea",
     "size": ["Small", "Medium", "Large"]
   },
   {
@@ -132,7 +148,7 @@
     "name": "Orange Chicken",
     "image": "https://s3.amazonaws.com/PandaExpressWebsite/Responsive/img/food/thumbnails/grid_OrangeChicken.jpg",
     "cost": [4.92, 9.18, 12.90],
-    "label": "Coffee",
+    "label": "Meat",
     "size": ["Small", "Medium", "Large"]
   },
   {
@@ -140,7 +156,7 @@
     "name": "Kung Pao Chicken",
     "image": "https://s3.amazonaws.com/PandaExpressWebsite/Responsive/img/food/thumbnails/grid_KungPaoChicken.jpg",
     "cost": [4.92, 9.18, 12.90],
-    "label": "Coffee",
+    "label": "Meat",
     "size": ["Small", "Medium", "Large"]
   },
   {
@@ -148,7 +164,7 @@
     "name": "Teriyaki Chicken",
     "image": "https://s3.amazonaws.com/PandaExpressWebsite/Responsive/img/food/thumbnails/grid_TeriyakiChicken.jpg",
     "cost": [4.92, 9.18, 12.90],
-    "label": "Coffee",
+    "label": "Meat",
     "size": ["Small", "Medium", "Large"]
   },
   {
@@ -156,7 +172,7 @@
     "name": "Beef Broccoli",
     "image": "https://s3.amazonaws.com/PandaExpressWebsite/Responsive/img/food/thumbnails/grid_BroccoliBeef.jpg",
     "cost": [4.92, 9.18, 12.90],
-    "label": "Coffee",
+    "label": "Meat",
     "size": ["Small", "Medium", "Large"]
   },
   {
@@ -164,7 +180,7 @@
     "name": "Black Pepper Angus Steak",
     "image": "https://s3.amazonaws.com/PandaExpressWebsite/Responsive/img/food/navigation/entrees.jpg",
     "cost": [6.58, 12.50, 17.89],
-    "label": "Coffee",
+    "label": "Meat",
     "size": ["Small", "Medium", "Large"]
   },
   {
@@ -172,7 +188,7 @@
     "name": "SweetFire Chicken",
     "image": "https://s3.amazonaws.com/PandaExpressWebsite/Responsive/img/food/thumbnails/grid_SweetFireChicken.jpg",
     "cost": [4.92, 9.18, 12.90],
-    "label": "Coffee",
+    "label": "Meat",
     "size": ["Small", "Medium", "Large"]
   },
   {
@@ -180,7 +196,7 @@
     "name": "Firecracker Shrimp",
     "image": "https://s3.amazonaws.com/PandaExpressWebsite/Responsive/img/food/thumbnails/grid_fcs.jpg",
     "cost": [4.92, 9.18, 12.90],
-    "label": "Coffee",
+    "label": "Seafood",
     "size": ["Small", "Medium", "Large"]
   },
   {
@@ -188,7 +204,7 @@
     "name": "Mushroom Chicken",
     "image": "https://s3.amazonaws.com/PandaExpressWebsite/Responsive/img/food/thumbnails/grid_MushroomChicken.jpg",
     "cost": [4.92, 9.18, 12.90],
-    "label": "Coffee",
+    "label": "Meat",
     "size": ["Small", "Medium", "Large"]
   },
   {
@@ -196,7 +212,7 @@
     "name": "Honey Walnut Shrimp",
     "image": "https://s3.amazonaws.com/PandaExpressWebsite/Responsive/img/food/thumbnails/grid_fcs.jpg",
     "cost": [6.58, 12.50, 17.89],
-    "label": "Coffee",
+    "label": "Seafood",
     "size": ["Small", "Medium", "Large"]
   },
   {
@@ -204,7 +220,7 @@
     "name": "Chicken Egg Roll",
     "image": "https://s3.amazonaws.com/PandaExpressWebsite/Responsive/img/food/thumbnails/grid_EggRolls.jpg",
     "cost": [4.92, 9.18, 12.90],
-    "label": "Coffee",
+    "label": "Misc",
     "size": ["Small", "Medium", "Large"]
   },
   {
