@@ -1,0 +1,198 @@
+[
+  {
+    "owner": "starbucks@foo.com",
+    "name": "White Mocha",
+    "image": "https://bit.ly/2XP3dYR",
+    "cost": [3.25, 3.95, 4.45],
+    "size": ["Tall", "Grande", "Venti"]
+  },
+  {
+    "owner": "starbucks@foo.com",
+    "name": "Flat White",
+    "image": "https://bit.ly/3cyLBo3",
+    "cost": [3.25, 3.95, 4.45],
+    "size": ["Tall", "Grande", "Venti"]
+  },
+  {
+    "owner": "starbucks@foo.com",
+    "name": "Americano",
+    "image": "https://bit.ly/2Vo0Ryn",
+    "cost": [3.25, 3.95, 4.45],
+    "size": ["Tall", "Grande", "Venti"]
+  },
+  {
+    "owner": "starbucks@foo.com",
+    "name": "Cappuccino",
+    "image": "https://bit.ly/2XRhO5X",
+    "cost": [3.25, 3.95, 4.45],
+    "size": ["Tall", "Grande", "Venti"]
+  },
+  {
+    "owner": "raisingcanes@foo.com",
+    "name": "Chicken Fingers",
+    "image": "https://tinyurl.com/y7adk236",
+    "cost": [3.25, 3.95, 4.45],
+    "size": ["Small", "Medium", "Large"]
+  },
+  {
+    "owner": "bale@foo.com",
+    "name": "Pho",
+    "image": "https://s3-media0.fl.yelpcdn.com/bphoto/n3jOrjcJOVoz0npBf_FS1Q/o.jpg",
+    "cost": [3.25, 3.95, 4.45],
+    "size": ["Small", "Medium", "Large"]
+  },
+  {
+    "owner": "bale@foo.com",
+    "name": "Char Siu Fried Rice",
+    "image": "http://www.balemaui.com/images/624_KC_Fried_Rice.JPG",
+    "cost": [3.25, 3.95, 4.45],
+    "size": ["Small", "Medium", "Large"]
+  },
+  {
+    "owner": "jerseymikes@foo.com",
+    "name": "Jersey Shore's Favorite",
+    "image": "https://www.jerseymikes.com/media/static/menu/products/lg/2-jersey-fav-reg.jpg",
+    "cost": [9.30, 16.70, 9.30],
+    "size": ["Regular", "Giant", "Tub"]
+  },
+  {
+    "owner": "jerseymikes@foo.com",
+    "name": "Mike's Famous Philly",
+    "image": "https://www.jerseymikes.com/media/static/menu/products/lg/17-philly-cheesesteak-reg.jpg",
+    "cost": [9.30, 16.70, 9.30],
+    "size": ["Regular", "Giant", "Tub"]
+  },
+  {
+    "owner": "jerseymikes@foo.com",
+    "name": "BBQ Beef",
+    "image": "https://www.jerseymikes.com/media/static/menu/products/sm/bbq-beef-reg.jpg",
+    "cost": [9.50, 17.20, 9.50],
+    "size": ["Regular", "Giant", "Tub"]
+  },
+  {
+    "owner": "shakashaka@foo.com",
+    "name": "Avocado Smoothie",
+    "image": "http://shakashakateaexpress.com/wp-content/uploads/2014/09/ShakaShaka_15.jpg",
+    "cost": [5.49, 6.49, 6.99],
+    "size": ["Large", "Medium", "XL"]
+  },
+  {
+    "owner": "shakashaka@foo.com",
+    "name": "Banana Smoothie",
+    "image": "http://shakashakateaexpress.com/wp-content/uploads/2014/09/ShakaShaka_30.jpg",
+    "cost": [5.49, 6.49, 6.99],
+    "size": ["Large", "Medium", "XL"]
+  },
+  {
+    "owner": "jambajuice@foo.com",
+    "name": "Orange C-Booster",
+    "image": "https://i.pinimg.com/originals/40/9f/13/409f1353ae0f78556a2ea7aa97712fb2.jpg",
+    "cost": [6.42, 7.24, 8.06],
+    "size": ["Small", "Medium", "Large"]
+  },
+  {
+    "owner": "jambajuice@foo.com",
+    "name": "Apple 'N Greens",
+    "image": "https://i.pinimg.com/originals/9e/76/01/9e76016e91e61ae186f96326ffd0e0d6.jpg",
+    "cost": [5.84, 6.66, 7.71],
+    "size": ["Small", "Medium", "Large"]
+  },
+  {
+    "owner": "jambajuice@foo.com",
+    "name": "Strawberry Wild",
+    "image": "https://jambajuice.ph/wp-content/uploads/SWild.jpg",
+    "cost": [5.49, 6.31, 7.13],
+    "size": ["Small", "Medium", "Large"]
+  },
+  {
+    "owner": "jambajuice@foo.com",
+    "name": "Matcha Green Tea",
+    "image": "https://i.pinimg.com/originals/7e/2f/89/7e2f8925530b1767c4a167869aa8d999.jpg",
+    "cost": [6.42, 7.24, 8.06],
+    "size": ["Small", "Medium", "Large"]
+  },
+  {
+    "owner": "pandaexpress@foo.com",
+    "name": "Orange Chicken",
+    "image": "https://s3.amazonaws.com/PandaExpressWebsite/Responsive/img/food/thumbnails/grid_OrangeChicken.jpg",
+    "cost": [4.92, 9.18, 12.90],
+    "size": ["Small", "Medium", "Large"]
+  },
+  {
+    "owner": "pandaexpress@foo.com",
+    "name": "Kung Pao Chicken",
+    "image": "https://s3.amazonaws.com/PandaExpressWebsite/Responsive/img/food/thumbnails/grid_KungPaoChicken.jpg",
+    "cost": [4.92, 9.18, 12.90],
+    "size": ["Small", "Medium", "Large"]
+  },
+  {
+    "owner": "pandaexpress@foo.com",
+    "name": "Teriyaki Chicken",
+    "image": "https://s3.amazonaws.com/PandaExpressWebsite/Responsive/img/food/thumbnails/grid_TeriyakiChicken.jpg",
+    "cost": [4.92, 9.18, 12.90],
+    "size": ["Small", "Medium", "Large"]
+  },
+  {
+    "owner": "pandaexpress@foo.com",
+    "name": "Beef Broccoli",
+    "image": "https://s3.amazonaws.com/PandaExpressWebsite/Responsive/img/food/thumbnails/grid_BroccoliBeef.jpg",
+    "cost": [4.92, 9.18, 12.90],
+    "size": ["Small", "Medium", "Large"]
+  },
+  {
+    "owner": "pandaexpress@foo.com",
+    "name": "Black Pepper Angus Steak",
+    "image": "https://s3.amazonaws.com/PandaExpressWebsite/Responsive/img/food/navigation/entrees.jpg",
+    "cost": [6.58, 12.50, 17.89],
+    "size": ["Small", "Medium", "Large"]
+  },
+  {
+    "owner": "pandaexpress@foo.com",
+    "name": "SweetFire Chicken",
+    "image": "https://s3.amazonaws.com/PandaExpressWebsite/Responsive/img/food/thumbnails/grid_SweetFireChicken.jpg",
+    "cost": [4.92, 9.18, 12.90],
+    "size": ["Small", "Medium", "Large"]
+  },
+  {
+    "owner": "pandaexpress@foo.com",
+    "name": "Firecracker Shrimp",
+    "image": "https://s3.amazonaws.com/PandaExpressWebsite/Responsive/img/food/thumbnails/grid_fcs.jpg",
+    "cost": [4.92, 9.18, 12.90],
+    "size": ["Small", "Medium", "Large"]
+  },
+  {
+    "owner": "pandaexpress@foo.com",
+    "name": "Mushroom Chicken",
+    "image": "https://s3.amazonaws.com/PandaExpressWebsite/Responsive/img/food/thumbnails/grid_MushroomChicken.jpg",
+    "cost": [4.92, 9.18, 12.90],
+    "size": ["Small", "Medium", "Large"]
+  },
+  {
+    "owner": "pandaexpress@foo.com",
+    "name": "Honey Walnut Shrimp",
+    "image": "https://s3.amazonaws.com/PandaExpressWebsite/Responsive/img/food/thumbnails/grid_fcs.jpg",
+    "cost": [6.58, 12.50, 17.89],
+    "size": ["Small", "Medium", "Large"]
+  },
+  {
+    "owner": "pandaexpress@foo.com",
+    "name": "Chicken Egg Roll",
+    "image": "https://s3.amazonaws.com/PandaExpressWebsite/Responsive/img/food/thumbnails/grid_EggRolls.jpg",
+    "cost": [4.92, 9.18, 12.90],
+    "size": ["Small", "Medium", "Large"]
+  },
+  {
+    "owner": "dunkindonuts@foo.com",
+    "name": "Iced Coffee",
+    "image": "https://www.dunkindonuts.com/content/dam/dd/img/rebranding/products/iceddrinksdesktop/Iced%20Coffee.png",
+    "cost": [2.65, 3.31, 3.71],
+    "size": ["Small", "Medium", "Large"]
+  },
+  {
+    "owner": "dunkindonuts@foo.com",
+    "name": "Iced Macchiato",
+    "image": "https://www.dunkindonuts.com/content/dam/dd/img/rebranding/products/pdp/120X200_IcedMacchiato.png",
+    "cost": [4.24, 5.04, 5.57],
+    "size": ["Small", "Medium", "Large"]
+  }
+]

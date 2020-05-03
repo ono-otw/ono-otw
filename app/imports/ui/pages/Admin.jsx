@@ -81,7 +81,7 @@ Admin.propTypes = {
 
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
 export default withTracker(() => {
-  // Get access to Restaurant documents.
+  // Get access to Menu documents.
   const subscription = Meteor.subscribe('Restaurant');
   return {
     restaurants: Restaurant.find({}).fetch(),

@@ -3,34 +3,12 @@ import { Meteor } from 'meteor/meteor';
 import { Container, Input, Header, Menu, Loader, Card, Button } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import { Stuffs } from '../../api/stuff/Stuff';
-import StuffItem from '../components/StuffItem';
+import { MenuItems } from '../../api/foodmenu/MenuItems';
+import { Restaurant } from '../../api/restaurant/Restaurant';
 import MenuitemCard from '../components/MenuItems/MenuitemCard';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
-class FoodMenu extends React.Component {
-
-  menuItems = [{
-    name: 'White Mocha', calories: 240,
-    image: 'https://bit.ly/2XP3dYR',
-    size: 16, price: 4.45,
-  },
-    {
-      name: 'Flat White', calories: 170,
-      image: 'https://bit.ly/3cyLBo3',
-      size: 12, price: 5.45,
-    },
-    {
-      name: 'Americano', calories: 170,
-      image: 'https://bit.ly/2Vo0Ryn',
-      size: 12, price: 5.45,
-    },
-    {
-      name: 'Cappuccino', calories: 120,
-      image: 'https://bit.ly/2XRhO5X',
-      size: 12, price: 5.45,
-    },
-  ];
+class RestaurantMenus extends React.Component {
 
   state = { activeItem: 'Coffee' }
 
@@ -43,14 +21,19 @@ class FoodMenu extends React.Component {
 
   /** Render the page once subscriptions have been received. */
   renderPage() {
+
+    const restaurantOwner = this.props.restaurant.owner;
+    // console.log(restaurantOwner);
+    // console.log(this.props.menuitems);
+    const menuItems = _.filter(this.props.menuitems, (entry) => entry.owner === restaurantOwner);
     const { activeItem } = this.state;
     return (
         <div>
-          <div className='menuimage'><img src='https://bit.ly/2wV9ozB'/></div>
+          <div className='menuimage'><img src={this.props.restaurant.bgimg}/></div>
 
           <Container>
             <div align='center'>
-              <Header style={{ marginTop: '30px', fontSize: '40px' }}>Starbucks</Header>
+              <Header style={{ marginTop: '30px', fontSize: '40px' }}>{this.props.restaurant.name}</Header>
               <div className='menu_search_bar'><Input size='large' icon='search'
                                                       placeholder='Search for a menu item'/></div>
               <Menu secondary className='menubartext'>
@@ -64,8 +47,9 @@ class FoodMenu extends React.Component {
               </Menu>
 
               <hr style={{ borderTop: '2px solid #184470' }}/>
+
               <Card.Group>
-                {this.menuItems.map((menuitem, index) => <MenuitemCard key={index} menuitem={menuitem}/>)}
+                 {menuItems.map((menuitem, index) => <MenuitemCard key={index} menuitem={menuitem}/>)}
               </Card.Group>
               <div style={{ padding: '50px' }}><Button className='dark-blue-button'>Show More</Button></div>
             </div>
@@ -78,17 +62,24 @@ class FoodMenu extends React.Component {
 }
 
 /** Require an array of Stuff documents in the props. */
-FoodMenu.propTypes = {
-  stuffs: PropTypes.array.isRequired,
+RestaurantMenus.propTypes = {
+  menuitems: PropTypes.array,
+  restaurant: PropTypes.object,
   ready: PropTypes.bool.isRequired,
 };
 
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
-export default withTracker(() => {
+export default withTracker(({ match }) => {
+  const documentId = match.params._id;
   // Get access to Stuff documents.
-  const subscription = Meteor.subscribe('Stuff');
+  const subscription1 = Meteor.subscribe('MenuItems');
+  const subscription2 = Meteor.subscribe('Restaurant');
+  // const restaurant = Restaurant.find({ _id: documentId }).fetch();
+
   return {
-    stuffs: Stuffs.find({}).fetch(),
-    ready: subscription.ready(),
+    // menuitems: MenuItems.find({ owner: restaurant[0].owner }).fetch(),
+    restaurant: Restaurant.findOne(documentId),
+    menuitems: MenuItems.find({}).fetch(),
+    ready: subscription1.ready() && subscription2.ready(),
   };
-})(FoodMenu);
+})(RestaurantMenus);

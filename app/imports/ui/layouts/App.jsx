@@ -16,8 +16,8 @@ import Signout from '../pages/Signout';
 import Cart from '../pages/Cart';
 import Admin from '../pages/Admin';
 import AcceptOrder from '../pages/AcceptOrder';
-// import Tracking from '../pages/Tracking'
-import Menu from '../pages/FoodMenu';
+import Tracking from '../pages/Tracking';
+import Menu from '../pages/RestaurantMenus';
 import ResturantSignup from '../pages/ResturantSignup';
 import ListStuff from '../pages/ListStuff';
 
@@ -29,17 +29,17 @@ class App extends React.Component {
           <div>
             <NavBar/>
             <Switch>
-              <Route path="/signin" component={Signin}/>
-              <Route path="/menu" component={Menu}/>
               <Route exact path="/" component={Landing}/>
+              <Route path="/signin" component={Signin}/>
               <Route path="/signup" component={Signup}/>
               <Route path="/list" component={ListStuff}/>
               <Route path="/signout" component={Signout}/>
               <Route path="/profiles" component={Profiles}/>
               <Route path="/edit/:_id" component={EditProfile}/>
               <Route path="/restaurants" component={Restaurants}/>
-              {/*<Route path="/tracking" component={Tracking}/>*/}
-              <Route path="/resturant-signup" component={ResturantSignup}/>              
+              <Route path="/resturant-signup" component={ResturantSignup}/>
+              <Route path="/menu/:_id" component={Menu}/>
+              {/* <Route path="/tracking" component={Tracking}/> */}
               <Route path="/cart" component={Cart}/>
               <Route path="/accept" component={AcceptOrder}/>
               <AdminProtectedRoute path="/admin" component={Admin}/>
