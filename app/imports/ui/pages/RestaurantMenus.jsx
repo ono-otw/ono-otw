@@ -26,6 +26,10 @@ class RestaurantMenus extends React.Component {
     // console.log(restaurantOwner);
     // console.log(this.props.menuitems);
     const menuItems = _.filter(this.props.menuitems, (entry) => entry.owner === restaurantOwner);
+
+    const categories = _.uniq(_.pluck(menuItems, 'label'));
+    console.log(categories);
+
     const { activeItem } = this.state;
     return (
         <div>
@@ -37,13 +41,20 @@ class RestaurantMenus extends React.Component {
               <div className='menu_search_bar'><Input size='large' icon='search'
                                                       placeholder='Search for a menu item'/></div>
               <Menu secondary className='menubartext'>
-                <Menu.Item className='menu_categories' name='Coffee'
-                           active={activeItem === 'Coffee'} onClick={this.handleItemClick}/>
-                <Menu.Item name='Tea' active={activeItem === 'Tea'} onClick={this.handleItemClick}/>
-                <Menu.Item name='Pastries' active={activeItem === 'Pastries'}
-                           onClick={this.handleItemClick}/>
-                <Menu.Item name='Sandwiches' active={activeItem === 'Sandwiches'}
-                           onClick={this.handleItemClick}/>
+                {_.map(categories, (p, index) => <Menu.Item
+                    key={index}
+                    name={p}
+                    onClick={this.handleItemClick}
+                    active={activeItem === p}>
+                </Menu.Item>)}
+
+                {/* <Menu.Item className='menu_categories' name='Coffee' */}
+                {/*           active={activeItem === 'Coffee'} onClick={this.handleItemClick}/> */}
+                {/* <Menu.Item name='Tea' active={activeItem === 'Tea'} onClick={this.handleItemClick}/> */}
+                {/* <Menu.Item name='Pastries' active={activeItem === 'Pastries'} */}
+                {/*           onClick={this.handleItemClick}/> */}
+                {/* <Menu.Item name='Sandwiches' active={activeItem === 'Sandwiches'} */}
+                {/*           onClick={this.handleItemClick}/> */}
               </Menu>
 
               <hr style={{ borderTop: '2px solid #184470' }}/>
