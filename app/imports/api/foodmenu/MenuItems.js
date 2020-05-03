@@ -8,6 +8,7 @@ const MenuItems = new Mongo.Collection('MenuItems');
 /** Define a schema to specify the structure of each document in the collection. */
 const MenuSchema = new SimpleSchema({
   owner: String,
+  vendor: String,
   name: String,
   image: String,
   cost: Array,
