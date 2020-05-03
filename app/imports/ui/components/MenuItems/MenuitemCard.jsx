@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Grid, Image, Modal, Header, Button, Form } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { withRouter, Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { _ } from 'meteor/underscore';
 import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
@@ -107,15 +107,15 @@ class MenuitemCard extends React.Component {
               <hr/>
               <Form>
                 <Form.Field>
-                  <Form.Radio label={this.props.menuitem.size[0]}
+                  <Form.Radio label={`${this.props.menuitem.size[0]} - $${this.props.menuitem.cost[0]}`}
                               value='sm'
                               checked={value === 'sm'}
                               onChange={this.handleChange}/>
-                  <Form.Radio label={this.props.menuitem.size[1]}
+                  <Form.Radio label={`${this.props.menuitem.size[1]} - $${this.props.menuitem.cost[1]}`}
                               value='md'
                               checked={value === 'md'}
                               onChange={this.handleChange}/>
-                  <Form.Radio label={this.props.menuitem.size[2]}
+                  <Form.Radio label={`${this.props.menuitem.size[2]} - $${this.props.menuitem.cost[2]}`}
                               value='lg'
                               checked={value === 'lg'}
                               onChange={this.handleChange}
@@ -126,7 +126,7 @@ class MenuitemCard extends React.Component {
               <div align='center' style={{ marginTop: '75px' }}>
                 <Button className='dark-blue-button'
                         onClick={() => this.submitOrder(this.props.menuitem.name,
-                            this.props.menuitem.owner, this.props.menuitem.cost[valueCost],
+                            this.props.menuitem.vendor, this.props.menuitem.cost[valueCost],
                             1, this.props.menuitem.size[valueCost])}>
                   Add to Cart - ${this.props.menuitem.cost[valueCost]}
                 </Button>
