@@ -1,8 +1,6 @@
 import React from 'react';
 import { Card, Grid, Header, Label, Rating } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { withTracker } from 'meteor/react-meteor-data';
-import { Meteor } from 'meteor/meteor';
 import { Link } from 'react-router-dom';
 
 
@@ -46,8 +44,9 @@ class RestaurantCard extends React.Component {
                 <Grid>
                   <Grid.Row>
                     <Grid.Column textAlign='left' width={13}>
-                        <Header inverted >{this.props.restaurant.name}</Header>
-                      <Header><Link to={`/menu/${this.props.restaurant._id}`}>See Menu</Link></Header>
+                        <Header as={Link} to={`/menu/${this.props.restaurant._id}`} inverted>
+                          {this.props.restaurant.name}
+                        </Header>
                     </Grid.Column>
                     <Grid.Column textAlign='right'>
                       <Label circular style={rateCol} >

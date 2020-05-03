@@ -22,18 +22,18 @@ class RestaurantMenus extends React.Component {
   /** Render the page once subscriptions have been received. */
   renderPage() {
 
-    const currentRestaurant = _.findWhere(this.props.restaurants, { owner: this.props.menuitems[0].owner });
-    const currentHeader = currentRestaurant.name;
-    const background = currentRestaurant.bgimg;
-
+    const restaurantOwner = this.props.restaurant.owner;
+    // console.log(restaurantOwner);
+    // console.log(this.props.menuitems);
+    const menuItems = _.filter(this.props.menuitems, (entry) => entry.owner === restaurantOwner);
     const { activeItem } = this.state;
     return (
         <div>
-          <div className='menuimage'><img src={background}/></div>
+          <div className='menuimage'><img src={this.props.restaurant.bgimg}/></div>
 
           <Container>
             <div align='center'>
-              <Header style={{ marginTop: '30px', fontSize: '40px' }}>{currentHeader}</Header>
+              <Header style={{ marginTop: '30px', fontSize: '40px' }}>{this.props.restaurant.name}</Header>
               <div className='menu_search_bar'><Input size='large' icon='search'
                                                       placeholder='Search for a menu item'/></div>
               <Menu secondary className='menubartext'>
@@ -49,7 +49,7 @@ class RestaurantMenus extends React.Component {
               <hr style={{ borderTop: '2px solid #184470' }}/>
 
               <Card.Group>
-                {this.props.menuitems.map((menuitem, index) => <MenuitemCard key={index} menuitem={menuitem}/>)}
+                 {menuItems.map((menuitem, index) => <MenuitemCard key={index} menuitem={menuitem}/>)}
               </Card.Group>
               <div style={{ padding: '50px' }}><Button className='dark-blue-button'>Show More</Button></div>
             </div>
@@ -63,22 +63,23 @@ class RestaurantMenus extends React.Component {
 
 /** Require an array of Stuff documents in the props. */
 RestaurantMenus.propTypes = {
-  menuitems: PropTypes.array.isRequired,
-  restaurants: PropTypes.array.isRequired,
+  menuitems: PropTypes.array,
+  restaurant: PropTypes.object,
   ready: PropTypes.bool.isRequired,
 };
 
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
 export default withTracker(({ match }) => {
-  // Get access to Stuff documents.
-  const subscription1 = Meteor.subscribe('AllMenuItems');
-  const subscription2 = Meteor.subscribe('Restaurant');
   const documentId = match.params._id;
-  const restaurant = Restaurant.find({ _id: documentId }).fetch();
+  // Get access to Stuff documents.
+  const subscription1 = Meteor.subscribe('MenuItems');
+  const subscription2 = Meteor.subscribe('Restaurant');
+  // const restaurant = Restaurant.find({ _id: documentId }).fetch();
 
   return {
-    menuitems: MenuItems.find({ owner: restaurant[0].owner }).fetch(),
-    restaurants: Restaurant.find({}).fetch(),
+    // menuitems: MenuItems.find({ owner: restaurant[0].owner }).fetch(),
+    restaurant: Restaurant.findOne(documentId),
+    menuitems: MenuItems.find({}).fetch(),
     ready: subscription1.ready() && subscription2.ready(),
   };
 })(RestaurantMenus);

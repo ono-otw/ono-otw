@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, Grid, Image, Modal, Header, Button, Form } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
+import { _ } from 'meteor/underscore';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class MenuitemCard extends React.Component {
@@ -13,7 +14,13 @@ class MenuitemCard extends React.Component {
     const { value } = this.state;
 
     let valueCost = {};
-
+    if (value === 'sm') {
+      valueCost = 0;
+    } else if (value === 'md') {
+      valueCost = 1;
+    } else if (value === 'lg') {
+      valueCost = 2;
+    }
     const cardHeader = {
       padding: '10px',
       fontSize: '15px',
@@ -24,38 +31,10 @@ class MenuitemCard extends React.Component {
       padding: '30px',
     };
 
-    if (value === 'sm') {
-      valueCost = 0;
-    } else if (value === 'md') {
-      valueCost = 1;
-    } else if (value === 'lg') {
-      valueCost = 2;
-    }
-
     return (
-        <div style={cardPadding} className='itemcard_text'>
-          {/* --------------------ALTERNATIVE CARD FORMAT------------------------------*/}
-          {/* <Card className='card-bg'> */}
-          {/*  <Grid columns={2}> */}
-          {/*    <Grid.Column> */}
-          {/*      <Image */}
-          {/*          rounded */}
-          {/*          floated='left' */}
-          {/*          size='medium' */}
-          {/*          src={this.props.menuitem.image} */}
-          {/*      /> */}
-          {/*    </Grid.Column> */}
-          {/*    <Grid.Column> */}
-          {/*      <Card.Header style={cardHeader}>{this.props.menuitem.name}</Card.Header> */}
-          {/*      <Card.Description> */}
-          {/*        240 Cal<br/> */}
-          {/*        16 oz<br/> */}
-          {/*        $4.45<br/> */}
-          {/*      </Card.Description> */}
 
-          {/*    </Grid.Column> */}
-          {/*  </Grid> */}
-          {/* </Card> */}
+
+        <div style={cardPadding} className='itemcard_text'>
 
           {/* ----------------------MODAL--------------------------- */}
           {/* the modal is triggered by pressing on the card, which is why I encased the entire card in the trigger */}
@@ -82,7 +61,6 @@ class MenuitemCard extends React.Component {
           }>
             <Modal.Content>
               <Image rounded size='medium' centered src={this.props.menuitem.image}/>
-
               <Header textAlign='center' as='h1' inverted>{this.props.menuitem.name}</Header>
               <Header inverted>Size</Header>
               <hr/>

@@ -40,29 +40,40 @@
     "image": "https://bit.ly/2yUX7LW",
     "rating":  4.4,
     "time": 25,
-    "label": ["Sandwich", "Beef"],
+    "label": ["Sandwich"],
     "approved": true
   },
   {
-    "owner": "pieology@foo.com",
-    "name": "Pieology",
-    "bgimg": "https://raster-static.postmates.com/?url=com.postmates.img.prod.s3.amazonaws.com/be9018f7-cee7-4938-9c36-30da039a7aa5/orig.jpg&quality=90&w=1500&h=900&mode=crop&format=jpg&v=4",
-    "address": "2615 S King St",
-    "image": "https://www.qsrmagazine.com/sites/default/files/styles/story_page/public/news-image/pieology-signs-deal-expand-china.jpg?itok=3f1p0_mc",
-    "rating":  4.5,
-    "time": 25,
-    "label": ["Pizza"],
-    "approved": true
-  },
-  {
-    "owner": "subway@foo.com",
-    "name": "Subway",
-    "bgimg": "https://rde-stanford-edu.s3.amazonaws.com/Hospitality/Images/subway-header.jpg",
-    "address": "2465 Campus Rd Cc 213",
-    "image": "https://media.farandwide.com/30/5c/305cd21f532d448388f10e807d153a29.jpeg",
+    "owner": "jambajuice@foo.com",
+    "name": "Jamba Juice",
+    "bgimg": "https://moadrupalweb.blob.core.windows.net/moadrupalweb/original/5641_JambaJuice_HeroImage.jpg",
+    "address": "2465 Campus Rd",
+    "image": "https://img.grouponcdn.com/deal/xpb7JGk4XUVi2Sjk9Bnh/j7-700x420/v1/c700x420.jpg",
     "rating":  3.8,
     "time": 8,
-    "label": ["Sandwich"],
+    "label": ["Smoothies"],
+    "approved": true
+  },
+  {
+    "owner": "pandaexpress@foo.com",
+    "name": "Panda Express",
+    "bgimg": "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/panda-expres-1584979939.jpg?crop=1.00xw:0.502xh;0,0.436xh&resize=1200:*",
+    "address": "2560 McCarthy mall",
+    "image": "https://d1yjjnpx0p53s8.cloudfront.net/styles/logo-thumbnail/s3/0010/8217/brand.gif?itok=nKwfh7NR",
+    "rating": 4.0,
+    "time": 5,
+    "label": ["Chinese"],
+    "approved": true
+  },
+  {
+    "owner": "dunkindonuts@foo.com",
+    "name": "Dunkin Donuts",
+    "bgimg": "https://www.dunkindonuts.com/content/dam/dd/img/rebranding/iceddrinks/icedcoffee/Iced%20Coffee_Header%201024x400.jpg",
+    "address": "2560 McCarthy mall",
+    "image": "https://i0.wp.com/newsismybusiness.com/wp-content/uploads/2014/10/Dunkin-Donuts.jpg?fit=419%2C315&ssl=1",
+    "rating": 4.4,
+    "time": 5,
+    "label": ["Coffee", "Donuts"],
     "approved": true
   }
 ]

@@ -36,15 +36,15 @@ Meteor.publish('Restaurant', function publish() {
   return Restaurant.find({ approved: true });
 });
 
-Meteor.publish('MenuItems', function publish() {
-  if (this.userId) {
-    const username = Meteor.users.findOne(this.userId).username;
-    return MenuItems.find({ owner: username });
-  }
-  return this.ready();
-});
+// Meteor.publish('MenuItems', function publish() {
+//   if (this.userId) {
+//     const username = Meteor.users.findOne(this.userId).username;
+//     return MenuItems.find({ owner: username });
+//   }
+//   return this.ready();
+// });
 
-Meteor.publish('AllMenuItems', function publish() {
+Meteor.publish('MenuItems', function publish() {
   return MenuItems.find();
 });
 
