@@ -11,7 +11,7 @@ const CartSchema = new SimpleSchema({
   'name.$': String,
   vendor: String,
   owner: String,
-  price: String,
+  price: Number,
   quantity: Array,
   'quantity.$': Number,
   size: String,

@@ -15,7 +15,12 @@ import { Profile } from '../../api/profile/Profile';
  */
 class Cart extends React.Component {
 
-  confirm() {
+  state = { location: '' };
+
+  handleChange = (e, { location, value }) => this.setState({ location: value })
+
+  confirm(location) {
+
 
     //
     // const initialPrice = this.props.cartItems.reduce((total, current) => total + (current.price * current.quantity), 0);
@@ -46,10 +51,10 @@ class Cart extends React.Component {
               // loop through each cursor, adding the order into an orderArray
               cart.forEach(function (order) {
                 // console.log(order.name);
-                // console.log(order.price);
+                //  console.log(order.price);
                 orderArray.push(order.name[0]);
                 orderQuant.push(order.quantity[0]);
-                orderCost.push(order.price[0]);
+                orderCost.push(order.price);
               });
 
               console.log(orderArray);
@@ -86,7 +91,6 @@ class Cart extends React.Component {
             const venmo = profile.venmo;
             const lastName = profile.lastName;
             const personWhoOrdered = order.owner;
-            const location = 'test';
             const name = order.name;
             // console.log(store);
             // console.log(profile);
@@ -99,6 +103,7 @@ class Cart extends React.Component {
             // console.log(location);
             // console.log(name);
             // console.log(venmo);
+            // console.log(location)
 
             PendingOrders.insert({
                   name, firstName, lastName, image, store, owner, venmo, quantity,
@@ -160,6 +165,8 @@ class Cart extends React.Component {
   /** Render the Cart form. */
   render() {
 
+    const { location } = this.state;
+
     const padding = {
       paddingTop: '1.5rem',
       paddingLeft: '1.5rem',
@@ -189,6 +196,7 @@ class Cart extends React.Component {
     const buttonPadding = {
       paddingTop: '1.5rem',
       paddingLeft: '1.5rem',
+      paddingRight: '1.5rem',
     };
 
     // if cart is currently empty
@@ -251,11 +259,18 @@ class Cart extends React.Component {
           </div>
           <Form>
             <div align={'center'} style={buttonPadding}>
+              <Form.TextArea required
+                             label={'Location'}
+                             placeholder={'Located at Sinclair library, 2nd floor.'}
+                             value={location}
+                             onChange={this.handleChange}
+              >
+              </Form.TextArea>
               <Form.Group inline>
                 <Form.Button className='cancel_button' onClick={() => this.cancel()}>
                   Cancel
                 </Form.Button>
-                <Form.Button inverted className='submit_button' onClick={() => this.confirm()}>
+                <Form.Button inverted className='submit_button' onClick={() => this.confirm(location)}>
                   Confirm
                 </Form.Button>
               </Form.Group>
