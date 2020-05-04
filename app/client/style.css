@@ -93,6 +93,11 @@ hr { display: block; height: 1px;
   background: #ffffff8f !important;
 }
 
+.fixedImg.ui.cards > .card > .image > img, .ui.card > .image > img {
+  width: 290px !important;
+  height: 200px !important;
+}
+
 /*Custom HR*/
 hr.blackBorder {
   border-top: 2px solid black;

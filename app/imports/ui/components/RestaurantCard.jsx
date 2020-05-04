@@ -97,8 +97,9 @@ class RestaurantCard extends React.Component {
     };
 
     return (
-        <div style={divPad}>
+        <div style={divPad} className='fixedImg'>
           <Card
+              raised
               image={this.props.restaurant.image}
               header= {
                 <Grid>
