@@ -119,7 +119,7 @@ export default withTracker(() => {
 
   return {
     // oneOrder: AcceptOrders.findOne(Meteor.user().username),
-    pendingOrder: AcceptOrders.find({}).fetch(),
+    pendingOrder: PendingOrders.find({}).fetch(),
     profile: Profile.find({}).fetch(),
     ready: subscription.ready() && subscription2.ready(),
   };

@@ -3,8 +3,6 @@ import { Button, Card, Header, Image, Rating } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import swal from 'sweetalert';
-import { Profile } from '../../api/profile/Profile';
-import { Carts } from '../../api/cart/Carts'
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class AcceptOrderCard extends React.Component {

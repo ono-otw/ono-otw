@@ -1,10 +1,10 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Header, Loader, Segment, Item, Popup, Rating, Card } from 'semantic-ui-react';
+import { Container, Header, Loader, Segment, Item, Popup, Rating } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { _ } from 'meteor/underscore';
-import { AcceptOrders } from '../../api/acceptorders/AcceptOrders';
+import { PendingOrders } from '../../api/pendingorders/PendingOrders';
 import DeliveryItem from '../components/DeliveryItem';
 
 class Deliveries extends React.Component {
@@ -91,7 +91,7 @@ export default withTracker(() => {
   const subscription = Meteor.subscribe('AcceptOrders');
   const subscription2 = Meteor.subscribe('Profile');
   return {
-    orders: AcceptOrders.find({}).fetch(),
+    orders: PendingOrders.find({}).fetch(),
     ready: subscription.ready() && subscription2.ready(),
   };
 })(Deliveries);

@@ -7,7 +7,7 @@ import swal from 'sweetalert';
 import { Link } from 'react-router-dom';
 import { Carts } from '../../api/cart/Carts';
 import CartTable from '../components/CartTable';
-import { AcceptOrders } from '../../api/acceptorders/AcceptOrders';
+import { PendingOrders } from '../../api/pendingorders/PendingOrders';
 import { Profile } from '../../api/profile/Profile';
 /**
  * Profiles page overrides the form’s submit event and call Meteor’s loginWithPassword().
@@ -97,7 +97,7 @@ class Cart extends React.Component {
             // console.log(name);
             // console.log(venmo);
 
-            AcceptOrders.insert({
+            PendingOrders.insert({
                   name, firstName, lastName, image, store, owner, venmo, quantity,
                   personWhoOrdered, location,
                 },
