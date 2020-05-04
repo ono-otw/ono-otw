@@ -10,6 +10,7 @@ const AcceptOrdersSchema = new SimpleSchema({
   name: String,
   firstName: String,
   lastName: String,
+  venmo: String,
   image: String,
   store: String,
   owner: String,

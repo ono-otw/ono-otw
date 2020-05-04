@@ -17,7 +17,7 @@ class DeliveryItem extends React.Component {
           </Popup>
           <Item.Content>
             <Item.Header>{this.props.order.firstName} {this.props.order.lastName}</Item.Header>
-            <Item.Description><b>Venmo:</b> </Item.Description>
+            <Item.Description><b>Venmo:</b> {this.props.order.venmo}</Item.Description>
             <Item.Description><b>Store:</b> {this.props.order.store} </Item.Description>
             <Item.Description><b>User Location:</b> {this.props.order.location}</Item.Description>
             <Item.Description><b>Order:</b> </Item.Description>
