@@ -45,7 +45,7 @@ class App extends React.Component {
               <ProtectedRoute path="/deliver" component={Deliveries}/>
               <Route path="/accept" component={AcceptOrder}/>
               <AdminProtectedRoute path="/admin" component={Admin}/>
-              <Route path="/addrestaurant" component={AddRestaurant}/>
+              <AdminProtectedRoute path="/addrestaurant" component={AddRestaurant}/>
             </Switch>
             <Footer/>
           </div>

@@ -1,22 +1,21 @@
 import React from 'react';
-import { Grid, Segment, Header, Form } from 'semantic-ui-react';
-import AutoForm from 'uniforms-semantic/AutoForm';
-import TextField from 'uniforms-semantic/TextField';
-import SubmitField from 'uniforms-semantic/SubmitField';
-import ErrorsField from 'uniforms-semantic/ErrorsField';
+import { Grid, Segment, Header } from 'semantic-ui-react';
+import { AutoForm, SubmitField, ErrorsField, TextField, MultiTextField } from 'uniforms-semantic';
 import swal from 'sweetalert';
 import 'uniforms-bridge-simple-schema-2'; // required for Uniforms
 import SimpleSchema from 'simpl-schema';
 import { Restaurant } from '../../api/restaurant/Restaurant';
 
+
 const formSchema = new SimpleSchema({
-  owner: { label: 'Owner of Restaurant', type: String },
-  name: { label: 'Name of Food', type: String },
-  bgimg: { label: 'URL to Background Image', type: String },
-  image: { label: 'URL to Image', type: String },
-  address: { label: 'Address to Restaurant', type: String },
-  time: { label: 'Time', type: Number },
-  label: { label: 'Restaurant Labels', type: Array },
+  owner: String,
+  name: String,
+  bgimg: String,
+  image: String,
+  address: String,
+  time: Number,
+  label: Array,
+  'label.$': String,
 });
 
 /** Renders the Page for adding a document. */
@@ -54,36 +53,22 @@ export default class AddRestaurant extends React.Component {
         <div className='peach padding'>
           <Grid container centered>
             <Grid.Column>
-              <Header as="h2" textAlign="center">Add A Restaurant</Header>
+              <Header as="h2" textAlign="center">Add Restaurant Form</Header>
               <AutoForm ref={ref => {
                 fRef = ref;
               }} schema={formSchema} onSubmit={data => this.submit(data, fRef)}>
                 <Segment>
-                  <Form.Group widths='equal'>
-                    <TextField name='owner'/>
-                    <TextField name='name'/>
-                  </Form.Group>
-                  <Form.Group widths='equal'>
-                    <TextField name='image'/>
-                    <TextField name='bgimg'/>
-                  </Form.Group>
-                  <Form.Group widths='equal'>
-                    <TextField name='address'/>
-                    <TextField name='time'/>
-                  </Form.Group>
-                  <Form.Group>
-                    <TextField name='label' value={0}/>
-                    <TextField name='label' value={1}/>
-                  </Form.Group>
-                  <Form.Group widths='equal'>
+                    <TextField label='Name of Restaurant' name='name'/>
+                    <TextField label='Owner' name='owner' />
+                    <TextField label='URL For Background Image' name='bgimg'/>
+                    <TextField label='URL For Image' name='image'/>
+                    <TextField label='Restaurant Address' name='address'/>
+                    <TextField label='Approximate Wait Time' name='time'/>
+                    <MultiTextField label='Restaurant Labels' name='label.$'/>
                     <SubmitField value='Submit'/>
-                  </Form.Group>
-
-                  <ErrorsField/>
+                    <ErrorsField/>
                 </Segment>
               </AutoForm>
-              <br/>
-              <br/>
             </Grid.Column>
           </Grid>
         </div>
