@@ -10,10 +10,10 @@ import {
 } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import { AcceptOrders } from '../../api/acceptorders/AcceptOrders';
+import { Link } from 'react-router-dom';
+import { PendingOrders } from '../../api/pendingorders/PendingOrders';
 import { Profile } from '../../api/profile/Profile';
 import AcceptOrderCard from '../components/AcceptOrderCard';
-import { Link } from 'react-router-dom';
 
 /** Renders the list of AcceptOrders */
 class AcceptOrder extends React.Component {
@@ -51,7 +51,7 @@ class AcceptOrder extends React.Component {
       padding: '1.5rem',
     };
 
-    const count = AcceptOrders.find({}).count();
+    const count = PendingOrders.find({}).count();
     if (count === 0) {
       return (
           <Container style={blueContainer}>
@@ -114,7 +114,7 @@ AcceptOrder.propTypes = {
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
 export default withTracker(() => {
   // Get access to AcceptOrder documents.
-  const subscription = Meteor.subscribe('AcceptOrders');
+  const subscription = Meteor.subscribe('PendingOrders');
   const subscription2 = Meteor.subscribe('Profile');
 
   return {

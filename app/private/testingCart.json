@@ -3,7 +3,7 @@
     "name": ["Milk Tea"],
     "vendor": "Starbucks",
     "owner": "john@foo.com",
-    "quantity": "1",
+    "quantity": [1],
     "price": "5.25",
     "size": "Small",
     "combined": false
@@ -12,7 +12,7 @@
     "name": ["Mocha Frappe"],
     "vendor": "Starbucks",
     "owner": "john@foo.com",
-    "quantity": "2",
+    "quantity": [2],
     "price": "3.25",
     "size": "Small",
     "combined": false
@@ -21,7 +21,7 @@
     "name": ["Mocha Frappe"],
     "vendor": "Starbucks",
     "owner": "admin@foo.com",
-    "quantity": "1",
+    "quantity": [1],
     "price": "3.25",
     "size": "Small",
     "combined": false
@@ -30,7 +30,7 @@
     "name": ["Earl Grey Tea"],
     "vendor": "Starbucks",
     "owner": "admin@foo.com",
-    "quantity": "1",
+    "quantity": [1],
     "price": "5.25",
     "size": "Small",
     "combined": false
@@ -39,7 +39,7 @@
     "name": ["Milk Tea"],
     "vendor": "Shaka Shaka",
     "owner": "test@foo.com",
-    "quantity": "3",
+    "quantity": [3],
     "price": "5.25",
     "size": "Small",
     "combined": false
@@ -48,7 +48,7 @@
     "name": ["Milk Tea"],
     "vendor": "Shaka Shaka",
     "owner": "mocha@foo.com",
-    "quantity": "3",
+    "quantity": [3],
     "price": "5.25",
     "size": "Small",
     "combined": false
@@ -57,7 +57,7 @@
     "name": ["Milk Tea"],
     "vendor": "Shaka Shaka",
     "owner": "hello@foo.com",
-    "quantity": "3",
+    "quantity": [3],
     "price": "5.25",
     "size": "Small",
     "combined": false

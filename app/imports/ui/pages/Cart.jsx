@@ -41,13 +41,15 @@ class Cart extends React.Component {
               console.log(cart);
               const orderArray = [];
               const orderCost = [];
+              const orderQuant = [];
 
               // loop through each cursor, adding the order into an orderArray
               cart.forEach(function (order) {
                 // console.log(order.name);
                 // console.log(order.price);
                 orderArray.push(order.name[0]);
-                orderCost.push(order.price);
+                orderQuant.push(order.quantity[0]);
+                orderCost.push(order.price[0]);
               });
 
               console.log(orderArray);
@@ -67,6 +69,7 @@ class Cart extends React.Component {
                       name: orderArray,
                       price: sum,
                       combined: true,
+                      quantity: orderQuant,
                     },
                   },
               );
@@ -276,7 +279,7 @@ Cart.propTypes = {
 export default withTracker(() => {
   // Get access to Stuff documents.
   const subscription = Meteor.subscribe('Carts');
-  const subscription3 = Meteor.subscribe('AcceptOrders');
+  const subscription3 = Meteor.subscribe('PendingOrders');
   const subscription2 = Meteor.subscribe('Profile');
   return {
     cartItems: Carts.find({}).fetch(),

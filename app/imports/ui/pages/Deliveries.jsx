@@ -88,7 +88,7 @@ Deliveries.propTypes = {
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
 export default withTracker(() => {
   // Get access to Stuff documents.
-  const subscription = Meteor.subscribe('AcceptOrders');
+  const subscription = Meteor.subscribe('PendingOrders');
   const subscription2 = Meteor.subscribe('Profile');
   return {
     orders: PendingOrders.find({}).fetch(),

@@ -73,7 +73,7 @@ function addPendingOrder(data) {
 }
 
 if (PendingOrders.find().count() === 0) {
-  defaultPendingOrder.map(data => addPendingOrders(data));
+  defaultPendingOrder.map(data => addPendingOrder(data));
 }
 
 /** Initialize the database with a default restaurants document. */

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Card, Header, Image, Rating } from 'semantic-ui-react';
+import { Button, Card, Header, Image, Label, Rating } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import swal from 'sweetalert';
@@ -51,7 +51,11 @@ class AcceptOrderCard extends React.Component {
                   <Header inverted>
                    Ordered From: {this.props.pendingOrder.store}
                   </Header>
-                  &nbsp; {`${this.props.pendingOrder.quantity} ${this.props.pendingOrder.name} `}
+                  {this.props.pendingOrder.name.map((name, index) => (
+                      <Label circular>
+                        {this.props.pendingOrder.quantity[index]} {name}
+                      </Label>
+                  ))}
                 </div>
               </Card.Description>
               <br/>

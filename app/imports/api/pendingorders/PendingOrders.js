@@ -15,7 +15,8 @@ const PendingOrdersSchema = new SimpleSchema({
   image: String,
   store: String,
   owner: String,
-  quantity: Number,
+  quantity: Array,
+  'quantity.$': Number,
   personWhoOrdered: String,
   location: String,
 }, { tracker: Tracker });
