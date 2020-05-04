@@ -55,8 +55,8 @@ class AcceptOrder extends React.Component {
             </Message>
           </div>
           <Card.Group className='accept_card' centered>
+            {/* eslint-disable-next-line max-len */}
             {this.props.pendingOrder.map((pendingOrder, index) => <AcceptOrderCard key={index} pendingOrder={pendingOrder}/>)}
-
           </Card.Group>
         </Container>
     );
