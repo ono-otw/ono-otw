@@ -15,7 +15,7 @@ const MenuSchema = new SimpleSchema({
   'cost.$': Number,
   size: Array,
   'size.$': String,
-  label: String
+  label: String,
 }, { tracker: Tracker });
 
 /** Attach this schema to the collection. */

@@ -14,7 +14,7 @@ class MenuitemCard extends React.Component {
   handleChange = (e, { value }) => this.setState({ value });
 
   // eslint-disable-next-line consistent-return
-  submitOrder(name, vendor, price, quantity, size) {
+  submitOrder(name, vendor, price, quantity, size, combined) {
     if (Meteor.user()) {
       const owner = Meteor.user().username;
       swal({
@@ -32,7 +32,7 @@ class MenuitemCard extends React.Component {
               console.log(price)
               console.log(quantity)
               console.log(size)
-              Carts.insert({ name, vendor, owner, price, quantity, size });
+              Carts.insert({ name, vendor, owner, price, quantity, size, combined });
               this.forceUpdate();
               swal('Order has been added to the cart.', {
                 icon: 'success',
@@ -127,7 +127,7 @@ class MenuitemCard extends React.Component {
                 <Button className='dark-blue-button'
                         onClick={() => this.submitOrder(this.props.menuitem.name,
                             this.props.menuitem.vendor, this.props.menuitem.cost[valueCost],
-                            1, this.props.menuitem.size[valueCost])}>
+                            1, this.props.menuitem.size[valueCost], false)}>
                   Add to Cart - ${this.props.menuitem.cost[valueCost]}
                 </Button>
               </div>
