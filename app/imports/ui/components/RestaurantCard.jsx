@@ -1,9 +1,9 @@
 import React from 'react';
 import { Card, Grid, Header, Label, Rating } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
 import swal from 'sweetalert';
+import { Link } from 'react-router-dom';
 import { Favorites } from '../../api/favorites/Favorites';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
@@ -64,7 +64,7 @@ class RestaurantCard extends React.Component {
               onClick={() => this.favorite()}
               onRate={this.handleRate}
       />);
-    } else {
+    }
       return (
           <Rating
               maxRating={1}
@@ -76,7 +76,7 @@ class RestaurantCard extends React.Component {
               onRate={this.handleRate}
           />
       );
-    }
+
   }
 
   render() {
@@ -100,14 +100,13 @@ class RestaurantCard extends React.Component {
         <div style={divPad}>
           <Card
               image={this.props.restaurant.image}
-              // href='#card-example-link-card'
               header= {
                 <Grid>
                   <Grid.Row>
                     <Grid.Column textAlign='left' width={13}>
-                      <a href="#/menu" >
-                        <Header inverted >{this.props.restaurant.name}</Header>
-                      </a>
+                        <Header as={Link} to={`/menu/${this.props.restaurant._id}`} inverted>
+                          {this.props.restaurant.name}
+                        </Header>
                     </Grid.Column>
                     <Grid.Column textAlign='right'>
                       <Label circular style={rateCol} >
@@ -149,4 +148,4 @@ RestaurantCard.propTypes = {
 };
 
 /** Wrap this component in withRouter since we use the <Link> React Router element. */
-export default withRouter(RestaurantCard);
+export default RestaurantCard;

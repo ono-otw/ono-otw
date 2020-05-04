@@ -125,9 +125,12 @@ Restaurants.propTypes = {
 
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
 export default withTracker(() => {
+
   // Get access to Restaurant documents.
-  const subscription1 = Meteor.subscribe('Favorites');
   const subscription = Meteor.subscribe('Restaurant');
+  // Get access to Favorite documents.
+  const subscription1 = Meteor.subscribe('Favorites');
+
   return {
     restaurant: Restaurant.find({}).fetch(),
     ready: subscription.ready() && subscription1.ready(),
