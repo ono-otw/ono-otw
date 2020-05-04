@@ -5,6 +5,7 @@ class Footer extends React.Component {
   render() {
     const divStyle = {
       paddingTop: '15px',
+      paddingBottom: '15px',
       color: '#184470',
     };
     const footerColor = {
@@ -15,10 +16,9 @@ class Footer extends React.Component {
         <footer style={footerColor}>
           <div style={divStyle} className="ui center aligned container">
             <hr />
-            Department of Information and Computer Sciences <br />
+            Ono On-The-Way <br />
             University of Hawaii<br />
-            Honolulu, HI 96822 <br />
-            <a href="http://ics-software-engineering.github.io/meteor-application-template-react">Template Home Page</a>
+           <a href="https://ono-otw.github.io/">Check Out Our Github Homepage!</a>
           </div>
         </footer>
     );
