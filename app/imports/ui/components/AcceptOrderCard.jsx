@@ -53,7 +53,7 @@ class AcceptOrderCard extends React.Component {
                   <Header inverted>
                    Ordered From: {this.props.pendingOrder.store}
                   </Header>
-                  {this.props.pendingOrder.quantity} {this.props.pendingOrder.name}
+                  &nbsp; {`${this.props.pendingOrder.quantity} ${this.props.pendingOrder.name} `}
                 </div>
               </Card.Description>
               <br/>

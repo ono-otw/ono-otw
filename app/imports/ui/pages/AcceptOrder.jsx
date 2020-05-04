@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'lodash';
 import { Meteor } from 'meteor/meteor';
 import {
   Container,
@@ -14,6 +13,7 @@ import PropTypes from 'prop-types';
 import { AcceptOrders } from '../../api/acceptorders/AcceptOrders';
 import { Profile } from '../../api/profile/Profile';
 import AcceptOrderCard from '../components/AcceptOrderCard';
+import { Link } from 'react-router-dom';
 
 /** Renders the list of AcceptOrders */
 class AcceptOrder extends React.Component {
@@ -26,6 +26,47 @@ class AcceptOrder extends React.Component {
 
   /** Render the page once subscriptions have been received. */
   renderPage() {
+
+    const blueContainer = {
+      marginTop: '5rem',
+      paddingBottom: '1rem',
+      backgroundColor: '#D3E3FC',
+      borderRadius: '20px',
+      paddingTop: '1rem',
+    };
+
+    const innerContainer = {
+      margin: '1rem',
+      paddingBottom: '1.5rem',
+      backgroundColor: 'white',
+      borderRadius: '20px',
+    };
+
+    const messageMargin = {
+      marginLeft: '15rem',
+      marginRight: '15rem',
+    };
+
+    const empty = {
+      padding: '1.5rem',
+    };
+
+    const count = AcceptOrders.find({}).count();
+    if (count === 0) {
+      return (
+          <Container style={blueContainer}>
+            <div style={innerContainer} align='center'>
+              <Header as='h1' style={empty}>No orders waiting to be accepted.</Header>
+              <Message style={messageMargin}>
+                <div align='center'>
+                  <Link to="/restaurants">Order here!</Link>
+                </div>
+              </Message>
+            </div>
+          </Container>
+      );
+    }
+
 
     const messagePad = {
       paddingTop: '1rem',
@@ -77,6 +118,7 @@ export default withTracker(() => {
   const subscription2 = Meteor.subscribe('Profile');
 
   return {
+    // oneOrder: AcceptOrders.findOne(Meteor.user().username),
     pendingOrder: AcceptOrders.find({}).fetch(),
     profile: Profile.find({}).fetch(),
     ready: subscription.ready() && subscription2.ready(),

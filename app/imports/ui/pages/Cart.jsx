@@ -4,7 +4,7 @@ import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Container, Grid, Header, Form, Message } from 'semantic-ui-react';
 import swal from 'sweetalert';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Carts } from '../../api/cart/Carts';
 import CartTable from '../components/CartTable';
 import { AcceptOrders } from '../../api/acceptorders/AcceptOrders';
@@ -31,46 +31,93 @@ class Cart extends React.Component {
       dangerMode: true,
     })
         .then((yes) => {
-          let total = this.props.total;
           if (yes) {
-            while (total !== 0) {
-              const order = Carts.findOne({ MenuId: this.props.cartItems._id });
-              console.log(order);
-              console.log(Carts.remove(Carts.findOne({ MenuId: this.props.cartItems._id })._id));
-              const store = order.vendor;
-              const profile = Profile.findOne({ owner: order.owner });
-              const quantity = order.quantity;
-              const owner = profile.owner;
-              const image = profile.image;
-              const firstName = profile.firstName;
-              const lastName = profile.lastName;
-              const personWhoOrdered = order.owner;
-              const location = 'test';
-              const name = order.name;
-              // console.log(store);
-              // console.log(profile);
-              // console.log(quantity);
-              // console.log(owner);
-              // console.log(image);
-              // console.log(firstName);
-              // console.log(lastName);
-              // console.log(personWhoOrdered);
-              // console.log(location);
-              // console.log(name);
+            const combinedCount = Carts.find({ combined: false }).count();
+            console.log(combinedCount);
 
-              AcceptOrders.insert({ name, firstName, lastName, image, store, owner, quantity,
-                personWhoOrdered, location },
-                  (error) => {
-                    if (error) {
-                      swal('Error', error.message, 'error');
-                    } else {
-                      swal('Success', 'Order has been confirmed!', 'success');
-                      this.forceUpdate();
-                    }
-                  });
-              console.log(total);
-              total--;
+            // if we have not combined the order yet
+            if (combinedCount !== 0) {
+              let cart = Carts.find({});
+              console.log(cart);
+              const orderArray = [];
+              const orderCost = [];
+
+              // loop through each cursor, adding the order into an orderArray
+              cart.forEach(function (order) {
+                // console.log(order.name);
+                // console.log(order.price);
+                orderArray.push(order.name[0]);
+                orderCost.push(order.price);
+              });
+
+              console.log(orderArray);
+              console.log(orderCost);
+
+              const sum = _.reduce(orderCost, (total, current) => (current + total), 0);
+
+              console.log(sum);
+              console.log(orderArray);
+              cart = Carts.findOne({});
+              // console.log(cart);
+
+              Carts.update(
+                  { _id: cart._id },
+                  {
+                    $set: {
+                      name: orderArray,
+                      price: sum,
+                      combined: true,
+                    },
+                  },
+              );
             }
+
+            const order = Carts.findOne({ combined: true });
+            console.log(order);
+            const store = order.vendor;
+            const profile = Profile.findOne({ owner: order.owner });
+            const quantity = order.quantity;
+            const owner = profile.owner;
+            const image = profile.image;
+            const firstName = profile.firstName;
+            const venmo = profile.venmo;
+            const lastName = profile.lastName;
+            const personWhoOrdered = order.owner;
+            const location = 'test';
+            const name = order.name;
+            // console.log(store);
+            // console.log(profile);
+            // console.log(quantity);
+            // console.log(owner);
+            // console.log(image);
+            // console.log(firstName);
+            // console.log(lastName);
+            // console.log(personWhoOrdered);
+            // console.log(location);
+            // console.log(name);
+            // console.log(venmo);
+
+            AcceptOrders.insert({
+                  name, firstName, lastName, image, store, owner, venmo, quantity,
+                  personWhoOrdered, location,
+                },
+                (error) => {
+                  if (error) {
+                    swal('Error', error.message, 'error');
+                  } else {
+                    swal('Success', 'Order has been confirmed!', 'success');
+                    this.forceUpdate();
+                  }
+                });
+
+              let total = Carts.find({ combined: false }).count();
+              while (total !== 0) {
+                Carts.remove(Carts.findOne({ combined: false })._id);
+                total--;
+              }
+
+            Carts.remove(Carts.findOne({ combined: true })._id);
+
             this.forceUpdate();
             swal('This order has been confirmed!', {
               icon: 'success',
@@ -79,8 +126,6 @@ class Cart extends React.Component {
             swal('Order was not submitted.');
           }
         });
-
-
   }
 
   cancel() {

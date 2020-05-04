@@ -1,6 +1,6 @@
 [
   {
-    "name": "Bread",
+    "name": ["Bread", "Earl Grey Tea"],
     "firstName": "John",
     "lastName": "Doe",
     "venmo": "johnd1",
@@ -12,7 +12,7 @@
     "location": "POST 314. I'm the one wearing the green hat."
   },
   {
-    "name": "Coffee",
+    "name": ["Coffee"],
     "firstName": "John",
     "lastName": "Doe",
     "venmo": "johnd1",
@@ -24,7 +24,7 @@
     "location": "POST 314. I'm the one wearing the green hat."
   },
   {
-    "name": "Chicken",
+    "name": ["Chicken"],
     "firstName": "Admin",
     "lastName": "Doe",
     "venmo": "admindoe",

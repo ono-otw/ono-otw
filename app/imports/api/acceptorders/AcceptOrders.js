@@ -7,7 +7,8 @@ const AcceptOrders = new Mongo.Collection('AcceptOrders');
 
 /** Define a schema to specify the structure of each document in the collection. */
 const AcceptOrdersSchema = new SimpleSchema({
-  name: String,
+  name: Array,
+    'name.$': String,
   firstName: String,
   lastName: String,
   venmo: String,

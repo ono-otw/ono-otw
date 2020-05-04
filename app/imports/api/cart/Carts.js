@@ -7,12 +7,14 @@ const Carts = new Mongo.Collection('Carts');
 
 /** Define a schema to specify the structure of each document in the collection. */
 const CartSchema = new SimpleSchema({
-  name: String,
+  name: Array,
+  'name.$': String,
   vendor: String,
   owner: String,
   price: String,
   quantity: String,
   size: String,
+  combined: { type: Boolean, defaultValue: false },
 }, { tracker: Tracker });
 
 /** Attach this schema to the collection. */
