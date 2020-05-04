@@ -24,7 +24,7 @@ export default class Signin extends React.Component {
   /** Handle Signin submission using Meteor's account mechanism. */
   submit = () => {
     const { email, password } = this.state;
-    Meteor.loginWithPassword( {username: email}, password, (err) => {
+    Meteor.loginWithPassword({username: email}, password, (err) => {
       if (err) {
         this.setState({ error: err.reason });
       } else {

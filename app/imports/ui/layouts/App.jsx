@@ -16,11 +16,11 @@ import Signout from '../pages/Signout';
 import Cart from '../pages/Cart';
 import Admin from '../pages/Admin';
 import AcceptOrder from '../pages/AcceptOrder';
-import Tracking from '../pages/Tracking';
 import Menu from '../pages/RestaurantMenus';
 import ResturantSignup from '../pages/ResturantSignup';
 import ListStuff from '../pages/ListStuff';
 import Deliveries from '../pages/Deliveries';
+import AddRestaurant from '../pages/AddRestaurant';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -45,6 +45,7 @@ class App extends React.Component {
               <ProtectedRoute path="/deliver" component={Deliveries}/>
               <Route path="/accept" component={AcceptOrder}/>
               <AdminProtectedRoute path="/admin" component={Admin}/>
+              <AdminProtectedRoute path="/addrestaurant" component={AddRestaurant}/>
             </Switch>
             <Footer/>
           </div>

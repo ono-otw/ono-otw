@@ -37,6 +37,7 @@ class NavBar extends React.Component {
                   <Icon name='plus'/>
                   Accept Order
                 </Menu.Item>,
+                // eslint-disable-next-line max-len
                 <Menu.Item position='right' as={NavLink} style={navColor} activeClassName="active" exact to="/cart" key='cart'>
                   <Icon name='cart'/>
                   Cart
@@ -49,10 +50,17 @@ class NavBar extends React.Component {
           ) : ''}
 
           {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
-              <Menu.Item as={NavLink} style={navColor} activeClassName="active" exact to="/admin" key='admin'>
+              [<Menu.Item as={NavLink} style={navColor} activeClassName="active" exact to="/admin" key='admin'>
                 <Icon name='user secret'/>
                 Admin
-              </Menu.Item>
+              </Menu.Item>,
+                // eslint-disable-next-line max-len
+                <Menu.Item as={NavLink} style={navColor} activeClassName="active" exact to="/addrestaurant" key='addrestaurant'>
+                  <Icon name='add'/>
+                  Add Restaurant
+                </Menu.Item>]
+
+
           ) : ''}
 
           {this.props.currentUser === '' ? (
