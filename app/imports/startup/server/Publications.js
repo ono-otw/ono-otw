@@ -40,7 +40,8 @@ Meteor.publish('Restaurant', function publish() {
 
 
 Meteor.publish('AcceptOrders', function publish() {
-  return AcceptOrders.find({});
+  const username = Meteor.users.findOne(this.userId).username;
+  return AcceptOrders.find({ owner: username });
 });
 
 // Meteor.publish('MenuItems', function publish() {
