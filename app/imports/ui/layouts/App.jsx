@@ -20,6 +20,7 @@ import Tracking from '../pages/Tracking';
 import Menu from '../pages/RestaurantMenus';
 import ResturantSignup from '../pages/ResturantSignup';
 import ListStuff from '../pages/ListStuff';
+import Deliveries from '../pages/Deliveries';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -41,6 +42,7 @@ class App extends React.Component {
               <Route path="/menu/:_id" component={Menu}/>
               {/* <Route path="/tracking" component={Tracking}/> */}
               <Route path="/cart" component={Cart}/>
+              <ProtectedRoute path="/deliver" component={Deliveries}/>
               <Route path="/accept" component={AcceptOrder}/>
               <AdminProtectedRoute path="/admin" component={Admin}/>
             </Switch>
