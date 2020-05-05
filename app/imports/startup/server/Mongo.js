@@ -3,9 +3,9 @@ import { Stuffs } from '../../api/stuff/Stuff.js';
 import { Carts } from '../../api/cart/Carts.js';
 import { Profile } from '../../api/profile/Profile';
 import { Restaurant } from '../../api/restaurant/Restaurant';
+import { PastOrder } from '../../api/pastorder/PastOrder';
 import { PendingOrders } from '../../api/pendingorders/PendingOrders';
 import { MenuItems } from '../../api/foodmenu/MenuItems';
-
 /* eslint-disable no-console */
 
 const testingCart = JSON.parse(Assets.getText('testingCart.json'));
@@ -18,19 +18,21 @@ const defaultPendingOrder = JSON.parse(Assets.getText('defaultPendingOrder.json'
 const defaultMenuItems = JSON.parse(Assets.getText('defaultMenuItems.json'));
 
 
-/** Initialize the database with a default data document. */
-function addData(data) {
-  console.log(`  Adding: ${data.name} (${data.owner})`);
-  Stuffs.insert(data);
-}
+const defaultPastOrders = JSON.parse(Assets.getText('defaultPastOrders.json'));
 
-/** Initialize the collection if empty. */
-if (Stuffs.find().count() === 0) {
-  if (Meteor.settings.defaultData) {
-    console.log('Creating default data.');
-    Meteor.settings.defaultData.map(data => addData(data));
-  }
-}
+// /** Initialize the database with a default data document. */
+// function addData(data) {
+//   console.log(`  Adding: ${data.name} (${data.owner})`);
+//   Stuffs.insert(data);
+// }
+//
+// /** Initialize the collection if empty. */
+// if (Stuffs.find().count() === 0) {
+//   if (Meteor.settings.defaultData) {
+//     console.log('Creating default data.');
+//     Meteor.settings.defaultData.map(data => addData(data));
+//   }
+// }
 
 /** Initialize the database with a default data document. */
 function addCart(data) {
@@ -52,6 +54,7 @@ function addProfiles(data) {
 }
 
 if (Profile.find().count() === 0) {
+  console.log('Creating default profile data.');
   defaultProfiles.map(data => addProfiles(data));
 }
 
@@ -62,6 +65,7 @@ function addRestaurants(data) {
 }
 
 if (Restaurant.find().count() === 0) {
+  console.log('Creating default restaruant data.');
   defaultRestaurants.map(data => addRestaurants(data));
 }
 
@@ -82,6 +86,18 @@ function addMenuItems(data) {
   MenuItems.insert(data);
 }
 
+
 if (MenuItems.find().count() === 0) {
   defaultMenuItems.map(data => addMenuItems(data));
+}
+
+/** Initialize the database with a default pending orders document. */
+function addPastOrders(data) {
+  console.log(` Adding: Past orders: ${data.store} for ${data.owner}`);
+  PastOrder.insert(data);
+}
+
+if (PastOrder.find().count() === 0) {
+  console.log('Creating past order data.');
+  defaultPastOrders.map(data => addPastOrders(data));
 }

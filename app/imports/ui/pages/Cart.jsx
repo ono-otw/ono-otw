@@ -9,6 +9,8 @@ import { Carts } from '../../api/cart/Carts';
 import CartTable from '../components/CartTable';
 import { PendingOrders } from '../../api/pendingorders/PendingOrders';
 import { Profile } from '../../api/profile/Profile';
+import { PastOrder } from '../../api/pastorder/PastOrder';
+
 /**
  * Profiles page overrides the form’s submit event and call Meteor’s loginWithPassword().
  * Authentication errors modify the component’s state to be displayed
@@ -21,12 +23,6 @@ class Cart extends React.Component {
 
   confirm(location) {
 
-
-    //
-    // const initialPrice = this.props.cartItems.reduce((total, current) => total + (current.price * current.quantity), 0);
-    // const tax = (initialPrice * 0.045).toFixed(2);
-    // const deliveryPrice = (2.50).toFixed(2);
-    // const totalPrice = (+initialPrice + +tax + +deliveryPrice).toFixed(2);
 
     swal({
       title: 'Are you sure?',
@@ -60,7 +56,10 @@ class Cart extends React.Component {
               console.log(orderArray);
               console.log(orderCost);
 
-              const sum = _.reduce(orderCost, (total, current) => (current + total), 0);
+              const initialPrice = _.reduce(orderCost, (total, current) => (current + total), 0);
+              const tax = (initialPrice * 0.045).toFixed(2);
+              const deliveryPrice = (2.50).toFixed(2);
+              const sum = (+initialPrice + +tax + +deliveryPrice).toFixed(2);
 
               console.log(sum);
               console.log(orderArray);
@@ -92,6 +91,25 @@ class Cart extends React.Component {
             const lastName = profile.lastName;
             const personWhoOrdered = order.owner;
             const name = order.name;
+            const cost = order.price;
+
+            const item = _.reduce(order.quantity, (total, current) => (current + total), 0);
+            const orderTime = new Date();
+            const monthOption = { month: 'long' };
+            const month = new Intl.DateTimeFormat('en-US', monthOption).format(orderTime);
+            const day = orderTime.getDate();
+            const weekdayOption = { weekday: 'long' };
+            const weekday = new Intl.DateTimeFormat('en-US', weekdayOption).format(orderTime);
+
+            console.log(day);
+            console.log(month);
+            console.log(weekday);
+            console.log(item);
+            console.log(cost);
+            console.log(owner);
+            console.log(store);
+            PastOrder.insert({ owner, store, month, day, weekday, item, cost });
+
             // console.log(store);
             // console.log(profile);
             // console.log(quantity);
