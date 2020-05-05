@@ -22,7 +22,11 @@ class DeliveryItem extends React.Component {
             <Item.Description><b>User Location:</b> {this.props.order.location}</Item.Description>
             <Item.Description><b>Order:</b> </Item.Description>
             <List as='ul'>
-              <List.Item as='li'>{this.props.order.name} ({this.props.order.quantity})</List.Item>
+              {this.props.order.name.map((name, index) => (
+                  <List.Item key={name}>
+                    {this.props.order.quantity[index]} {name}
+                  </List.Item>
+              ))}
             </List>
           </Item.Content>
         </Item>

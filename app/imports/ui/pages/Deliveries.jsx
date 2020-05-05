@@ -4,7 +4,7 @@ import { Container, Header, Loader, Segment, Item, Popup, Rating } from 'semanti
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { _ } from 'meteor/underscore';
-import { PendingOrders } from '../../api/pendingorders/PendingOrders';
+import { AcceptedOrders } from '../../api/acceptedorders/AcceptedOrders';
 import DeliveryItem from '../components/DeliveryItem';
 
 class Deliveries extends React.Component {
@@ -17,6 +17,21 @@ class Deliveries extends React.Component {
 
   /** Render the page once subscriptions have been received. */
   renderPage() {
+
+    const accepted = AcceptedOrders.find({}).count();
+
+    if (accepted === 0) {
+      return (
+          <Container>
+            <Segment className='signin-form'>
+              <Segment>
+                <Header textAlign='center' as='h1'>Accepted Orders</Header>
+                  Currently have no accepted orders.
+              </Segment>
+            </Segment>
+          </Container>
+      );
+    }
 
     const currentOwner = Meteor.user().username;
     const ownerOrders = _.filter(this.props.orders, (entry) => entry.owner === currentOwner);
@@ -88,10 +103,10 @@ Deliveries.propTypes = {
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
 export default withTracker(() => {
   // Get access to Stuff documents.
-  const subscription = Meteor.subscribe('PendingOrders');
+  const subscription = Meteor.subscribe('AcceptedOrders');
   const subscription2 = Meteor.subscribe('Profile');
   return {
-    orders: PendingOrders.find({}).fetch(),
+    orders: AcceptedOrders.find({}).fetch(),
     ready: subscription.ready() && subscription2.ready(),
   };
 })(Deliveries);
