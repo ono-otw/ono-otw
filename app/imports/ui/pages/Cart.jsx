@@ -93,7 +93,7 @@ class Cart extends React.Component {
             const name = order.name;
             const cost = order.price;
 
-            const item = this.props.total;
+            const item = _.reduce(order.quantity, (total, current) => (current + total), 0);
             const orderTime = new Date();
             const monthOption = { month: 'long' };
             const month = new Intl.DateTimeFormat('en-US', monthOption).format(orderTime);
