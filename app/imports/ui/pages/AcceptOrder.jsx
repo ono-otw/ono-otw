@@ -56,7 +56,7 @@ class AcceptOrder extends React.Component {
       return (
           <Container style={blueContainer}>
             <div style={innerContainer} align='center'>
-              <Header as='h1' style={empty}>No orders waiting to be accepted.</Header>
+              <Header as='h1' style={empty}>No pending orders.</Header>
               <Message style={messageMargin}>
                 <div align='center'>
                   <Link to="/restaurants">Order here!</Link>
@@ -80,7 +80,7 @@ class AcceptOrder extends React.Component {
           <div align='center'>
             <Header as='h2' inverted>
               <Header.Content>
-                Current Orders
+                Pending Orders
                 <Icon name='food'/>
               </Header.Content>
             </Header>
