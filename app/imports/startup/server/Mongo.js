@@ -3,7 +3,6 @@ import { Stuffs } from '../../api/stuff/Stuff.js';
 import { Carts } from '../../api/cart/Carts.js';
 import { Profile } from '../../api/profile/Profile';
 import { Restaurant } from '../../api/restaurant/Restaurant';
-import { AcceptOrders } from '../../api/acceptorders/AcceptOrders'
 import { PastOrder } from '../../api/pastorder/PastOrder';
 import { PendingOrders } from '../../api/pendingorders/PendingOrders';
 import { MenuItems } from '../../api/foodmenu/MenuItems';

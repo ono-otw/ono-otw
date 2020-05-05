@@ -56,7 +56,10 @@ class Cart extends React.Component {
               console.log(orderArray);
               console.log(orderCost);
 
-              const sum = _.reduce(orderCost, (total, current) => (current + total), 0);
+              const initialPrice = _.reduce(orderCost, (total, current) => (current + total), 0);
+              const tax = (initialPrice * 0.045).toFixed(2);
+              const deliveryPrice = (2.50).toFixed(2);
+              const sum = (+initialPrice + +tax + +deliveryPrice).toFixed(2);
 
               console.log(sum);
               console.log(orderArray);
@@ -88,6 +91,25 @@ class Cart extends React.Component {
             const lastName = profile.lastName;
             const personWhoOrdered = order.owner;
             const name = order.name;
+            const cost = order.price;
+
+            const item = this.props.total;
+            const orderTime = new Date();
+            const monthOption = { month: 'long' };
+            const month = new Intl.DateTimeFormat('en-US', monthOption).format(orderTime);
+            const day = orderTime.getDate();
+            const weekdayOption = { weekday: 'long' };
+            const weekday = new Intl.DateTimeFormat('en-US', weekdayOption).format(orderTime);
+
+            console.log(day);
+            console.log(month);
+            console.log(weekday);
+            console.log(item);
+            console.log(cost);
+            console.log(owner);
+            console.log(store);
+            PastOrder.insert({ owner, store, month, day, weekday, item, cost });
+
             // console.log(store);
             // console.log(profile);
             // console.log(quantity);
