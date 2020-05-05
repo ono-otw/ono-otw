@@ -5,6 +5,8 @@ import { Profile } from '../../api/profile/Profile';
 import { Restaurant } from '../../api/restaurant/Restaurant';
 import { AcceptOrders } from '../../api/acceptorders/AcceptOrders'
 import { PastOrder } from '../../api/pastorder/PastOrder';
+import { PendingOrders } from '../../api/pendingorders/PendingOrders';
+import { MenuItems } from '../../api/foodmenu/MenuItems';
 /* eslint-disable no-console */
 
 const testingCart = JSON.parse(Assets.getText('testingCart.json'));
@@ -13,7 +15,9 @@ const testingCart = JSON.parse(Assets.getText('testingCart.json'));
 
 const defaultRestaurants = JSON.parse(Assets.getText('defaultRestaurants.json'));
 const defaultProfiles = JSON.parse(Assets.getText('defaultProfiles.json'));
-const defaultAcceptOrders = JSON.parse(Assets.getText('defaultAcceptOrder.json'));
+const defaultPendingOrder = JSON.parse(Assets.getText('defaultPendingOrder.json'));
+const defaultMenuItems = JSON.parse(Assets.getText('defaultMenuItems.json'));
+
 
 const defaultPastOrders = JSON.parse(Assets.getText('defaultPastOrders.json'));
 
@@ -66,15 +70,26 @@ if (Restaurant.find().count() === 0) {
   defaultRestaurants.map(data => addRestaurants(data));
 }
 
+
 /** Initialize the database with a default pending orders document. */
-function addAcceptOrders(data) {
+function addPendingOrder(data) {
   console.log(` Adding: Pending orders: ${data.name} for ${data.owner}`);
-  AcceptOrders.insert(data);
+  PendingOrders.insert(data);
 }
 
-if (AcceptOrders.find().count() === 0) {
-  console.log('Creating accept order data.');
-  defaultAcceptOrders.map(data => addAcceptOrders(data));
+if (PendingOrders.find().count() === 0) {
+  defaultPendingOrder.map(data => addPendingOrder(data));
+}
+
+/** Initialize the database with a default restaurants document. */
+function addMenuItems(data) {
+  console.log(` Adding Menu Item: ${data.name} for ${data.owner}`);
+  MenuItems.insert(data);
+}
+
+
+if (MenuItems.find().count() === 0) {
+  defaultMenuItems.map(data => addMenuItems(data));
 }
 
 /** Initialize the database with a default pending orders document. */

@@ -9,6 +9,7 @@ const Restaurant = new Mongo.Collection('Restaurant');
 const RestaurantSchema = new SimpleSchema({
   owner: String,
   name: String,
+  bgimg: String,
   address: String,
   image: String,
   rating: Number,

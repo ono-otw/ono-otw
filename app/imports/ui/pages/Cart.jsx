@@ -7,7 +7,7 @@ import swal from 'sweetalert';
 import { Link } from 'react-router-dom';
 import { Carts } from '../../api/cart/Carts';
 import CartTable from '../components/CartTable';
-import { AcceptOrders } from '../../api/acceptorders/AcceptOrders';
+import { PendingOrders } from '../../api/pendingorders/PendingOrders';
 import { Profile } from '../../api/profile/Profile';
 import { PastOrder } from '../../api/pastorder/PastOrder';
 
@@ -17,7 +17,12 @@ import { PastOrder } from '../../api/pastorder/PastOrder';
  */
 class Cart extends React.Component {
 
-  confirm() {
+  state = { location: '' };
+
+  handleChange = (e, { location, value }) => this.setState({ location: value })
+
+  confirm(location) {
+
 
     swal({
       title: 'Are you sure?',
@@ -28,73 +33,95 @@ class Cart extends React.Component {
     })
         .then((yes) => {
           if (yes) {
-            const initialPrice = this.props.cartItems.reduce((total, current) => total + (current.price * current.quantity), 0);
-            const tax = (initialPrice * 0.045).toFixed(2);
-            const deliveryPrice = (2.50).toFixed(2);
-            const cost = (+initialPrice + +tax + +deliveryPrice).toFixed(2);
+            const combinedCount = Carts.find({ combined: false }).count();
+            console.log(combinedCount);
 
-            let total = this.props.total;
-            const item = this.props.total;
-            const user = Meteor.user().username;
-            const prof = Profile.findOne({ owner: user });
-            const owner = prof.owner;
-            const pOrder = Carts.findOne({ MenuId: this.props.cartItems._id });
-            const store = pOrder.vendor;
+            // if we have not combined the order yet
+            if (combinedCount !== 0) {
+              let cart = Carts.find({});
+              console.log(cart);
+              const orderArray = [];
+              const orderCost = [];
+              const orderQuant = [];
 
-            const orderTime = new Date();
-            const monthOption = { month: 'long' };
-            const month = new Intl.DateTimeFormat('en-US', monthOption).format(orderTime);
-            const day = orderTime.getDate();
-            const weekdayOption = { weekday: 'long' };
-            const weekday = new Intl.DateTimeFormat('en-US', weekdayOption).format(orderTime);
+              // loop through each cursor, adding the order into an orderArray
+              cart.forEach(function (order) {
+                // console.log(order.name);
+                //  console.log(order.price);
+                orderArray.push(order.name[0]);
+                orderQuant.push(order.quantity[0]);
+                orderCost.push(order.price);
+              });
 
-            console.log(day);
-            console.log(month);
-            console.log(weekday);
-            console.log(item);
-            console.log(cost);
-            console.log(owner);
-            console.log(store);
-            PastOrder.insert({ owner, store, month, day, weekday, item, cost });
+              console.log(orderArray);
+              console.log(orderCost);
 
-            while (total !== 0) {
-              const order = Carts.findOne({ MenuId: this.props.cartItems._id });
-              console.log(order);
-              console.log(Carts.remove(Carts.findOne({ MenuId: this.props.cartItems._id })._id));
-              // store = order.vendor;
-              const profile = Profile.findOne({ owner: order.owner });
-              const quantity = order.quantity;
-              // owner = profile.owner;
-              const image = profile.image;
-              const firstName = profile.firstName;
-              const lastName = profile.lastName;
-              const personWhoOrdered = order.owner;
-              const location = 'test';
-              const name = order.name;
-              // console.log(store);
-              // console.log(profile);
-              // console.log(quantity);
-              // console.log(owner);
-              // console.log(image);
-              // console.log(firstName);
-              // console.log(lastName);
-              // console.log(personWhoOrdered);
-              // console.log(location);
-              // console.log(name);
+              const sum = _.reduce(orderCost, (total, current) => (current + total), 0);
 
-              AcceptOrders.insert({ name, firstName, lastName, image, store, owner, quantity,
-                personWhoOrdered, location },
-                  (error) => {
-                    if (error) {
-                      swal('Error', error.message, 'error');
-                    } else {
-                      swal('Success', 'Order has been confirmed!', 'success');
-                      this.forceUpdate();
-                    }
-                  });
-              console.log(total);
-              total--;
+              console.log(sum);
+              console.log(orderArray);
+              cart = Carts.findOne({});
+              // console.log(cart);
+
+              Carts.update(
+                  { _id: cart._id },
+                  {
+                    $set: {
+                      name: orderArray,
+                      price: sum,
+                      combined: true,
+                      quantity: orderQuant,
+                    },
+                  },
+              );
             }
+
+            const order = Carts.findOne({ combined: true });
+            console.log(order);
+            const store = order.vendor;
+            const profile = Profile.findOne({ owner: order.owner });
+            const quantity = order.quantity;
+            const owner = profile.owner;
+            const image = profile.image;
+            const firstName = profile.firstName;
+            const venmo = profile.venmo;
+            const lastName = profile.lastName;
+            const personWhoOrdered = order.owner;
+            const name = order.name;
+            // console.log(store);
+            // console.log(profile);
+            // console.log(quantity);
+            // console.log(owner);
+            // console.log(image);
+            // console.log(firstName);
+            // console.log(lastName);
+            // console.log(personWhoOrdered);
+            // console.log(location);
+            // console.log(name);
+            // console.log(venmo);
+            // console.log(location)
+
+            PendingOrders.insert({
+                  name, firstName, lastName, image, store, owner, venmo, quantity,
+                  personWhoOrdered, location,
+                },
+                (error) => {
+                  if (error) {
+                    swal('Error', error.message, 'error');
+                  } else {
+                    swal('Success', 'Order has been confirmed!', 'success');
+                    this.forceUpdate();
+                  }
+                });
+
+              let total = Carts.find({ combined: false }).count();
+              while (total !== 0) {
+                Carts.remove(Carts.findOne({ combined: false })._id);
+                total--;
+              }
+
+            Carts.remove(Carts.findOne({ combined: true })._id);
+
             this.forceUpdate();
             swal('This order has been confirmed!', {
               icon: 'success',
@@ -103,8 +130,6 @@ class Cart extends React.Component {
             swal('Order was not submitted.');
           }
         });
-
-
   }
 
   cancel() {
@@ -136,6 +161,8 @@ class Cart extends React.Component {
   /** Render the Cart form. */
   render() {
 
+    const { location } = this.state;
+
     const padding = {
       paddingTop: '1.5rem',
       paddingLeft: '1.5rem',
@@ -165,6 +192,7 @@ class Cart extends React.Component {
     const buttonPadding = {
       paddingTop: '1.5rem',
       paddingLeft: '1.5rem',
+      paddingRight: '1.5rem',
     };
 
     // if cart is currently empty
@@ -227,11 +255,18 @@ class Cart extends React.Component {
           </div>
           <Form>
             <div align={'center'} style={buttonPadding}>
+              <Form.TextArea required
+                             label={'Location'}
+                             placeholder={'Located at Sinclair library, 2nd floor.'}
+                             value={location}
+                             onChange={this.handleChange}
+              >
+              </Form.TextArea>
               <Form.Group inline>
                 <Form.Button className='cancel_button' onClick={() => this.cancel()}>
                   Cancel
                 </Form.Button>
-                <Form.Button inverted className='submit_button' onClick={() => this.confirm()}>
+                <Form.Button inverted className='submit_button' onClick={() => this.confirm(location)}>
                   Confirm
                 </Form.Button>
               </Form.Group>
@@ -255,7 +290,7 @@ Cart.propTypes = {
 export default withTracker(() => {
   // Get access to Stuff documents.
   const subscription = Meteor.subscribe('Carts');
-  const subscription3 = Meteor.subscribe('AcceptOrders');
+  const subscription3 = Meteor.subscribe('PendingOrders');
   const subscription2 = Meteor.subscribe('Profile');
   return {
     cartItems: Carts.find({}).fetch(),

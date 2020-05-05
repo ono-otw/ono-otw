@@ -1,22 +1,28 @@
 import React from 'react';
-import { Button, Card, Header, Image, Rating } from 'semantic-ui-react';
+import { Button, Card, Header, Image, Label, Rating } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import swal from 'sweetalert';
-import { Profile } from '../../api/profile/Profile';
-import { Carts } from '../../api/cart/Carts';
-
+import { Meteor } from 'meteor/meteor';
+import { AcceptedOrders } from '../../api/acceptedorders/AcceptedOrders';
+import { PendingOrders } from '../../api/pendingorders/PendingOrders';
+import { Favorites } from '../../api/favorites/Favorites';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class AcceptOrderCard extends React.Component {
 
-  getName() {
-    // let profile = Profile.findOne({ owner: this.props.pendingOrder.personWhoOrdered });
-    // console.log(profile['image']);
-    console.log(this.props.pendingOrder.personWhoOrdered);
-  }
+  acceptOrder(docID) {
+    const owner = Meteor.user().username;
+    const store = this.props.pendingOrder.store;
+    const firstName = this.props.pendingOrder.firstName;
+    const lastName = this.props.pendingOrder.lastName;
+    const image = this.props.pendingOrder.image;
+    const venmo = this.props.pendingOrder.venmo;
+    const quantity = this.props.pendingOrder.quantity;
+    const personWhoOrdered = this.props.pendingOrder.personWhoOrdered;
+    const location = this.props.pendingOrder.location;
+    const name = this.props.pendingOrder.name;
 
-  acceptOrder() {
     swal({
       title: 'Are you sure?',
       text: 'Are you sure you want to accept this order?',
@@ -24,9 +30,14 @@ class AcceptOrderCard extends React.Component {
       buttons: true,
       dangerMode: true,
     })
-        .then((willDelete) => {
-          if (willDelete) {
+        .then((accept) => {
+          if (accept) {
             console.log('Accepting order');
+            AcceptedOrders.insert({
+              name, firstName, lastName, image, store, owner, venmo, quantity,
+              personWhoOrdered, location,
+            });
+            PendingOrders.remove(docID);
             this.forceUpdate();
             swal('Order accepted.', {
               icon: 'success',
@@ -49,8 +60,8 @@ class AcceptOrderCard extends React.Component {
             <Card.Content >
               <div align={'center'}>
                 <Header as='h2' inverted>
-                  <Image circular src={this.props.pendingOrder.image} /> {this.props.pendingOrder.firstName} {this.props.pendingOrder.lastName}
-                  {this.getName()}
+                  <Image circular src={this.props.pendingOrder.image} />
+                  {this.props.pendingOrder.firstName} {this.props.pendingOrder.lastName}
                 </Header>
                 <Rating icon='star' defaultRating={3} maxRating={5} disabled />
               </div>
@@ -60,7 +71,11 @@ class AcceptOrderCard extends React.Component {
                   <Header inverted>
                    Ordered From: {this.props.pendingOrder.store}
                   </Header>
-                  {this.props.pendingOrder.quantity} {this.props.pendingOrder.name}
+                  {this.props.pendingOrder.name.map((name, index) => (
+                      <Label key={name} circular color={'teal'} style={{ backgroundColor: '#00887A' }}>
+                        {this.props.pendingOrder.quantity[index]} {name}
+                      </Label>
+                  ))}
                 </div>
               </Card.Description>
               <br/>
@@ -73,7 +88,7 @@ class AcceptOrderCard extends React.Component {
             </Card.Content>
             <Card.Content extra>
               <div align={'center'}>
-                <Button color={'teal'} onClick={() => this.acceptOrder()}>Accept</Button>
+                <Button color={'teal'} onClick={() => this.acceptOrder(this.props.pendingOrder._id)}>Accept</Button>
               </div>
             </Card.Content>
           </Card>
@@ -86,7 +101,6 @@ class AcceptOrderCard extends React.Component {
 /** Require a document to be passed to this component. */
 AcceptOrderCard.propTypes = {
   pendingOrder: PropTypes.object.isRequired,
-  profile: PropTypes.array.isRequired,
 };
 
 /** Wrap this component in withRouter since we use the <Link> React Router element. */

@@ -2,6 +2,7 @@
   {
     "owner": "starbucks@foo.com",
     "name": "Starbucks",
+    "bgimg": "https://bit.ly/2wV9ozB",
     "address": "2465 Campus Rd #220",
     "image": "https://assets.change.org/photos/7/ou/zi/OlOuziNRVcXqzpX-800x450-noPad.jpg?1531499872",
     "rating":  4.1,
@@ -12,6 +13,7 @@
   {
     "owner": "raisingcanes@foo.com",
     "name": "Raising Canes",
+    "bgimg": "https://www.raisingcanes.com/sites/default/files/13664_Quality_SitePhotos_CaniacCombo_Final.jpg",
     "address": "2615 S King St Unit 102",
     "image": "https://tinyurl.com/y7adk236",
     "rating":  4.5,
@@ -22,6 +24,7 @@
   {
     "owner": "bale@foo.com",
     "name": "Bale",
+    "bgimg": "https://media-cdn.tripadvisor.com/media/photo-s/01/4f/75/29/sign-in-the-food-court.jpg",
     "address": "2465 Campus Rd #220",
     "image": "https://s3-media0.fl.yelpcdn.com/bphoto/n3jOrjcJOVoz0npBf_FS1Q/o.jpg",
     "rating":  4.1,
@@ -32,31 +35,45 @@
   {
     "owner": "jerseymikes@foo.com",
     "name": "Jersey Mikes",
+    "bgimg": "https://www.jerseymikes.com/media/static/bag-cut-subs.jpg",
     "address": "2615 S King St space no 6",
     "image": "https://bit.ly/2yUX7LW",
     "rating":  4.4,
     "time": 25,
-    "label": ["Sandwich", "Beef"],
+    "label": ["Sandwich"],
     "approved": true
   },
   {
-    "owner": "pieology@foo.com",
-    "name": "Pieology",
-    "address": "2615 S King St",
-    "image": "https://www.qsrmagazine.com/sites/default/files/styles/story_page/public/news-image/pieology-signs-deal-expand-china.jpg?itok=3f1p0_mc",
-    "rating":  4.5,
-    "time": 25,
-    "label": ["Pizza"],
-    "approved": true
-  },
-  {
-    "owner": "subway@foo.com",
-    "name": "Subway",
-    "address": "2465 Campus Rd Cc 213",
-    "image": "https://media.farandwide.com/30/5c/305cd21f532d448388f10e807d153a29.jpeg",
+    "owner": "jambajuice@foo.com",
+    "name": "Jamba Juice",
+    "bgimg": "https://moadrupalweb.blob.core.windows.net/moadrupalweb/original/5641_JambaJuice_HeroImage.jpg",
+    "address": "2465 Campus Rd",
+    "image": "https://img.grouponcdn.com/deal/xpb7JGk4XUVi2Sjk9Bnh/j7-700x420/v1/c700x420.jpg",
     "rating":  3.8,
     "time": 8,
-    "label": ["Sandwich"],
+    "label": ["Smoothies"],
+    "approved": true
+  },
+  {
+    "owner": "pandaexpress@foo.com",
+    "name": "Panda Express",
+    "bgimg": "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/panda-expres-1584979939.jpg?crop=1.00xw:0.502xh;0,0.436xh&resize=1200:*",
+    "address": "2560 McCarthy mall",
+    "image": "https://d1yjjnpx0p53s8.cloudfront.net/styles/logo-thumbnail/s3/0010/8217/brand.gif?itok=nKwfh7NR",
+    "rating": 4.0,
+    "time": 5,
+    "label": ["Chinese"],
+    "approved": true
+  },
+  {
+    "owner": "dunkindonuts@foo.com",
+    "name": "Dunkin Donuts",
+    "bgimg": "https://www.dunkindonuts.com/content/dam/dd/img/rebranding/iceddrinks/icedcoffee/Iced%20Coffee_Header%201024x400.jpg",
+    "address": "2560 McCarthy mall",
+    "image": "https://i0.wp.com/newsismybusiness.com/wp-content/uploads/2014/10/Dunkin-Donuts.jpg?fit=419%2C315&ssl=1",
+    "rating": 4.4,
+    "time": 5,
+    "label": ["Coffee", "Donuts"],
     "approved": true
   }
 ]

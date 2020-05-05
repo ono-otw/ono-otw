@@ -3,23 +3,26 @@ import SimpleSchema from 'simpl-schema';
 import { Tracker } from 'meteor/tracker';
 
 /** Define a Mongo collection to hold the data. */
-const Carts = new Mongo.Collection('Carts');
+const AcceptedOrders = new Mongo.Collection('AcceptedOrders');
 
 /** Define a schema to specify the structure of each document in the collection. */
-const CartSchema = new SimpleSchema({
+const AcceptedOrdersSchema = new SimpleSchema({
   name: Array,
   'name.$': String,
-  vendor: String,
+  firstName: String,
+  lastName: String,
+  venmo: String,
+  image: String,
+  store: String,
   owner: String,
-  price: Number,
   quantity: Array,
   'quantity.$': Number,
-  size: String,
-  combined: { type: Boolean, defaultValue: false },
+  personWhoOrdered: String,
+  location: String,
 }, { tracker: Tracker });
 
 /** Attach this schema to the collection. */
-Carts.attachSchema(CartSchema);
+AcceptedOrders.attachSchema(AcceptedOrdersSchema);
 
 /** Make the collection and schema available to other code. */
-export { Carts, CartSchema };
+export { AcceptedOrders, AcceptedOrdersSchema };
