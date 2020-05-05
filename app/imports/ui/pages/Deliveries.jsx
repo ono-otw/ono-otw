@@ -4,6 +4,7 @@ import { Container, Header, Loader, Segment, Item, Popup, Rating } from 'semanti
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { _ } from 'meteor/underscore';
+import { Link } from 'react-router-dom';
 import { AcceptedOrders } from '../../api/acceptedorders/AcceptedOrders';
 import DeliveryItem from '../components/DeliveryItem';
 
@@ -24,9 +25,10 @@ class Deliveries extends React.Component {
       return (
           <Container>
             <Segment className='signin-form'>
-              <Segment>
+              <Segment textAlign={'center'}>
                 <Header textAlign='center' as='h1'>Accepted Orders</Header>
-                  Currently have no accepted orders.
+                  <p>Currently you have no accepted orders.</p>
+                  <Link to="/accept">Accept an order here!</Link>
               </Segment>
             </Segment>
           </Container>
