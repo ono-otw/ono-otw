@@ -13,26 +13,31 @@ import RestaurantCard from '../components/RestaurantCard';
 * semantic ui.
 */
 
-const restaurantSearch = [{
-  title: 'Raising Canes', description: '2615 S King St Unit 102',
-  image: 'https://tinyurl.com/y7adk236',
-  time: '15min', price: '4.5', label: ['Chicken'],
-},
-  {
-    title: 'Bale', description: '2465 Campus Rd #220',
-    image: 'https://s3-media0.fl.yelpcdn.com/bphoto/n3jOrjcJOVoz0npBf_FS1Q/o.jpg',
-    time: '10min', price: '4.1', label: ['Sandwich', 'Pho'],
-  },
-  {
-    title: 'Starbucks', description: '2465 Campus Rd #220.',
-    image: 'https://assets.change.org/photos/7/ou/zi/OlOuziNRVcXqzpX-800x450-noPad.jpg?1531499872',
-    time: '8min', price: '4.5', label: ['Coffee', 'Tea'],
-  },
-];
+
+// const restaurantSearch = [{
+//   title: 'Raising Canes', description: '2615 S King St Unit 102',
+//   image: 'https://tinyurl.com/y7adk236',
+//   time: '15min', price: '4.5', label: ['Chicken'],
+// },
+//   {
+//     title: 'Bale', description: '2465 Campus Rd #220',
+//     image: 'https://s3-media0.fl.yelpcdn.com/bphoto/n3jOrjcJOVoz0npBf_FS1Q/o.jpg',
+//     time: '10min', price: '4.1', label: ['Sandwich', 'Pho'],
+//   },
+//   {
+//     title: 'Starbucks', description: '2465 Campus Rd #220.',
+//     image: 'https://assets.change.org/photos/7/ou/zi/OlOuziNRVcXqzpX-800x450-noPad.jpg?1531499872',
+//     time: '8min', price: '4.5', label: ['Coffee', 'Tea'],
+//   },
+// ];
 
 const initialState = { isLoading: false, results: [], value: '' };
 /** Renders the list of restaurants */
 class Restaurants extends React.Component {
+
+  searchOptions = () => {
+    return _.map(this.props.restaurant, function (document) { return { title: document.name, description: document.address, image: document.bgimg, time: document.time, price: document.rating, label: document.label }; });
+  };
 
   state = initialState;
 
@@ -46,13 +51,14 @@ class Restaurants extends React.Component {
       if (this.state.value.length < 1) return this.setState(initialState);
 
       const re = new RegExp(_.escapeRegExp(this.state.value), 'i');
-      const isMatch = (result) => re.test(result.label);
+      const isMatch = (result) => re.test(result.name);
 
       this.setState({
         isLoading: false,
-        results: _.filter(restaurantSearch, isMatch),
+        results: _.filter(this.searchOptions, isMatch),
       });
     }, 300);
+    console.log(this.searchOptions());
   };
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
@@ -73,8 +79,9 @@ class Restaurants extends React.Component {
       paddingLeft: '8rem',
     };
 
-
     const { isLoading, value, results } = this.state;
+    console.log(results);
+    console.log(value);
 
     return (
         <Container>
