@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import {
   Container,
-  Grid,
   Header,
   Loader,
   Radio,
@@ -121,6 +120,7 @@ class Profiles extends React.Component {
 
                   {/* Render via components here for recent deliveries */}
 
+                  {/* eslint-disable-next-line max-len */}
                   {this.props.pastdelivery.map((pastdelivery, index) => <PastDeliveryTable key={index} pastdelivery={pastdelivery}/>)}
 
                   {/* Render via components here for recent orders */}
