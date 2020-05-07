@@ -110,7 +110,7 @@ class Restaurants extends React.Component {
   }
 }
 
-/** Require an array of Stuff documents in the props. */
+/** Require an array of Restaurants documents in the props. */
 Restaurants.propTypes = {
   restaurant: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
