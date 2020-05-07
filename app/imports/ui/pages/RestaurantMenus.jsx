@@ -1,11 +1,13 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Input, Header, Menu, Loader, Card, Message } from 'semantic-ui-react';
+import { Container, Input, Header, Menu, Loader, Card, Message, Modal, Button } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { MenuItems } from '../../api/foodmenu/MenuItems';
 import { Restaurant } from '../../api/restaurant/Restaurant';
 import MenuitemCard from '../components/MenuItems/MenuitemCard';
+import { _ } from 'meteor/underscore';
+import Cart from './Cart';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class RestaurantMenus extends React.Component {
@@ -51,7 +53,7 @@ class RestaurantMenus extends React.Component {
     return (
         <div>
           <div className='menuimage'>
-            <img style={{height: '200px'}} src={this.props.restaurant.bgimg}/>
+            <img style={{ height: '200px' }} src={this.props.restaurant.bgimg}/>
           </div>
 
           <Container>
@@ -84,8 +86,21 @@ class RestaurantMenus extends React.Component {
               </Message>
               {this.display(activeItem)}
 
-              <div style={{ padding: '50px' }}>
+              <div style={{ padding: '20px' }}>
               </div>
+            </div>
+            <div align={'center'}>
+              <Modal
+                  trigger={
+                    <Button style={{ background: '#184470', color: 'white' }}>
+                      Show Cart</Button>} closeIcon
+                  style={{ background: 'transparent', border: '0',
+                    boxShadow: '0px 0px 0px 0px rgba(34, 36, 38, 0.12), ' +
+                        '0px 0px 0px 0px rgba(34, 36, 38, 0.15)' }}
+                  size={'small'}
+              >
+                <Cart/>
+              </Modal>
             </div>
 
           </Container>

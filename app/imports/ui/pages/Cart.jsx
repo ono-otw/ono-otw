@@ -209,7 +209,6 @@ class Cart extends React.Component {
     };
 
     const blueContainer = {
-      marginTop: '5rem',
       paddingBottom: '1rem',
       backgroundColor: '#D3E3FC',
       borderRadius: '20px',
