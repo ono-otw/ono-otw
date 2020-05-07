@@ -53,9 +53,9 @@ class Restaurants extends React.Component {
 
     if (this.state.redirect) {
       const menu = Restaurant.findOne({ name: value });
-      const from = `/menu/${menu._id}`
+      const from = `/menu/${menu._id}`;
       return <Redirect to={from}/>;
-    };
+    }
 
     const searchBar = {
       paddingBottom: '5rem',
