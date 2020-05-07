@@ -5,7 +5,7 @@
     "owner": "john@foo.com",
     "quantity": [1],
     "price": 5.25,
-    "size": "Small",
+    "size": ["Small"],
     "combined": false
   },
   {
@@ -14,7 +14,7 @@
     "owner": "john@foo.com",
     "quantity": [2],
     "price": 3.25,
-    "size": "Small",
+    "size": ["Small"],
     "combined": false
   },
   {
@@ -23,7 +23,7 @@
     "owner": "admin@foo.com",
     "quantity": [1],
     "price": 3.25,
-    "size": "Small",
+    "size": ["Small"],
     "combined": false
   },
   {
@@ -32,7 +32,7 @@
     "owner": "admin@foo.com",
     "quantity": [1],
     "price": 5.25,
-    "size": "Small",
+    "size": ["Small"],
     "combined": false
   },
   {
@@ -41,7 +41,7 @@
     "owner": "test@foo.com",
     "quantity": [3],
     "price": 5.25,
-    "size": "Small",
+    "size": ["Small"],
     "combined": false
   },
   {
@@ -50,7 +50,7 @@
     "owner": "mocha@foo.com",
     "quantity": [3],
     "price": 5.25,
-    "size": "Small",
+    "size": ["Small"],
     "combined": false
   },
   {
@@ -59,7 +59,7 @@
     "owner": "hello@foo.com",
     "quantity": [3],
     "price": 5.25,
-    "size": "Small",
+    "size": ["Small"],
     "combined": false
   }
 ]

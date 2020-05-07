@@ -29,7 +29,8 @@ class CartTable extends React.Component {
           <div style={innerContainer}>
             <Grid columns='2'>
               <Grid.Column style={padding}>
-                <Header as='h4' content={`${this.props.cartItems.quantity} ${this.props.cartItems.name} `}/>
+                <Header as='h4' content={`${this.props.cartItems.quantity} 
+                ${this.props.cartItems.name} (${this.props.cartItems.size})`}/>
               </Grid.Column>
               <Grid.Column textAlign='right' style={padding}>
                   <Header as='h4' content={`$ ${priceProduct}`}/>
