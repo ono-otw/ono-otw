@@ -13,10 +13,11 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { Profile } from '../../api/profile/Profile';
 import { Favorites } from '../../api/favorites/Favorites';
 import { PastOrder } from '../../api/pastorder/PastOrder';
+import { PastDelivery } from '../../api/pastdelivery/PastDelivery';
 import ListFavorites from '../components/ListFavorites';
 import ProfileMeta from '../components/ProfileMeta';
 import PastOrderTable from '../components/PastOrderTable';
-
+import PastDeliveryTable from '../components/PastDeliveryTable';
 
 /**
  * Profiles page overrides the form’s submit event and call Meteor’s loginWithPassword().
@@ -120,16 +121,7 @@ class Profiles extends React.Component {
 
                   {/* Render via components here for recent deliveries */}
 
-                  <Grid columns='2'>
-                    <Grid.Column>
-                      <Header as='h4'>Starbucks</Header>
-                      <p>Friday, March 27 | 1 item(s)</p>
-                    </Grid.Column>
-                    <Grid.Column textAlign='right'>
-                      <p>$4.00</p>
-                    </Grid.Column>
-                  </Grid>
-                  <hr className='tinyBlackBorder'/>
+                  {this.props.pastdelivery.map((pastdelivery, index) => <PastDeliveryTable key={index} pastdelivery={pastdelivery}/>)}
 
                   {/* Render via components here for recent orders */}
 
@@ -148,19 +140,23 @@ Profiles.propTypes = {
   ready: PropTypes.bool.isRequired,
   favorites: PropTypes.array.isRequired,
   pastorder: PropTypes.array.isRequired,
+  pastdelivery: PropTypes.array.isRequired,
 };
 
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
 export default withTracker(() => {
   // Get access to Profile documents.
-  const subscription = Meteor.subscribe('Profile');
-  const subscription1 = Meteor.subscribe('Favorites');
-  const subscription2 = Meteor.subscribe('PastOrder');
+  const sub = Meteor.subscribe('Profile');
+  const sub1 = Meteor.subscribe('Favorites');
+  const sub2 = Meteor.subscribe('PastOrder');
+  const sub3 = Meteor.subscribe('PastDelivery');
 
   return {
     profile: Profile.find({}).fetch(),
     favorites: Favorites.find({}).fetch(),
     pastorder: PastOrder.find({}).fetch(),
-    ready: subscription.ready() && subscription1.ready() && subscription2.ready(),
+    pastdelivery: PastDelivery.find({}).fetch(),
+    ready: sub.ready() && sub1.ready() && sub2.ready() && sub3.ready(),
+
   };
 })(Profiles);
