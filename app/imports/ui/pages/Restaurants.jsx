@@ -24,16 +24,6 @@ class Restaurants extends React.Component {
       redirect: true });
   };
 
-  renderRedirect = (menu) => {
-    if (this.state.redirect) {
-      return <Redirect to={{
-        pathname: '/menu',
-        state: { id: `${menu}` },
-      }}
-      />;
-    }
-  };
-
   handleSearchChange = (e, { value }) => {
     this.setState({ isLoading: true, value });
 
@@ -58,6 +48,15 @@ class Restaurants extends React.Component {
 
   /** Render the page once subscriptions have been received. */
   renderPage() {
+
+    const { isLoading, value, results } = this.state;
+
+    if (this.state.redirect) {
+      const menu = Restaurant.findOne({ name: value });
+      const from = `/menu/${menu._id}`
+      return <Redirect to={from}/>;
+    };
+
     const searchBar = {
       paddingBottom: '5rem',
       paddingTop: '2rem',
@@ -68,8 +67,6 @@ class Restaurants extends React.Component {
       paddingRight: '8rem',
       paddingLeft: '8rem',
     };
-
-    const { isLoading, value, results } = this.state;
 
     return (
         <Container>
@@ -92,7 +89,6 @@ class Restaurants extends React.Component {
             </Message>
           </div>
           <div align='center' style={searchBar}>
-            {this.renderRedirect(this.props.restaurant._id)}
             <Search className='search_bar'
                     input={{ icon: 'search', iconPosition: 'left' }}
                     loading={isLoading}
