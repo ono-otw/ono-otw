@@ -58,8 +58,15 @@ class Cart extends React.Component {
               console.log(orderArray);
               console.log(orderCost);
               console.log(orderSize);
+              console.log(orderQuant);
 
-              const initialPrice = _.reduce(orderCost, (total, current) => (current + total), 0);
+              const totalOrder = _.map(orderCost, function (order, index) {
+                return order * orderQuant[index];
+              });
+
+              console.log(totalOrder);
+
+              const initialPrice = _.reduce(totalOrder, (total, current) => (current + total), 0);
               const tax = (initialPrice * 0.045).toFixed(2);
               const deliveryPrice = (2.50).toFixed(2);
               const sum = (+initialPrice + +tax + +deliveryPrice).toFixed(2);
