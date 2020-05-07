@@ -6,7 +6,6 @@ import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
 import { AcceptedOrders } from '../../api/acceptedorders/AcceptedOrders';
 import { PendingOrders } from '../../api/pendingorders/PendingOrders';
-import { Favorites } from '../../api/favorites/Favorites';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class AcceptOrderCard extends React.Component {
@@ -22,6 +21,7 @@ class AcceptOrderCard extends React.Component {
     const personWhoOrdered = this.props.pendingOrder.personWhoOrdered;
     const location = this.props.pendingOrder.location;
     const name = this.props.pendingOrder.name;
+    const size = this.props.pendingOrder.size;
 
     swal({
       title: 'Are you sure?',
@@ -35,7 +35,7 @@ class AcceptOrderCard extends React.Component {
             console.log('Accepting order');
             AcceptedOrders.insert({
               name, firstName, lastName, image, store, owner, venmo, quantity,
-              personWhoOrdered, location,
+              personWhoOrdered, location, size,
             });
             PendingOrders.remove(docID);
             this.forceUpdate();
@@ -73,7 +73,7 @@ class AcceptOrderCard extends React.Component {
                   </Header>
                   {this.props.pendingOrder.name.map((name, index) => (
                       <Label key={name} circular color={'teal'} style={{ backgroundColor: '#00887A' }}>
-                        {this.props.pendingOrder.quantity[index]} {name}
+                        {this.props.pendingOrder.quantity[index]} {name} - {this.props.pendingOrder.size[index]}
                       </Label>
                   ))}
                 </div>

@@ -14,7 +14,8 @@ const CartSchema = new SimpleSchema({
   price: Number,
   quantity: Array,
   'quantity.$': Number,
-  size: String,
+  size: Array,
+  'size.$': String,
   combined: { type: Boolean, defaultValue: false },
 }, { tracker: Tracker });
 

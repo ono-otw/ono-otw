@@ -19,6 +19,8 @@ const PendingOrdersSchema = new SimpleSchema({
   'quantity.$': Number,
   personWhoOrdered: String,
   location: String,
+  size: Array,
+  'size.$': String,
 }, { tracker: Tracker });
 
 /** Attach this schema to the collection. */

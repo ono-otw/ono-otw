@@ -43,6 +43,7 @@ class Cart extends React.Component {
               const orderArray = [];
               const orderCost = [];
               const orderQuant = [];
+              const orderSize = [];
 
               // loop through each cursor, adding the order into an orderArray
               cart.forEach(function (order) {
@@ -51,10 +52,12 @@ class Cart extends React.Component {
                 orderArray.push(order.name[0]);
                 orderQuant.push(order.quantity[0]);
                 orderCost.push(order.price);
+                orderSize.push(order.size[0]);
               });
 
               console.log(orderArray);
               console.log(orderCost);
+              console.log(orderSize);
 
               const initialPrice = _.reduce(orderCost, (total, current) => (current + total), 0);
               const tax = (initialPrice * 0.045).toFixed(2);
@@ -74,6 +77,7 @@ class Cart extends React.Component {
                       price: sum,
                       combined: true,
                       quantity: orderQuant,
+                      size: orderSize,
                     },
                   },
               );
@@ -92,6 +96,7 @@ class Cart extends React.Component {
             const personWhoOrdered = order.owner;
             const name = order.name;
             const cost = order.price;
+            const size = order.size;
 
             const item = _.reduce(order.quantity, (total, current) => (current + total), 0);
             const orderTime = new Date();
@@ -125,7 +130,7 @@ class Cart extends React.Component {
 
             PendingOrders.insert({
                   name, firstName, lastName, image, store, owner, venmo, quantity,
-                  personWhoOrdered, location,
+                  personWhoOrdered, location, size,
                 },
                 (error) => {
                   if (error) {

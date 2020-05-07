@@ -24,7 +24,7 @@ class DeliveryItem extends React.Component {
             <List as='ul'>
               {this.props.order.name.map((name, index) => (
                   <List.Item key={name}>
-                    {this.props.order.quantity[index]} {name}
+                    {this.props.order.quantity[index]} {name} ({this.props.order.size[index]})
                   </List.Item>
               ))}
             </List>
