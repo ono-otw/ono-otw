@@ -16,8 +16,6 @@ const defaultRestaurants = JSON.parse(Assets.getText('defaultRestaurants.json'))
 const defaultProfiles = JSON.parse(Assets.getText('defaultProfiles.json'));
 const defaultPendingOrder = JSON.parse(Assets.getText('defaultPendingOrder.json'));
 const defaultMenuItems = JSON.parse(Assets.getText('defaultMenuItems.json'));
-
-
 const defaultPastOrders = JSON.parse(Assets.getText('defaultPastOrders.json'));
 
 // /** Initialize the database with a default data document. */
