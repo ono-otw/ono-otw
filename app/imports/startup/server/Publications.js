@@ -9,7 +9,8 @@ import { Favorites } from '../../api/favorites/Favorites';
 import { PastOrder } from '../../api/pastorder/PastOrder';
 import { PendingOrders } from '../../api/pendingorders/PendingOrders';
 import { AcceptedOrders } from '../../api/acceptedorders/AcceptedOrders';
-import { DeliveredOrders } from '../../api/deliveredorders/DeliveredOrders';
+import { PastDelivery } from '../../api/pastdelivery/PastDelivery';
+
 
 // /** This subscription publishes only the documents associated with the logged in user */
 // Meteor.publish('Stuff', function publish() {
@@ -94,10 +95,10 @@ Meteor.publish('AcceptedOrders', function publish() {
   return this.ready();
 });
 
-Meteor.publish('DeliveredOrders', function publish() {
+Meteor.publish('PastDelivery', function publish() {
   if (this.userId) {
     const username = Meteor.users.findOne(this.userId).username;
-    return DeliveredOrders.find({ owner: username });
+    return PastDelivery.find({ owner: username });
   }
   return this.ready();
 });
