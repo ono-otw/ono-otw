@@ -10,7 +10,8 @@
     "quantity": [1, 1],
     "personWhoOrdered": "john@foo.com",
     "location": "POST 314. I'm the one wearing the green hat.",
-    "size": ["Small", "Large"]
+    "size": ["Small", "Large"],
+    "cost": 15.43
   },
   {
     "name": ["Chicken"],
@@ -23,6 +24,7 @@
     "quantity": [2],
     "personWhoOrdered": "admin@foo.com",
     "location": "Sinclair Library.",
-    "size": ["Large"]
+    "size": ["Large"],
+    "cost": 15.50
   }
 ]
