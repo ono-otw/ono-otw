@@ -1,8 +1,48 @@
-import { Item, Popup, Rating, List } from 'semantic-ui-react';
+import { Item, Popup, Rating, List, Label, Button } from 'semantic-ui-react';
 import React from 'react';
 import PropTypes from 'prop-types';
+import swal from 'sweetalert';
+import { Meteor } from 'meteor/meteor';
+import { AcceptedOrders } from '../../api/acceptedorders/AcceptedOrders';
+import { PastDelivery } from '../../api/pastdelivery/PastDelivery';
 
 class DeliveryItem extends React.Component {
+  finishOrder(docID) {
+    const owner = Meteor.user().username;
+    const store = this.props.order.store;
+    const orderTime = new Date();
+    const monthOption = { month: 'long' };
+    const month = new Intl.DateTimeFormat('en-US', monthOption).format(orderTime);
+    const day = orderTime.getDate();
+    const weekdayOption = { weekday: 'long' };
+    const weekday = new Intl.DateTimeFormat('en-US', weekdayOption).format(orderTime);
+    const item = _.reduce(this.props.order.quantity, (total, current) => (current + total), 0);
+    const cost = this.props.order.cost;
+
+    console.log(cost);
+    swal({
+      title: 'Wait!',
+      text: 'Are you sure you delivered the order?',
+      icon: 'warning',
+      buttons: ['No', 'Yes'],
+    })
+        .then((accept) => {
+          if (accept) {
+            console.log('Accepting order');
+            PastDelivery.insert({
+              owner, store, month, day, weekday, item, cost,
+            });
+            AcceptedOrders.remove(docID);
+            this.forceUpdate();
+            swal('Thank you!', {
+              icon: 'success',
+            });
+          } else {
+            swal('Order was not accepted.');
+          }
+        });
+  }
+
   render() {
     return (
         <Item>
@@ -28,6 +68,8 @@ class DeliveryItem extends React.Component {
                   </List.Item>
               ))}
             </List>
+            <Label pointing='right' basic size='small' color='green'>Click here when done with order!</Label>
+            <Button onClick={() => this.finishOrder(this.props.order._id)} color='green' icon='check'/>
           </Item.Content>
         </Item>
     );

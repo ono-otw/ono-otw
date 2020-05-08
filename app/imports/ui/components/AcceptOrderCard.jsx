@@ -22,19 +22,19 @@ class AcceptOrderCard extends React.Component {
     const location = this.props.pendingOrder.location;
     const name = this.props.pendingOrder.name;
     const size = this.props.pendingOrder.size;
+    const cost = this.props.pendingOrder.cost;
 
     swal({
       title: 'Are you sure?',
       text: 'Are you sure you want to accept this order?',
       icon: 'warning',
-      buttons: true,
-      dangerMode: true,
+      buttons: ['No', 'Yes'],
     })
         .then((accept) => {
           if (accept) {
             console.log('Accepting order');
             AcceptedOrders.insert({
-              name, firstName, lastName, image, store, owner, venmo, quantity,
+              name, firstName, lastName, image, store, owner, venmo, quantity, cost,
               personWhoOrdered, location, size,
             });
             PendingOrders.remove(docID);

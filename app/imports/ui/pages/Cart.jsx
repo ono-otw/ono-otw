@@ -29,7 +29,6 @@ class Cart extends React.Component {
       text: 'Submitting your order is final.',
       icon: 'warning',
       buttons: true,
-      dangerMode: true,
     })
         .then((yes) => {
           if (yes) {
@@ -137,7 +136,7 @@ class Cart extends React.Component {
 
             PendingOrders.insert({
                   name, firstName, lastName, image, store, owner, venmo, quantity,
-                  personWhoOrdered, location, size,
+                  personWhoOrdered, location, size, cost,
                 },
                 (error) => {
                   if (error) {

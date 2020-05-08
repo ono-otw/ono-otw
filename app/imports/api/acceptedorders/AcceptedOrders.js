@@ -21,6 +21,7 @@ const AcceptedOrdersSchema = new SimpleSchema({
   'size.$': String,
   personWhoOrdered: String,
   location: String,
+  cost: Number,
 }, { tracker: Tracker });
 
 /** Attach this schema to the collection. */
