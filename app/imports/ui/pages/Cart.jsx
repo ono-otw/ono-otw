@@ -29,7 +29,6 @@ class Cart extends React.Component {
       text: 'Submitting your order is final.',
       icon: 'warning',
       buttons: true,
-      dangerMode: true,
     })
         .then((yes) => {
           if (yes) {
