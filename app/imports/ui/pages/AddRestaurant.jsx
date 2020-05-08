@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid, Segment, Header } from 'semantic-ui-react';
-import { AutoForm, SubmitField, ErrorsField, TextField, MultiTextField } from 'uniforms-semantic';
+import { AutoForm, SubmitField, ErrorsField, TextField } from 'uniforms-semantic';
 import swal from 'sweetalert';
 import 'uniforms-bridge-simple-schema-2'; // required for Uniforms
 import SimpleSchema from 'simpl-schema';
@@ -25,6 +25,7 @@ export default class AddRestaurant extends React.Component {
   submit(data, formRef) {
     const { owner, name, bgimg, image, address, time, label } = data;
     const rating = 5;
+    const approved = 'true';
 
     Restaurant.insert({
           owner,
@@ -35,6 +36,7 @@ export default class AddRestaurant extends React.Component {
           time,
           rating,
           label,
+          approved,
         },
         (error) => {
           if (error) {
@@ -64,7 +66,7 @@ export default class AddRestaurant extends React.Component {
                     <TextField label='URL For Image' name='image'/>
                     <TextField label='Restaurant Address' name='address'/>
                     <TextField label='Approximate Wait Time' name='time'/>
-                    <MultiTextField label='Restaurant Labels' name='label.$'/>
+                    <TextField label='Restaurant Labels' name='label'/>
                     <SubmitField value='Submit'/>
                     <ErrorsField/>
                 </Segment>
