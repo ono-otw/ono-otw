@@ -137,7 +137,7 @@ class Cart extends React.Component {
 
             PendingOrders.insert({
                   name, firstName, lastName, image, store, owner, venmo, quantity,
-                  personWhoOrdered, location, size,
+                  personWhoOrdered, location, size, cost,
                 },
                 (error) => {
                   if (error) {
