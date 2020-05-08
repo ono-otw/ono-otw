@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import { _ } from 'meteor/underscore';
 import { Link } from 'react-router-dom';
 import { AcceptedOrders } from '../../api/acceptedorders/AcceptedOrders';
-import { PastOrder } from '../../api/pastorder/PastOrder';
 import DeliveryItem from '../components/DeliveryItem';
 
 class Deliveries extends React.Component {
