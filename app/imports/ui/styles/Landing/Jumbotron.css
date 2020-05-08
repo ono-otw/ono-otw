@@ -16,6 +16,8 @@
 .deliveryMan {
   bottom: 50%;
   position: relative;
+  animation: slideInLeft;
+  animation-duration: 1s;
 }
 
 
