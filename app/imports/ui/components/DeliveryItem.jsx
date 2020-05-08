@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
 import { AcceptedOrders } from '../../api/acceptedorders/AcceptedOrders';
-import { DeliveredOrders } from '../../api/deliveredorders/DeliveredOrders';
+import { PastDelivery } from '../../api/pastdelivery/PastDelivery';
 
 class DeliveryItem extends React.Component {
   finishOrder(docID) {
@@ -28,7 +28,7 @@ class DeliveryItem extends React.Component {
         .then((accept) => {
           if (accept) {
             console.log('Accepting order');
-            DeliveredOrders.insert({
+            PastDelivery.insert({
               name, firstName, lastName, image, store, owner, venmo, quantity,
               personWhoOrdered, location,
             });
