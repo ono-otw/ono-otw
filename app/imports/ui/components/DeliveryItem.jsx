@@ -68,6 +68,9 @@ class DeliveryItem extends React.Component {
                   </List.Item>
               ))}
             </List>
+            <Item.Description>
+              <b>Total: </b>${this.props.order.cost}
+            </Item.Description>
             <Label pointing='right' basic size='small' color='green'>Click here when done with order!</Label>
             <Button onClick={() => this.finishOrder(this.props.order._id)} color='green' icon='check'/>
           </Item.Content>
