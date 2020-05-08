@@ -3,16 +3,16 @@ import { Meteor } from 'meteor/meteor';
 import { Container, Input, Header, Menu, Loader, Card, Message, Modal, Button } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
+import { _ } from 'meteor/underscore';
 import { MenuItems } from '../../api/foodmenu/MenuItems';
 import { Restaurant } from '../../api/restaurant/Restaurant';
 import MenuitemCard from '../components/MenuItems/MenuitemCard';
-import { _ } from 'meteor/underscore';
 import Cart from './Cart';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class RestaurantMenus extends React.Component {
 
-  state = { activeItem: '' };
+  state = { activeItem: 'All' };
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
 
@@ -27,19 +27,26 @@ class RestaurantMenus extends React.Component {
     // console.log(this.props.menuitems);
     const menuItems = _.filter(this.props.menuitems, (entry) => entry.owner === restaurantOwner);
     const categories = _.where(menuItems, { label: tabName });
+    if (tabName === 'All') {
+      return (
+          <Card.Group>
+            {menuItems.map((p, index) => <MenuitemCard key={index} menuitem={p}/>)}
+          </Card.Group>
+      );
+    }
     // console.log(categories)
     // console.log(tabName)
     // console.log('Yes coffee')
+
     return (
         <Card.Group>
-        {categories.map((p, index) => <MenuitemCard key={index} menuitem={p}/>)}
-         </Card.Group>
-      );
+          {categories.map((p, index) => <MenuitemCard key={index} menuitem={p}/>)}
+        </Card.Group>
+    );
   }
 
   /** Render the page once subscriptions have been received. */
   renderPage() {
-
 
     const restaurantOwner = this.props.restaurant.owner;
     // console.log(restaurantOwner);
@@ -49,6 +56,7 @@ class RestaurantMenus extends React.Component {
     const categories = _.uniq(_.pluck(menuItems, 'label'));
 
     const { activeItem } = this.state;
+    console.log(this.state.activeItem);
 
     return (
         <div>
@@ -62,29 +70,23 @@ class RestaurantMenus extends React.Component {
               <div className='menu_search_bar'><Input size='large' icon='search'
                                                       placeholder='Search for a menu item'/></div>
               <Menu secondary className='menubartext'>
+                <Menu.Item active={activeItem === 'All'} name='All' onClick={this.handleItemClick}>All</Menu.Item>
                 {_.map(categories, (p, index) => <Menu.Item
                     key={index}
                     name={p}
                     onClick={this.handleItemClick}
                     active={activeItem === p}>
                 </Menu.Item>)}
-
-                {/* <Menu.Item className='menu_categories' name='Coffee' */}
-                {/*           active={activeItem === 'Coffee'} onClick={this.handleItemClick}/> */}
-                {/* <Menu.Item name='Tea' active={activeItem === 'Tea'} onClick={this.handleItemClick}/> */}
-                {/* <Menu.Item name='Pastries' active={activeItem === 'Pastries'} */}
-                {/*           onClick={this.handleItemClick}/> */}
-                {/* <Menu.Item name='Sandwiches' active={activeItem === 'Sandwiches'} */}
-                {/*           onClick={this.handleItemClick}/> */}
               </Menu>
 
               <hr style={{ borderTop: '2px solid #184470' }}/>
 
               <Message className='restaurant-message'>
                 <Message.Header>Click on the tabs to start looking!</Message.Header>
-                  Note: You can only order from the same restaurant! (Eg. Cannot mix Starbucks with Bale)
+                Note: You can only order from the same restaurant! (Eg. Cannot mix Starbucks with Bale)
               </Message>
-              {this.display(activeItem)}
+
+               {this.display(activeItem)}
 
               <div style={{ padding: '20px' }}>
               </div>
@@ -94,9 +96,11 @@ class RestaurantMenus extends React.Component {
                   trigger={
                     <Button style={{ background: '#184470', color: 'white' }}>
                       Show Cart</Button>} closeIcon
-                  style={{ background: 'transparent', border: '0',
+                  style={{
+                    background: 'transparent', border: '0',
                     boxShadow: '0px 0px 0px 0px rgba(34, 36, 38, 0.12), ' +
-                        '0px 0px 0px 0px rgba(34, 36, 38, 0.15)' }}
+                        '0px 0px 0px 0px rgba(34, 36, 38, 0.15)',
+                  }}
                   size={'small'}
               >
                 <Cart/>
