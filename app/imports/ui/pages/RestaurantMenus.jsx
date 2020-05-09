@@ -56,7 +56,7 @@ class RestaurantMenus extends React.Component {
     const categories = _.uniq(_.pluck(menuItems, 'label'));
 
     const { activeItem } = this.state;
-    console.log(this.state.activeItem);
+    // console.log(this.state.activeItem);
 
     return (
         <div>
@@ -66,7 +66,9 @@ class RestaurantMenus extends React.Component {
 
           <Container>
             <div align='center'>
-              <Header style={{ marginTop: '30px', fontSize: '40px' }}>{this.props.restaurant.name}</Header>
+              <Header inverted style={{ fontFamily: 'Karla, sans-serif', marginTop: '30px', fontSize: '40px' }}>
+                {this.props.restaurant.name}
+              </Header>
               <div className='menu_search_bar'><Input size='large' icon='search'
                                                       placeholder='Search for a menu item'/></div>
               <Menu secondary className='menubartext'>
