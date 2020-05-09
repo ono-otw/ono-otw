@@ -82,30 +82,93 @@
   },
   {
     "owner": "jerseymikes@foo.com",
-    "vendor": "Jersey Mike",
+    "vendor": "Jersey Mikes",
     "name": "Jersey Shore's Favorite",
     "image": "https://www.jerseymikes.com/media/static/menu/products/lg/2-jersey-fav-reg.jpg",
-    "cost": [9.30, 16.70, 9.30],
+    "cost": [6.98, 8.45, 15.89],
     "label": "Hot Subs",
-    "size": ["Regular", "Giant", "Tub"]
+    "size": ["Mini", "Regular", "Giant"]
   },
   {
     "owner": "jerseymikes@foo.com",
-    "vendor": "Jersey Mike",
+    "vendor": "Jersey Mikes",
     "name": "Mike's Famous Philly",
     "image": "https://www.jerseymikes.com/media/static/menu/products/lg/17-philly-cheesesteak-reg.jpg",
-    "cost": [9.30, 16.70, 9.30],
+    "cost": [9.91, 17.22],
     "label": "Hot Subs",
-    "size": ["Regular", "Giant", "Tub"]
+    "size": ["Regular", "Giant"]
   },
   {
     "owner": "jerseymikes@foo.com",
-    "vendor": "Jersey Mike",
+    "vendor": "Jersey Mikes",
     "name": "BBQ Beef",
     "image": "https://www.jerseymikes.com/media/static/menu/products/sm/bbq-beef-reg.jpg",
-    "cost": [9.50, 17.20, 9.50],
+    "cost": [9.91, 17.22],
     "label": "Hot Subs",
-    "size": ["Regular", "Giant", "Tub"]
+    "size": ["Regular", "Giant"]
+  },
+  {
+    "owner": "jerseymikes@foo.com",
+    "vendor": "Jersey Mikes",
+    "name": "Jersey Shore's Favorite",
+    "image": "https://www.jerseymikes.com/media/static/menu/products/sm/2-jersey-fav-reg.jpg",
+    "cost": [6.98, 8.45, 15.89],
+    "label": "Cold Subs",
+    "size": ["Mini", "Regular", "Giant"]
+  },
+  {
+    "owner": "jerseymikes@foo.com",
+    "vendor": "Jersey Mikes",
+    "name": "Club Supreme",
+    "image": "https://www.jerseymikes.com/media/static/menu/products/sm/9-club-supreme-reg.jpg",
+    "cost": [7.91, 10.97, 18.55],
+    "label": "Cold Subs",
+    "size": ["Mini", "Regular", "Giant"]
+  },
+  {
+    "owner": "jerseymikes@foo.com",
+    "vendor": "Jersey Mikes",
+    "name": "Turkey and Provolone",
+    "image": "https://www.jerseymikes.com/media/static/menu/products/sm/7-turkey-reg.jpg",
+    "cost": [7.25, 9.64, 17.22],
+    "label": "Cold Subs",
+    "size": ["Mini", "Regular", "Giant"]
+  },
+  {
+    "owner": "jerseymikes@foo.com",
+    "vendor": "Jersey Mikes",
+    "name": "Brownie",
+    "image": "https://www.jerseymikes.com/media/static/menu/products/sm/brownie.jpg",
+    "cost": [2.51],
+    "label": "Misc",
+    "size": ["1 pc"]
+  },
+  {
+    "owner": "jerseymikes@foo.com",
+    "vendor": "Jersey Mikes",
+    "name": "Cookie",
+    "image": "https://www.jerseymikes.com/media/static/menu/products/sm/cookie.jpg",
+    "cost": [0.86, 2.46],
+    "label": "Misc",
+    "size": ["1 pc.", "3 pc."]
+  },
+  {
+    "owner": "jerseymikes@foo.com",
+    "vendor": "Jersey Mikes",
+    "name": "Giant Drink and Chips",
+    "image": "https://www.jerseymikes.com/media/static/menu/products/sm/combo-giant.jpg",
+    "cost": [3.71, 3.98],
+    "label": "Misc",
+    "size": ["22 oz.", "32 oz."]
+  },
+  {
+    "owner": "jerseymikes@foo.com",
+    "vendor": "Jersey Mikes",
+    "name": "Pureleaf Tea & Chips",
+    "image": "https://www.jerseymikes.com/media/static/menu/products/sm/pure-leaf-tea.jpg",
+    "cost": [3.05],
+    "label": "Misc",
+    "size": ["Bottle"]
   },
   {
     "owner": "shakashaka@foo.com",
@@ -114,7 +177,7 @@
     "image": "http://shakashakateaexpress.com/wp-content/uploads/2014/09/ShakaShaka_15.jpg",
     "cost": [5.49, 6.49, 6.99],
     "label": "Smoothie",
-    "size": ["Large", "Medium", "XL"]
+    "size": ["Medium", "Large", "XL"]
   },
   {
     "owner": "shakashaka@foo.com",
@@ -123,7 +186,61 @@
     "image": "http://shakashakateaexpress.com/wp-content/uploads/2014/09/ShakaShaka_30.jpg",
     "cost": [5.49, 6.49, 6.99],
     "label": "Smoothie",
-    "size": ["Large", "Medium", "XL"]
+    "size": ["Medium", "Large", "XL"]
+  },
+  {
+    "owner": "shakashaka@foo.com",
+    "vendor": "Shaka Shaka",
+    "name": "Grape Smoothie",
+    "image": "http://shakashakateaexpress.com/wp-content/uploads/2014/10/Grape-Smoothie-2-150x150.jpg",
+    "cost": [5.99, 6.99, 7.49],
+    "label": "Smoothie",
+    "size": ["Medium", "Large", "XL"]
+  },
+  {
+    "owner": "shakashaka@foo.com",
+    "vendor": "Shaka Shaka",
+    "name": "Green Tea",
+    "image": "http://shakashakateaexpress.com/wp-content/uploads/2014/10/Green-Tea-150x150.jpg",
+    "cost": [2.99, 3.59, 4.09],
+    "label": "Tea",
+    "size": ["Medium", "Large", "XL"]
+  },
+  {
+    "owner": "shakashaka@foo.com",
+    "vendor": "Shaka Shaka",
+    "name": "Black Lemon Tea",
+    "image": "http://shakashakateaexpress.com/wp-content/uploads/2014/10/Green-Tea-150x150.jpg",
+    "cost": [3.59, 3.89, 4.39],
+    "label": "Tea",
+    "size": ["Medium", "Large", "XL"]
+  },
+  {
+    "owner": "shakashaka@foo.com",
+    "vendor": "Shaka Shaka",
+    "name": "Green Lemon Tea",
+    "image": "http://shakashakateaexpress.com/wp-content/uploads/2014/10/Green-Tea-Lemon-150x150.jpg",
+    "cost": [3.59, 3.89, 4.39],
+    "label": "Tea",
+    "size": ["Medium", "Large", "XL"]
+  },
+  {
+    "owner": "shakashaka@foo.com",
+    "vendor": "Shaka Shaka",
+    "name": "Bubble Black Milk Tea",
+    "image": "http://shakashakateaexpress.com/wp-content/uploads/2014/09/ShakaShaka_21.jpg",
+    "cost": [3.99, 4.59, 5.09],
+    "label": "Milk Tea",
+    "size": ["Medium", "Large", "XL"]
+  },
+  {
+    "owner": "shakashaka@foo.com",
+    "vendor": "Shaka Shaka",
+    "name": "Taro Black Milk Tea",
+    "image": "http://shakashakateaexpress.com/wp-content/uploads/2014/09/ShakaShaka_16.jpg",
+    "cost": [4.99, 5.99, 6.49],
+    "label": "Milk Tea",
+    "size": ["Medium", "Large", "XL"]
   },
   {
     "owner": "jambajuice@foo.com",
@@ -268,5 +385,77 @@
     "cost": [4.24, 5.04, 5.57],
     "label": "Coffee",
     "size": ["Small", "Medium", "Large"]
+  },
+  {
+    "owner": "subway@foo.com",
+    "vendor": "Subway",
+    "name": "Black Forest Ham",
+    "image": "https://www.subway.com/ns/images/menu/USA/ENG/Category_767x767_BlackForestHam_Sandwiches_@1x.jpg",
+    "cost": [4.99, 6.49],
+    "label": "Sandwiches",
+    "size": ["Six inch", "Footlong"]
+  },
+  {
+    "owner": "subway@foo.com",
+    "vendor": "Subway",
+    "name": "Chicken and Bacon Ranch Melt",
+    "image": "https://www.subway.com/ns/images/menu/USA/ENG/Category_767x767_ChickenBaconRanchMelt_Sandwiches_@1x.jpg",
+    "cost": [6.29, 9.49],
+    "label": "Sandwiches",
+    "size": ["Six inch", "Footlong"]
+  },
+  {
+    "owner": "subway@foo.com",
+    "vendor": "Subway",
+    "name": "Meatball Marinara",
+    "image": "https://www.subway.com/ns/images/menu/USA/ENG/Category_767x767_MeatballMarinara_Sandwiches_@1x.jpg",
+    "cost": [4.99, 7.29],
+    "label": "Sandwiches",
+    "size": ["Six inch", "Footlong"]
+  },
+  {
+    "owner": "subway@foo.com",
+    "vendor": "Subway",
+    "name": "Spicy Italian",
+    "image": "https://www.subway.com/ns/images/menu/USA/ENG/Category_767x767_SpicyItalian_Sandwiches_@1x.jpg",
+    "cost": [5.99, 8.49],
+    "label": "Sandwiches",
+    "size": ["Six inch", "Footlong"]
+  },
+  {
+    "owner": "subway@foo.com",
+    "vendor": "Subway",
+    "name": "Sweet Onion Chicken Teriyaki",
+    "image": "https://www.subway.com/ns/images/menu/USA/ENG/Category_767x767_SweetOnionChickenTeriyaki_Sandwiches_@1x.jpg",
+    "cost": [5.29, 8.49],
+    "label": "Sandwiches",
+    "size": ["Six inch", "Footlong"]
+  },
+  {
+    "owner": "subway@foo.com",
+    "vendor": "Subway",
+    "name": "Black Forest Ham Salad",
+    "image": "https://www.subway.com/ns/images/menu/USA/ENG/Category_767x767_BlackForestHamSalad_Salads_1x.jpg",
+    "cost": [7.78],
+    "label": "Salads",
+    "size": ["Bowl"]
+  },
+  {
+    "owner": "subway@foo.com",
+    "vendor": "Subway",
+    "name": "Meatball Marinara Salad",
+    "image": "https://www.subway.com/ns/images/menu/USA/ENG/Category_767x767_BlackForestHamSalad_Salads_1x.jpg",
+    "cost": [6.48],
+    "label": "Salads",
+    "size": ["Bowl"]
+  },
+  {
+    "owner": "subway@foo.com",
+    "vendor": "Subway",
+    "name": "Veggie Delite Salad",
+    "image": "https://www.subway.com/ns/images/menu/USA/ENG/Category_767x767_VeggieDeliteSalad_Salads_@1x.jpg",
+    "cost": [5.98],
+    "label": "Salads",
+    "size": ["Bowl"]
   }
 ]
