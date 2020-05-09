@@ -57,9 +57,9 @@
   {
     "owner": "pandaexpress@foo.com",
     "name": "Panda Express",
-    "bgimg": "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/panda-expres-1584979939.jpg?crop=1.00xw:0.502xh;0,0.436xh&resize=1200:*",
+    "bgimg": "https://raster-static.postmates.com/?url=com.postmates.img.prod.s3.amazonaws.com/49d3b98e-d6cb-48d5-b328-4f5825bf5440/orig.jpg&quality=90&w=1500&h=900&mode=crop&format=jpg&v=4",
     "address": "2560 McCarthy mall",
-    "image": "https://d1yjjnpx0p53s8.cloudfront.net/styles/logo-thumbnail/s3/0010/8217/brand.gif?itok=nKwfh7NR",
+    "image": "https://cdn.i-scmp.com/sites/default/files/styles/768x768/public/d8/images/methode/2019/09/18/a095cc92-d85b-11e9-80eb-3aa57b6d2433_image_hires_152833.jpg?itok=vweU4sRx&v=1568791722",
     "rating": 4.0,
     "time": 5,
     "label": ["Chinese"],
@@ -74,6 +74,28 @@
     "rating": 4.4,
     "time": 5,
     "label": ["Coffee", "Donuts"],
+    "approved": true
+  },
+  {
+    "owner": "shakashaka@foo.com",
+    "name": "Shaka Shaka",
+    "bgimg": "http://shakashakateaexpress.com/wp-content/uploads/2014/09/ShakaShaka_19.jpg",
+    "address": "2560 McCarthy mall",
+    "image": "https://s3-media0.fl.yelpcdn.com/bphoto/k-9VnW-n-WcITbiPhFde0g/l.jpg",
+    "rating": 4.5,
+    "time": 5,
+    "label": ["Milk Tea", "Smoothies"],
+    "approved": true
+  },
+  {
+    "owner": "subway@foo.com",
+    "name": "Subway",
+    "bgimg": "https://d1ralsognjng37.cloudfront.net/591aa820-504c-4e37-b0cf-65f502a40512.jpeg",
+    "address": "2465 Campus Rd Cc 213",
+    "image": "https://media.farandwide.com/30/5c/305cd21f532d448388f10e807d153a29.jpeg",
+    "rating": 2.5,
+    "time": 5,
+    "label": ["Sandwiches"],
     "approved": true
   }
 ]
