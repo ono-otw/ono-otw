@@ -69,7 +69,6 @@ class EditRestaurant extends React.Component {
               <AutoForm schema={RestaurantSchema} onSubmit={data => this.submit(data)} model={this.props.doc}>
                 <Segment className='signup-form' style={formPad}>
                   <TextField
-                      disabled
                       label='Name'
                       name='name'/>
                   <Grid columns={2} style={rowPad}>

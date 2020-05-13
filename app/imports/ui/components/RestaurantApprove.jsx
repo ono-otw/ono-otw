@@ -41,7 +41,7 @@ class RestaurantApprove extends React.Component {
     return (
         <div>
           <List>
-            <Grid columns={5}>
+            <Grid columns={2}>
               <Grid.Column>
                 <Header>{this.props.restaurants.name}</Header>
               </Grid.Column>
@@ -60,8 +60,6 @@ class RestaurantApprove extends React.Component {
                     <RestaurantCard restaurant={this.props.restaurants}/>
                   </Card.Group>
                 </Modal>
-              </Grid.Column>
-              <Grid.Column>
                 <Button className='accept'
                         onClick={() => this.updateItem(this.props.restaurants._id)}>Accept</Button>
               </Grid.Column>
