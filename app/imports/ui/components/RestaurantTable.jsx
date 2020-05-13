@@ -8,12 +8,13 @@ import { Restaurant } from '../../api/restaurant/Restaurant';
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class RestaurantTable extends React.Component {
   removeItem(docID) {
-    console.log(`restaurant to delete is: ${docID}`);
+    // console.log(`restaurant to delete is: ${docID}`);
     swal({
       title: 'Do you really want to delete this restaurant?',
-      text: 'You cant get it back once you do!!',
+      text: 'You can\'t get it back once you do!',
       dangerMode: true,
       icon: 'warning',
+      buttons: ['No', 'Yes'],
     })
     /* eslint-disable-next-line */
   .then((willDelete) => {
