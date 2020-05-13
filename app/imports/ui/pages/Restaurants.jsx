@@ -103,7 +103,7 @@ class Restaurants extends React.Component {
           </div>
             <Card.Group itemsPerRow='4' centered className='restaurant_card'>
               {this.props.restaurant.map((restaurant, index) => <
-                  RestaurantCard key={index} restaurant={restaurant}/>)}
+                      RestaurantCard key={index} restaurant={restaurant}/>)}
             </Card.Group>
         </Container>
     );
@@ -125,7 +125,7 @@ export default withTracker(() => {
   const subscription1 = Meteor.subscribe('Favorites');
 
   return {
-    restaurant: Restaurant.find({}).fetch(),
+    restaurant: Restaurant.find({ approved: true }).fetch(),
     ready: subscription.ready() && subscription1.ready(),
   };
 })(Restaurants);

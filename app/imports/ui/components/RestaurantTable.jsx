@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, Header, Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import swal from 'sweetalert';
 import { Restaurant } from '../../api/restaurant/Restaurant';
 
@@ -40,6 +40,9 @@ class RestaurantTable extends React.Component {
             </Grid.Column>
             <Grid.Column>
               <Button color='red' basic onClick={() => this.removeItem(this.props.restaurants._id)}>Delete</Button>
+              <Link to={`/restaurant/edit/${this.props.restaurants._id}`}>
+                <Button color='blue' basic >Edit</Button>
+              </Link>
             </Grid.Column>
           </Grid>
         </div>

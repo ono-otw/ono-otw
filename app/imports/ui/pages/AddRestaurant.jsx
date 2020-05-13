@@ -25,7 +25,7 @@ export default class AddRestaurant extends React.Component {
   submit(data, formRef) {
     const { owner, name, bgimg, image, address, time, label } = data;
     const rating = 5;
-    const approved = 'true';
+    const approved = false;
 
     Restaurant.insert({
           owner,
@@ -48,18 +48,27 @@ export default class AddRestaurant extends React.Component {
         });
   }
 
+
+
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   render() {
     let fRef = null;
+
+    const formPad = {
+      paddingTop: '4rem',
+      paddingRight: '6rem',
+      paddingLeft: '6rem',
+    };
+
     return (
         <div className='peach padding'>
           <Grid container centered>
             <Grid.Column>
-              <Header as="h2" textAlign="center">Add Restaurant Form</Header>
+              <Header as="h2" textAlign="center" inverted>Add Restaurant Form</Header>
               <AutoForm ref={ref => {
                 fRef = ref;
               }} schema={formSchema} onSubmit={data => this.submit(data, fRef)}>
-                <Segment>
+                <Segment className='signup-form' style={formPad}>
                     <TextField label='Name of Restaurant' name='name'/>
                     <TextField label='Owner' name='owner' />
                     <TextField label='URL For Background Image' name='bgimg'/>

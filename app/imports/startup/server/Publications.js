@@ -39,7 +39,7 @@ Meteor.publish('Profile', function publish() {
 });
 
 Meteor.publish('Restaurant', function publish() {
-  return Restaurant.find({ approved: true });
+  return Restaurant.find({});
 });
 
 
