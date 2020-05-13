@@ -111,7 +111,10 @@ class Cart extends React.Component {
             const day = orderTime.getDate();
             const weekdayOption = { weekday: 'long' };
             const weekday = new Intl.DateTimeFormat('en-US', weekdayOption).format(orderTime);
+            const deliverer = Meteor.user().username;
+            const hasRated = false;
 
+            console.log(deliverer);
             console.log(day);
             console.log(month);
             console.log(weekday);
@@ -119,7 +122,7 @@ class Cart extends React.Component {
             console.log(cost);
             console.log(owner);
             console.log(store);
-            PastOrder.insert({ owner, store, month, day, weekday, item, cost });
+            PastOrder.insert({ owner, store, month, day, weekday, item, cost, deliverer, hasRated });
 
             // console.log(store);
             // console.log(profile);

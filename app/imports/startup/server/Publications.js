@@ -1,6 +1,5 @@
 import { Meteor } from 'meteor/meteor';
 import { Roles } from 'meteor/alanning:roles';
-import { Stuffs } from '../../api/stuff/Stuff';
 import { Profile } from '../../api/profile/Profile';
 import { Restaurant } from '../../api/restaurant/Restaurant';
 import { MenuItems } from '../../api/foodmenu/MenuItems';
@@ -10,7 +9,7 @@ import { PastOrder } from '../../api/pastorder/PastOrder';
 import { PendingOrders } from '../../api/pendingorders/PendingOrders';
 import { AcceptedOrders } from '../../api/acceptedorders/AcceptedOrders';
 import { PastDelivery } from '../../api/pastdelivery/PastDelivery';
-
+import { Ratings } from '../../api/ratings/Ratings';
 
 // /** This subscription publishes only the documents associated with the logged in user */
 // Meteor.publish('Stuff', function publish() {
@@ -31,11 +30,7 @@ import { PastDelivery } from '../../api/pastdelivery/PastDelivery';
 
 /** This subscription publishes only the documents associated with the logged in user */
 Meteor.publish('Profile', function publish() {
-  if (this.userId) {
-    const username = Meteor.users.findOne(this.userId).username;
-    return Profile.find({ owner: username });
-  }
-  return this.ready();
+  return Profile.find({});
 });
 
 Meteor.publish('Restaurant', function publish() {
@@ -101,4 +96,8 @@ Meteor.publish('PastDelivery', function publish() {
     return PastDelivery.find({ owner: username });
   }
   return this.ready();
+});
+
+Meteor.publish('Ratings', function publish() {
+  return Ratings.find();
 });

@@ -3,23 +3,16 @@ import SimpleSchema from 'simpl-schema';
 import { Tracker } from 'meteor/tracker';
 
 /** Define a Mongo collection to hold the data. */
-const PastOrder = new Mongo.Collection('PastOrder');
+const Ratings = new Mongo.Collection('Ratings');
 
 /** Define a schema to specify the structure of each document in the collection. */
-const PastOrderSchema = new SimpleSchema({
+const RatingsSchema = new SimpleSchema({
   owner: String,
-  store: String,
-  month: String,
-  day: String,
-  weekday: String,
-  item: Number,
-  cost: Number,
-  deliverer: String,
-  hasRated: { type: Boolean, defaultValue: false },
+  rating: { type: Number, defaultValue: 0 },
 }, { tracker: Tracker });
 
 /** Attach this schema to the collection. */
-PastOrder.attachSchema(PastOrderSchema);
+Ratings.attachSchema(RatingsSchema);
 
 /** Make the collection and schema available to other code. */
-export { PastOrder, PastOrderSchema };
+export { Ratings, RatingsSchema };

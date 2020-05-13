@@ -6,7 +6,9 @@
     "day": "10",
     "weekday": "Friday",
     "item": 3,
-    "cost": 27.12
+    "cost": 27.12,
+    "deliverer": "john@foo.com",
+    "hasRated": false
   },
   {
     "owner": "john@foo.com",
@@ -15,6 +17,19 @@
     "day": "25",
     "weekday": "Saturday",
     "item": 1,
-    "cost": 10.12
+    "cost": 10.12,
+    "deliverer": "admin@foo.com",
+    "hasRated": false
+  },
+  {
+    "owner": "john@foo.com",
+    "store": "Shaka Shaka",
+    "month": "April",
+    "day": "26",
+    "weekday": "Sunday",
+    "item": 1,
+    "cost": 10.12,
+    "deliverer": "admin@foo.com",
+    "hasRated": true
   }
 ]
