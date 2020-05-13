@@ -12,51 +12,54 @@ class RatingCard extends React.Component {
 
   getOwner = () => this.props.torate.deliverer;
 
-  handleRate = (e, { rating }) => this.setState({ rating },
-          () => {
-            const owner = this.getOwner();
-            Ratings.insert({ owner, rating });
-          });
-
-  updateHasRated(pastOrderID, profileID) {
-    // PastOrder.update(
-    //     { _id: pastOrderID },
-    //     {
-    //       $set: {
-    //         hasRated: true,
-    //       },
-    //     },
-    // );
-
+  updateProfileRate = () => {
     const userRate = Ratings.find({ owner: this.props.torate.deliverer });
     const count = Ratings.find({ owner: this.props.torate.deliverer }).count();
     const rateArray = [];
     userRate.forEach(function (order) {
       // console.log(order.rating);
       rateArray.push(order.rating);
-    })
+    });
 
     let updatedRating = 0;
     if (count === 0) {
-      updatedRating = 1;
+      updatedRating = 0;
     } else {
       updatedRating = _.reduce(rateArray, (total, current) => (current + total), 0) / count;
     }
-
-    console.log(updatedRating);
-
     const newRating = Math.ceil(updatedRating);
     console.log(newRating);
+    return newRating;
+  };
 
-    Profile.update(
-        { _id: profileID },
-        {
-          $set: {
-            rating: newRating,
-          },
-        },
-    );
-  }
+  handleRate = (e, { rating }) => this.setState({ rating },
+          () => {
+            const owner = this.getOwner();
+            Ratings.insert({ owner, rating });
+
+            const newRating = this.updateProfileRate();
+            const personToRate = Profile.findOne({ owner: owner });
+
+            Profile.update(
+                { _id: personToRate._id },
+                {
+                  $set: {
+                    rating: newRating,
+                  },
+                },
+            );
+
+            PastOrder.update(
+                { _id: this.props.torate._id },
+                {
+                  $set: {
+                    hasRated: true,
+                  },
+                },
+            );
+
+          });
+
 
   /** Render the page once subscriptions have been received. */
   render() {
@@ -82,7 +85,6 @@ class RatingCard extends React.Component {
                       defaultRating={0}
                       maxRating={5}
                       onRate={this.handleRate}
-                      onClick={() => this.updateHasRated(this.props.torate._id, personToRate._id)}
               />
             </Item.Description>
           </Item.Content>

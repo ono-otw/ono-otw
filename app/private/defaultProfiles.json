@@ -5,7 +5,7 @@
     "lastName": "Foo",
     "image": "https://66.media.tumblr.com/6f81aae47dccc3f05bbc224352cdfd4a/tumblr_nvrqvvpMy51qblb6po1_1280.jpg",
     "venmo": "adminvenmo",
-    "rating": 3
+    "rating": 0
   },
   {
     "owner": "john@foo.com",
@@ -13,6 +13,6 @@
     "lastName": "Doe",
     "image": "https://i.insider.com/5df126b679d7570ad2044f3e?width=1100&format=jpeg&auto=webp",
     "venmo": "johnd1",
-    "rating": 5
+    "rating": 0
   }
 ]
