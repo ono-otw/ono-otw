@@ -22,6 +22,7 @@ import ListStuff from '../pages/ListStuff';
 import Deliveries from '../pages/Deliveries';
 import AddRestaurant from '../pages/AddRestaurant';
 import EditRestaurant from '../pages/EditRestaurant';
+import Rating from '../pages/Rating';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -42,7 +43,7 @@ class App extends React.Component {
               <Route path="/restaurants" component={Restaurants}/>
               <Route path="/resturant-signup" component={ResturantSignup}/>
               <Route path="/menu/:_id" component={Menu}/>
-              {/* <Route path="/tracking" component={Tracking}/> */}
+               <Route path="/rate" component={Rating}/>
               <Route path="/cart" component={Cart}/>
               <ProtectedRoute path="/deliver" component={Deliveries}/>
               <Route path="/accept" component={AcceptOrder}/>
