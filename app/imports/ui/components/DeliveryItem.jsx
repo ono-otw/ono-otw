@@ -6,6 +6,8 @@ import { Meteor } from 'meteor/meteor';
 import { AcceptedOrders } from '../../api/acceptedorders/AcceptedOrders';
 import { PastDelivery } from '../../api/pastdelivery/PastDelivery';
 import { Profile } from '../../api/profile/Profile';
+import { PastOrder } from '../../api/pastorder/PastOrder';
+
 
 class DeliveryItem extends React.Component {
   finishOrder(docID) {
@@ -19,8 +21,12 @@ class DeliveryItem extends React.Component {
     const weekday = new Intl.DateTimeFormat('en-US', weekdayOption).format(orderTime);
     const item = _.reduce(this.props.order.quantity, (total, current) => (current + total), 0);
     const cost = this.props.order.cost;
+    const hasRated = false;
+    const deliverer = this.props.order.personWhoOrdered;
 
-    console.log(cost);
+    console.log(owner)
+
+    // console.log(cost);
     swal({
       title: 'Wait!',
       text: 'Are you sure you delivered the order?',
@@ -33,6 +39,10 @@ class DeliveryItem extends React.Component {
             PastDelivery.insert({
               owner, store, month, day, weekday, item, cost,
             });
+
+            PastOrder.insert({ owner: deliverer, store, month, day, weekday,
+              item, cost, deliverer: owner, hasRated });
+
             AcceptedOrders.remove(docID);
             this.forceUpdate();
             swal('Thank you!', {
