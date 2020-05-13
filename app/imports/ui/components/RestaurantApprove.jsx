@@ -64,7 +64,6 @@ class RestaurantApprove extends React.Component {
               <Grid.Column>
                 <Button className='accept'
                         onClick={() => this.updateItem(this.props.restaurants._id)}>Accept</Button>
-                <Button className='deny'>Deny</Button>
               </Grid.Column>
             </Grid>
           </List>
