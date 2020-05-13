@@ -21,6 +21,8 @@ import ResturantSignup from '../pages/ResturantSignup';
 import ListStuff from '../pages/ListStuff';
 import Deliveries from '../pages/Deliveries';
 import AddRestaurant from '../pages/AddRestaurant';
+import EditRestaurant from '../pages/EditRestaurant';
+import Rating from '../pages/Rating';
 import Tracking from '../pages/Tracking'
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -37,9 +39,11 @@ class App extends React.Component {
               <Route path="/signout" component={Signout}/>
               <Route path="/profiles" component={Profiles}/>
               <Route path="/edit/:_id" component={EditProfile}/>
+              <Route path="/restaurant/edit/:_id" component={EditRestaurant}/>
               <Route path="/restaurants" component={Restaurants}/>
               <Route path="/resturant-signup" component={ResturantSignup}/>
               <Route path="/menu/:_id" component={Menu}/>
+              <Route path="/rate" component={Rating}/>
               <Route path="/tracking" component={Tracking}/>
               <Route path="/cart" component={Cart}/>
               <ProtectedRoute path="/deliver" component={Deliveries}/>

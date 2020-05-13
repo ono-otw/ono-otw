@@ -1,0 +1,20 @@
+[
+  {
+    "owner": "admin@foo.com",
+    "store": "Raising Cane's",
+    "month": "April",
+    "day": "13",
+    "weekday": "Friday",
+    "item": 2,
+    "cost": 23.12
+  },
+  {
+    "owner": "john@foo.com",
+    "store": "Starbucks",
+    "month": "April",
+    "day": "25",
+    "weekday": "Saturday",
+    "item": 2,
+    "cost": 12.12
+  }
+]

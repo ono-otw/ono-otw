@@ -6,6 +6,7 @@ import { Restaurant } from '../../api/restaurant/Restaurant';
 import { PastOrder } from '../../api/pastorder/PastOrder';
 import { PendingOrders } from '../../api/pendingorders/PendingOrders';
 import { MenuItems } from '../../api/foodmenu/MenuItems';
+import { PastDelivery } from '../../api/pastdelivery/PastDelivery';
 /* eslint-disable no-console */
 
 const testingCart = JSON.parse(Assets.getText('testingCart.json'));
@@ -16,9 +17,9 @@ const defaultRestaurants = JSON.parse(Assets.getText('defaultRestaurants.json'))
 const defaultProfiles = JSON.parse(Assets.getText('defaultProfiles.json'));
 const defaultPendingOrder = JSON.parse(Assets.getText('defaultPendingOrder.json'));
 const defaultMenuItems = JSON.parse(Assets.getText('defaultMenuItems.json'));
-
-
 const defaultPastOrders = JSON.parse(Assets.getText('defaultPastOrders.json'));
+const defaultPastDelivery = JSON.parse(Assets.getText('defaultPastDelivery.json'));
+
 
 // /** Initialize the database with a default data document. */
 // function addData(data) {
@@ -100,4 +101,15 @@ function addPastOrders(data) {
 if (PastOrder.find().count() === 0) {
   console.log('Creating past order data.');
   defaultPastOrders.map(data => addPastOrders(data));
+}
+
+/** Initialize the database with a default pending delivery document. */
+function addPastDelivery(data) {
+  console.log(` Adding: Past orders: ${data.store} for ${data.owner}`);
+  PastDelivery.insert(data);
+}
+
+if (PastDelivery.find().count() === 0) {
+  console.log('Creating past delivery data.');
+  defaultPastDelivery.map(data => addPastDelivery(data));
 }

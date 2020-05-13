@@ -29,7 +29,6 @@ class Cart extends React.Component {
       text: 'Submitting your order is final.',
       icon: 'warning',
       buttons: true,
-      dangerMode: true,
     })
         .then((yes) => {
           if (yes) {
@@ -43,6 +42,7 @@ class Cart extends React.Component {
               const orderArray = [];
               const orderCost = [];
               const orderQuant = [];
+              const orderSize = [];
 
               // loop through each cursor, adding the order into an orderArray
               cart.forEach(function (order) {
@@ -51,12 +51,21 @@ class Cart extends React.Component {
                 orderArray.push(order.name[0]);
                 orderQuant.push(order.quantity[0]);
                 orderCost.push(order.price);
+                orderSize.push(order.size[0]);
               });
 
               console.log(orderArray);
               console.log(orderCost);
+              console.log(orderSize);
+              console.log(orderQuant);
 
-              const initialPrice = _.reduce(orderCost, (total, current) => (current + total), 0);
+              const totalOrder = _.map(orderCost, function (order, index) {
+                return order * orderQuant[index];
+              });
+
+              console.log(totalOrder);
+
+              const initialPrice = _.reduce(totalOrder, (total, current) => (current + total), 0);
               const tax = (initialPrice * 0.045).toFixed(2);
               const deliveryPrice = (2.50).toFixed(2);
               const sum = (+initialPrice + +tax + +deliveryPrice).toFixed(2);
@@ -74,6 +83,7 @@ class Cart extends React.Component {
                       price: sum,
                       combined: true,
                       quantity: orderQuant,
+                      size: orderSize,
                     },
                   },
               );
@@ -92,6 +102,7 @@ class Cart extends React.Component {
             const personWhoOrdered = order.owner;
             const name = order.name;
             const cost = order.price;
+            const size = order.size;
 
             const item = _.reduce(order.quantity, (total, current) => (current + total), 0);
             const orderTime = new Date();
@@ -100,7 +111,10 @@ class Cart extends React.Component {
             const day = orderTime.getDate();
             const weekdayOption = { weekday: 'long' };
             const weekday = new Intl.DateTimeFormat('en-US', weekdayOption).format(orderTime);
+            const deliverer = Meteor.user().username;
+            const hasRated = false;
 
+            console.log(deliverer);
             console.log(day);
             console.log(month);
             console.log(weekday);
@@ -108,7 +122,7 @@ class Cart extends React.Component {
             console.log(cost);
             console.log(owner);
             console.log(store);
-            PastOrder.insert({ owner, store, month, day, weekday, item, cost });
+            // PastOrder.insert({ owner, store, month, day, weekday, item, cost, deliverer, hasRated });
 
             // console.log(store);
             // console.log(profile);
@@ -125,7 +139,7 @@ class Cart extends React.Component {
 
             PendingOrders.insert({
                   name, firstName, lastName, image, store, owner, venmo, quantity,
-                  personWhoOrdered, location,
+                  personWhoOrdered, location, size, cost,
                 },
                 (error) => {
                   if (error) {
@@ -197,7 +211,6 @@ class Cart extends React.Component {
     };
 
     const blueContainer = {
-      marginTop: '5rem',
       paddingBottom: '1rem',
       backgroundColor: '#D3E3FC',
       borderRadius: '20px',

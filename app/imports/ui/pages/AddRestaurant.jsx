@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid, Segment, Header } from 'semantic-ui-react';
-import { AutoForm, SubmitField, ErrorsField, TextField, MultiTextField } from 'uniforms-semantic';
+import { AutoForm, SubmitField, ErrorsField, TextField } from 'uniforms-semantic';
 import swal from 'sweetalert';
 import 'uniforms-bridge-simple-schema-2'; // required for Uniforms
 import SimpleSchema from 'simpl-schema';
@@ -25,6 +25,7 @@ export default class AddRestaurant extends React.Component {
   submit(data, formRef) {
     const { owner, name, bgimg, image, address, time, label } = data;
     const rating = 5;
+    const approved = false;
 
     Restaurant.insert({
           owner,
@@ -35,6 +36,7 @@ export default class AddRestaurant extends React.Component {
           time,
           rating,
           label,
+          approved,
         },
         (error) => {
           if (error) {
@@ -46,25 +48,34 @@ export default class AddRestaurant extends React.Component {
         });
   }
 
+
+
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   render() {
     let fRef = null;
+
+    const formPad = {
+      paddingTop: '4rem',
+      paddingRight: '6rem',
+      paddingLeft: '6rem',
+    };
+
     return (
         <div className='peach padding'>
           <Grid container centered>
             <Grid.Column>
-              <Header as="h2" textAlign="center">Add Restaurant Form</Header>
+              <Header as="h2" textAlign="center" inverted>Add Restaurant Form</Header>
               <AutoForm ref={ref => {
                 fRef = ref;
               }} schema={formSchema} onSubmit={data => this.submit(data, fRef)}>
-                <Segment>
+                <Segment className='signup-form' style={formPad}>
                     <TextField label='Name of Restaurant' name='name'/>
                     <TextField label='Owner' name='owner' />
                     <TextField label='URL For Background Image' name='bgimg'/>
                     <TextField label='URL For Image' name='image'/>
                     <TextField label='Restaurant Address' name='address'/>
                     <TextField label='Approximate Wait Time' name='time'/>
-                    <MultiTextField label='Restaurant Labels' name='label.$'/>
+                    <TextField label='Restaurant Labels' name='label'/>
                     <SubmitField value='Submit'/>
                     <ErrorsField/>
                 </Segment>

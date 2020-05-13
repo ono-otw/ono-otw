@@ -4,39 +4,25 @@ import { Meteor } from 'meteor/meteor';
 import { Container, Card, Loader, Search, Icon, Header, Message } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 import { Restaurant } from '../../api/restaurant/Restaurant';
 import RestaurantCard from '../components/RestaurantCard';
 
-/* Used to render search results. Atm the required fields for search using native semantic UI:
-* Title, Image, Description, Price
-* Will have figure out how to modify to read from database or change native search names from
-* semantic ui.
-*/
+const initialState = { isLoading: false, results: [], value: '', redirect: false };
 
-const restaurantSearch = [{
-  title: 'Raising Canes', description: '2615 S King St Unit 102',
-  image: 'https://tinyurl.com/y7adk236',
-  time: '15min', price: '4.5', label: ['Chicken'],
-},
-  {
-    title: 'Bale', description: '2465 Campus Rd #220',
-    image: 'https://s3-media0.fl.yelpcdn.com/bphoto/n3jOrjcJOVoz0npBf_FS1Q/o.jpg',
-    time: '10min', price: '4.1', label: ['Sandwich', 'Pho'],
-  },
-  {
-    title: 'Starbucks', description: '2465 Campus Rd #220.',
-    image: 'https://assets.change.org/photos/7/ou/zi/OlOuziNRVcXqzpX-800x450-noPad.jpg?1531499872',
-    time: '8min', price: '4.5', label: ['Coffee', 'Tea'],
-  },
-];
-
-const initialState = { isLoading: false, results: [], value: '' };
 /** Renders the list of restaurants */
 class Restaurants extends React.Component {
 
+  // eslint-disable-next-line max-len
+  searchOptions = () => _.map(this.props.restaurant, function (document) { return { title: document.name, description: document.address, image: document.bgimg, time: document.time, price: document.rating, label: document.label }; });
+
   state = initialState;
 
-  handleResultSelect = (e, { result }) => this.setState({ value: result.title });
+  handleResultSelect = (e, { result }) => {
+    this.setState({
+      value: result.title,
+      redirect: true });
+  };
 
   handleSearchChange = (e, { value }) => {
     this.setState({ isLoading: true, value });
@@ -46,11 +32,11 @@ class Restaurants extends React.Component {
       if (this.state.value.length < 1) return this.setState(initialState);
 
       const re = new RegExp(_.escapeRegExp(this.state.value), 'i');
-      const isMatch = (result) => re.test(result.label);
+      const isMatch = (result) => re.test(result.title);
 
       this.setState({
         isLoading: false,
-        results: _.filter(restaurantSearch, isMatch),
+        results: _.filter(this.searchOptions(), isMatch),
       });
     }, 300);
   };
@@ -62,6 +48,15 @@ class Restaurants extends React.Component {
 
   /** Render the page once subscriptions have been received. */
   renderPage() {
+
+    const { isLoading, value, results } = this.state;
+
+    if (this.state.redirect) {
+      const menu = Restaurant.findOne({ name: value });
+      const from = `/menu/${menu._id}`;
+      return <Redirect to={from}/>;
+    }
+
     const searchBar = {
       paddingBottom: '5rem',
       paddingTop: '2rem',
@@ -72,9 +67,6 @@ class Restaurants extends React.Component {
       paddingRight: '8rem',
       paddingLeft: '8rem',
     };
-
-
-    const { isLoading, value, results } = this.state;
 
     return (
         <Container>
@@ -90,7 +82,7 @@ class Restaurants extends React.Component {
             <Message className='restaurant-message'>
               <Message.Header>To Search....</Message.Header>
               <Message.List>
-                <Message.Item>Search by food category</Message.Item>
+                <Message.Item>Search by Restaurant&apos;s name</Message.Item>
                 {/* eslint-disable-next-line react/no-unescaped-entities */}
                 <Message.Item>Clicking on Restaurant's title will bring you to the menu page. </Message.Item>
               </Message.List>
@@ -109,15 +101,16 @@ class Restaurants extends React.Component {
                     {...this.props}
             />
           </div>
-            <Card.Group itemsPerRow='4' centered className='restaurant_card'>
-                {this.props.restaurant.map((restaurant, index) => <RestaurantCard key={index} restaurant={restaurant}/>)}
+            <Card.Group itemsPerRow='4' centered>
+              {this.props.restaurant.map((restaurant, index) => <
+                      RestaurantCard key={index} restaurant={restaurant}/>)}
             </Card.Group>
         </Container>
     );
   }
 }
 
-/** Require an array of Stuff documents in the props. */
+/** Require an array of Restaurants documents in the props. */
 Restaurants.propTypes = {
   restaurant: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
@@ -132,7 +125,7 @@ export default withTracker(() => {
   const subscription1 = Meteor.subscribe('Favorites');
 
   return {
-    restaurant: Restaurant.find({}).fetch(),
+    restaurant: Restaurant.find({ approved: true }).fetch(),
     ready: subscription.ready() && subscription1.ready(),
   };
 })(Restaurants);

@@ -6,7 +6,7 @@ import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
 import { AcceptedOrders } from '../../api/acceptedorders/AcceptedOrders';
 import { PendingOrders } from '../../api/pendingorders/PendingOrders';
-import { Favorites } from '../../api/favorites/Favorites';
+import { Profile } from '../../api/profile/Profile';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class AcceptOrderCard extends React.Component {
@@ -22,20 +22,21 @@ class AcceptOrderCard extends React.Component {
     const personWhoOrdered = this.props.pendingOrder.personWhoOrdered;
     const location = this.props.pendingOrder.location;
     const name = this.props.pendingOrder.name;
+    const size = this.props.pendingOrder.size;
+    const cost = this.props.pendingOrder.cost;
 
     swal({
       title: 'Are you sure?',
       text: 'Are you sure you want to accept this order?',
       icon: 'warning',
-      buttons: true,
-      dangerMode: true,
+      buttons: ['No', 'Yes'],
     })
         .then((accept) => {
           if (accept) {
             console.log('Accepting order');
             AcceptedOrders.insert({
-              name, firstName, lastName, image, store, owner, venmo, quantity,
-              personWhoOrdered, location,
+              name, firstName, lastName, image, store, owner, venmo, quantity, cost,
+              personWhoOrdered, location, size,
             });
             PendingOrders.remove(docID);
             this.forceUpdate();
@@ -54,6 +55,8 @@ class AcceptOrderCard extends React.Component {
       paddingBottom: '2rem',
     };
 
+    const profile = Profile.findOne({owner: this.props.pendingOrder.owner});
+    
     return (
         <div style={divPad}>
           <Card>
@@ -63,7 +66,7 @@ class AcceptOrderCard extends React.Component {
                   <Image circular src={this.props.pendingOrder.image} />
                   {this.props.pendingOrder.firstName} {this.props.pendingOrder.lastName}
                 </Header>
-                <Rating icon='star' defaultRating={3} maxRating={5} disabled />
+                <Rating icon='star' defaultRating={profile.rating} maxRating={5} disabled />
               </div>
               <br />
               <Card.Description>
@@ -73,7 +76,7 @@ class AcceptOrderCard extends React.Component {
                   </Header>
                   {this.props.pendingOrder.name.map((name, index) => (
                       <Label key={name} circular color={'teal'} style={{ backgroundColor: '#00887A' }}>
-                        {this.props.pendingOrder.quantity[index]} {name}
+                        {this.props.pendingOrder.quantity[index]} {name} - {this.props.pendingOrder.size[index]}
                       </Label>
                   ))}
                 </div>
