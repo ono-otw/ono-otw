@@ -10,7 +10,7 @@ import CartTable from '../components/CartTable';
 import { PendingOrders } from '../../api/pendingorders/PendingOrders';
 import { Profile } from '../../api/profile/Profile';
 import { PastOrder } from '../../api/pastorder/PastOrder';
-
+import Geocode from 'react-geocode' ;
 /**
  * Profiles page overrides the form’s submit event and call Meteor’s loginWithPassword().
  * Authentication errors modify the component’s state to be displayed
@@ -18,6 +18,25 @@ import { PastOrder } from '../../api/pastorder/PastOrder';
 class Cart extends React.Component {
 
   state = { location: '' };
+
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition(position => {
+    // console.log("Latitude is :", position.coords.latitude);
+    // console.log("Longitude is :", position.coords.longitude);
+    Geocode.setApiKey("AIzaSyAcitX2jxGewJTZZMMxLA4VewPJ2_dGApg");
+    Geocode.fromLatLng(position.coords.latitude, position.coords.longitude).then(
+      response => {
+        const address = response.results[0].formatted_address;
+        // console.log(address);
+        this.setState({location: address})
+      }, error => {
+        console.error(error);
+      }
+    )
+    })
+  
+  }
+
 
   handleChange = (e, { location, value }) => this.setState({ location: value })
 
@@ -290,9 +309,10 @@ class Cart extends React.Component {
           </div>
           <Form>
             <div align={'center'} style={buttonPadding}>
+              {console.log(this.state.location)}
               <Form.TextArea required
                              label={'Location'}
-                             placeholder={'Located at Sinclair library, 2nd floor.'}
+                             placeholder={this.state.location}
                              value={location}
                              onChange={this.handleChange}
               >
