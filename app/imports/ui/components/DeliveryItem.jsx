@@ -5,6 +5,7 @@ import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
 import { AcceptedOrders } from '../../api/acceptedorders/AcceptedOrders';
 import { PastDelivery } from '../../api/pastdelivery/PastDelivery';
+import { Profile } from '../../api/profile/Profile';
 
 class DeliveryItem extends React.Component {
   finishOrder(docID) {
@@ -44,6 +45,9 @@ class DeliveryItem extends React.Component {
   }
 
   render() {
+
+    const profile = Profile.findOne({owner: this.props.order.personWhoOrdered});
+
     return (
         <Item>
           <Popup
@@ -53,7 +57,7 @@ class DeliveryItem extends React.Component {
                     src={this.props.order.image}/>
               }
           ><Popup.Header>Rating</Popup.Header>
-            <Popup.Content> <Rating icon='star' defaultRating={4} maxRating={5} disabled/></Popup.Content>
+            <Popup.Content> <Rating icon='star' defaultRating={profile.rating} maxRating={5} disabled/></Popup.Content>
           </Popup>
           <Item.Content>
             <Item.Header>{this.props.order.firstName} {this.props.order.lastName}</Item.Header>
