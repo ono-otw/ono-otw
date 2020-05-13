@@ -34,7 +34,7 @@ class ProfileMeta extends React.Component {
                   <Image size='small' circular src={this.props.profile.image}/>
                   <p>{this.props.profile.firstName} {this.props.profile.lastName} </p>
                   <p>{`Venmo |  ${this.props.profile.venmo}`}</p>
-                  <Rating icon='star' defaultRating={3} maxRating={5} disabled />
+                  <Rating icon='star' defaultRating={this.props.profile.rating} maxRating={5} disabled />
                 </div>
               </div>
             </Grid.Column>

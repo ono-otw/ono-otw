@@ -122,7 +122,7 @@ class Cart extends React.Component {
             console.log(cost);
             console.log(owner);
             console.log(store);
-            PastOrder.insert({ owner, store, month, day, weekday, item, cost, deliverer, hasRated });
+            // PastOrder.insert({ owner, store, month, day, weekday, item, cost, deliverer, hasRated });
 
             // console.log(store);
             // console.log(profile);
