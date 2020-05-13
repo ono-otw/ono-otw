@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Grid, Header, Label, Rating } from 'semantic-ui-react';
+import { Card, Grid, Header, Label, Rating, Image } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import swal from 'sweetalert';
@@ -28,6 +28,10 @@ class RestaurantCard extends React.Component {
     if (typeof (fav) === 'undefined') {
       console.log('Not in favorites');
       Favorites.insert({ owner, vendor });
+      swal({
+        title: 'Added to Favorites!',
+        icon: 'success',
+      });
     } else {
       swal({
         title: 'Are you sure?',
@@ -63,27 +67,28 @@ class RestaurantCard extends React.Component {
               className={'favorite_button'}
               onClick={() => this.favorite()}
               onRate={this.handleRate}
-      />);
+          />);
     }
-      return (
-          <Rating
-              maxRating={1}
-              icon='heart'
-              size='large'
-              rating={1}
-              className={'favorite_button'}
-              onClick={() => this.favorite()}
-              onRate={this.handleRate}
-          />
-      );
+    return (
+        <Rating
+            maxRating={1}
+            icon='heart'
+            size='large'
+            rating={1}
+            className={'favorite_button'}
+            onClick={() => this.favorite()}
+            onRate={this.handleRate}
+        />
+    );
 
   }
 
   render() {
-    const divPad = {
-      paddingRight: '5rem',
-      paddingBottom: '2rem',
-    };
+    // const divPad = {
+    //   paddingRight: '5rem',
+    //   paddingBottom: '2rem',
+    // };
+
     const labelCol = {
       backgroundColor: '#D3E3FC',
       color: 'black',
@@ -97,48 +102,91 @@ class RestaurantCard extends React.Component {
     };
 
     return (
-        <div style={divPad} className='fixedImg'>
-          <Card
-              raised
-              image={this.props.restaurant.image}
-              header= {
-                <Grid>
-                  <Grid.Row>
-                    <Grid.Column textAlign='left' width={13}>
-                        <Header as={Link} to={`/menu/${this.props.restaurant._id}`} inverted>
-                          {this.props.restaurant.name}
-                        </Header>
-                    </Grid.Column>
-                    <Grid.Column textAlign='right'>
-                      <Label circular style={rateCol} >
-                        {this.props.restaurant.rating}
-                      </Label>
-                    </Grid.Column>
-                  </Grid.Row>
-                </Grid>
-              }
-              meta={this.props.restaurant.address}
-              description = {
-                <Grid columns={2}>
-                  <Grid.Row>
-                    <Grid.Column textAlign='left'>
-                      {this.props.restaurant.time} min
-                    </Grid.Column>
-                    <Grid.Column textAlign='right'>
-                      {this.isFavorite()}
-                    </Grid.Column>
-                  </Grid.Row>
-                </Grid>
-              }
-          />
-          <div align='right'>
+        <Card raised>
+          <Image src={this.props.restaurant.image} as={Link} to={`/menu/${this.props.restaurant._id}`}/>
+          <Card.Content>
+            <Card.Description>
+              <Grid>
+                <Grid.Row>
+                  <Grid.Column textAlign='left' width={13}>
+                    <Header as={Link} to={`/menu/${this.props.restaurant._id}`}>
+                      {this.props.restaurant.name}
+                    </Header>
+                  </Grid.Column>
+                  <Grid.Column textAlign='right'>
+                    <Label circular style={rateCol}>
+                     {this.props.restaurant.rating.toFixed(1)}
+                    </Label>
+                  </Grid.Column>
+                </Grid.Row>
+              </Grid>
+            </Card.Description>
+            <Card.Meta>
+              <span>{this.props.restaurant.address}</span>
+            </Card.Meta>
+            <Grid columns={2}>
+              <Grid.Row>
+                <Grid.Column textAlign='left'>
+                  {this.props.restaurant.time} min
+                </Grid.Column>
+                 <Grid.Column textAlign='right'>
+                  {this.isFavorite()}
+                 </Grid.Column>
+              </Grid.Row>
+            </Grid>
+          </Card.Content>
+          <Card.Content extra>
             {this.props.restaurant.label.map((tags) => (
                 <Label circular key={tags} style={labelCol}>
                   {tags}
                 </Label>
             ))}
-          </div>
-        </div>
+          </Card.Content>
+        </Card>
+
+
+        // <div style={divPad} className='fixedImg'>
+        //   <Card
+        //       raised
+        //       image={this.props.restaurant.image}
+        //       header= {
+        //         <Grid>
+        //           <Grid.Row>
+        //             <Grid.Column textAlign='left' width={13}>
+        //                 <Header as={Link} to={`/menu/${this.props.restaurant._id}`} inverted>
+        //                   {this.props.restaurant.name}
+        //                 </Header>
+        //             </Grid.Column>
+        //             <Grid.Column textAlign='right'>
+        //               <Label circular style={rateCol} >
+        //                 {this.props.restaurant.rating}
+        //               </Label>
+        //             </Grid.Column>
+        //           </Grid.Row>
+        //         </Grid>
+        //       }
+        //       meta={this.props.restaurant.address}
+        //       description = {
+        //         <Grid columns={2}>
+        //           <Grid.Row>
+        //             <Grid.Column textAlign='left'>
+        //               {this.props.restaurant.time} min
+        //             </Grid.Column>
+        //             <Grid.Column textAlign='right'>
+        //               {this.isFavorite()}
+        //             </Grid.Column>
+        //           </Grid.Row>
+        //         </Grid>
+        //       }
+        //   />
+        //   <div align='right'>
+        //     {this.props.restaurant.label.map((tags) => (
+        //         <Label circular key={tags} style={labelCol}>
+        //           {tags}
+        //         </Label>
+        //     ))}
+        //   </div>
+        // </div>
     );
   }
 }
