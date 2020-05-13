@@ -30,12 +30,6 @@ import { Ratings } from '../../api/ratings/Ratings';
 
 /** This subscription publishes only the documents associated with the logged in user */
 Meteor.publish('Profile', function publish() {
-  // if (this.userId) {
-  //   //   const username = Meteor.users.findOne(this.userId).username;
-  //   //   return Profile.find({ owner: username });
-  //   // }
-  //   // return this.ready();
-
   return Profile.find({});
 });
 
@@ -107,4 +101,3 @@ Meteor.publish('PastDelivery', function publish() {
 Meteor.publish('Ratings', function publish() {
   return Ratings.find();
 });
-
