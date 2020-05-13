@@ -25,7 +25,7 @@ export default class AddRestaurant extends React.Component {
   submit(data, formRef) {
     const { owner, name, bgimg, image, address, time, label } = data;
     const rating = 5;
-    const approved = 'true';
+    const approved = false;
 
     Restaurant.insert({
           owner,
