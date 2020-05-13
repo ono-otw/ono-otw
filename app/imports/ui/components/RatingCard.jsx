@@ -70,7 +70,7 @@ class RatingCard extends React.Component {
         <Item>
           <Item.Image src = { personToRate.image }/>
           <Item.Content>
-            <Item.Header>{personToRate.firstName} {personToRate.lastName} </Item.Header>
+            <Item.Header>Deliverer: {personToRate.firstName} {personToRate.lastName} </Item.Header>
             <Item.Meta>
               <Rating icon='star' disabled defaultRating={personToRate.rating} maxRating={5} />
               <br/>
