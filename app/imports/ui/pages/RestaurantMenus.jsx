@@ -1,9 +1,19 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Input, Header, Menu, Loader, Card, Message, Modal, Button } from 'semantic-ui-react';
+import _ from 'lodash';
+import {
+  Container,
+  Header,
+  Menu,
+  Loader,
+  Card,
+  Message,
+  Modal,
+  Button,
+  Search,
+} from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import { _ } from 'meteor/underscore';
 import { MenuItems } from '../../api/foodmenu/MenuItems';
 import { Restaurant } from '../../api/restaurant/Restaurant';
 import MenuitemCard from '../components/MenuItems/MenuitemCard';
@@ -12,9 +22,36 @@ import Cart from './Cart';
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class RestaurantMenus extends React.Component {
 
-  state = { activeItem: 'All' };
+  searchOptions = () => _.map(this.props.menuitems, function (document) { return { title: document.name, image: document.image }; });
+
+  state = {
+    activeItem: 'All',
+      initialState: '' };
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+
+  handleResultSelect = (e, { result }) => {
+    this.setState({
+      value: result.title,
+      redirect: true });
+  };
+
+  handleSearchChange = (e, { value }) => {
+    this.setState({ isLoading: true, value });
+
+    // eslint-disable-next-line consistent-return
+    setTimeout(() => {
+      if (this.state.value.length < 1) return this.setState( {initialState} );
+
+      const re = new RegExp(_.escapeRegExp(this.state.value), 'i');
+      const isMatch = (result) => re.test(result.title);
+
+      this.setState({
+        isLoading: false,
+        results: _.filter(this.searchOptions(), isMatch),
+      });
+    }, 300);
+  };
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
@@ -26,7 +63,7 @@ class RestaurantMenus extends React.Component {
     // console.log(restaurantOwner);
     // console.log(this.props.menuitems);
     const menuItems = _.filter(this.props.menuitems, (entry) => entry.owner === restaurantOwner);
-    const categories = _.where(menuItems, { label: tabName });
+    const categories = _.filter(menuItems, { label: tabName });
     if (tabName === 'All') {
       return (
           <Card.Group>
@@ -53,9 +90,9 @@ class RestaurantMenus extends React.Component {
     // console.log(this.props.menuitems);
     const menuItems = _.filter(this.props.menuitems, (entry) => entry.owner === restaurantOwner);
 
-    const categories = _.uniq(_.pluck(menuItems, 'label'));
+    const categories = _.uniq(_.map(menuItems, 'label'));
 
-    const { activeItem } = this.state;
+    const { activeItem, isLoading, value, results } = this.state;
     // console.log(this.state.activeItem);
 
     return (
@@ -69,8 +106,17 @@ class RestaurantMenus extends React.Component {
               <Header inverted style={{ fontFamily: 'Karla, sans-serif', marginTop: '30px', fontSize: '40px' }}>
                 {this.props.restaurant.name}
               </Header>
-              <div className='menu_search_bar'><Input size='large' icon='search'
-                                                      placeholder='Search for a menu item'/></div>
+              <Search className='search_bar'
+                      input={{ icon: 'search', iconPosition: 'left' }}
+                      loading={isLoading}
+                      onResultSelect={this.handleResultSelect}
+                      onSearchChange={_.debounce(this.handleSearchChange, 500, {
+                        leading: 'true',
+                      })}
+                      results={results}
+                      value={value}
+                      {...this.props}
+              />
               <Menu secondary className='menubartext'>
                 <Menu.Item active={activeItem === 'All'} name='All' onClick={this.handleItemClick}>All</Menu.Item>
                 {_.map(categories, (p, index) => <Menu.Item
@@ -129,6 +175,8 @@ export default withTracker(({ match }) => {
   // Get access to Stuff documents.
   const subscription1 = Meteor.subscribe('MenuItems');
   const subscription2 = Meteor.subscribe('Restaurant');
+
+
   // const restaurant = Restaurant.find({ _id: documentId }).fetch();
 
   return {
