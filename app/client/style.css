@@ -82,7 +82,7 @@ hr { display: block; height: 1px;
 }
 
 .favorite_button > i.active.icon:before {
-  color: #FFCCBC !important;
+  color: red !important;
   text-shadow: none;
 }
 
