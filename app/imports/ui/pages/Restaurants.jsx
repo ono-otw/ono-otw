@@ -101,7 +101,7 @@ class Restaurants extends React.Component {
                     {...this.props}
             />
           </div>
-            <Card.Group itemsPerRow='4' centered className='restaurant_card'>
+            <Card.Group itemsPerRow='4' centered>
               {this.props.restaurant.map((restaurant, index) => <
                       RestaurantCard key={index} restaurant={restaurant}/>)}
             </Card.Group>
