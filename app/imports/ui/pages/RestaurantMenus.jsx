@@ -22,7 +22,13 @@ import Cart from './Cart';
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class RestaurantMenus extends React.Component {
 
-  searchOptions = () => _.map(this.props.menuitems, function (document) { return { title: document.name, image: document.image }; });
+  searchOptions() {
+    const restaurantOwner = this.props.restaurant.owner;
+    const menuItems = _.filter(this.props.menuitems, (entry) => entry.owner === restaurantOwner);
+    return (
+        _.map(menuItems, function (document) { return { title: document.name, image: document.image }; })
+    );
+  }
 
   state = {
     activeItem: 'All',
@@ -41,7 +47,7 @@ class RestaurantMenus extends React.Component {
 
     // eslint-disable-next-line consistent-return
     setTimeout(() => {
-      if (this.state.value.length < 1) return this.setState( {initialState} );
+      // if (this.state.value.length < 1) return this.setState({ initialState });
 
       const re = new RegExp(_.escapeRegExp(this.state.value), 'i');
       const isMatch = (result) => re.test(result.title);
@@ -56,6 +62,10 @@ class RestaurantMenus extends React.Component {
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
     return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
+  }
+
+  displayModal() {
+
   }
 
   display(tabName) {
@@ -94,6 +104,7 @@ class RestaurantMenus extends React.Component {
 
     const { activeItem, isLoading, value, results } = this.state;
     // console.log(this.state.activeItem);
+
 
     return (
         <div>
