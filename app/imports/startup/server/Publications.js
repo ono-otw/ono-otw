@@ -1,5 +1,4 @@
 import { Meteor } from 'meteor/meteor';
-import { Roles } from 'meteor/alanning:roles';
 import { Profile } from '../../api/profile/Profile';
 import { Restaurant } from '../../api/restaurant/Restaurant';
 import { MenuItems } from '../../api/foodmenu/MenuItems';
@@ -11,24 +10,6 @@ import { AcceptedOrders } from '../../api/acceptedorders/AcceptedOrders';
 import { PastDelivery } from '../../api/pastdelivery/PastDelivery';
 import { Ratings } from '../../api/ratings/Ratings';
 
-// /** This subscription publishes only the documents associated with the logged in user */
-// Meteor.publish('Stuff', function publish() {
-//   if (this.userId) {
-//     const username = Meteor.users.findOne(this.userId).username;
-//     return Stuffs.find({ owner: username });
-//   }
-//   return this.ready();
-// });
-//
-// /** This subscription publishes all documents regardless of user, but only if the logged in user is the Admin. */
-// Meteor.publish('StuffAdmin', function publish() {
-//   if (this.userId && Roles.userIsInRole(this.userId, 'admin')) {
-//     return Stuffs.find();
-//   }
-//   return this.ready();
-// });
-
-/** This subscription publishes only the documents associated with the logged in user */
 Meteor.publish('Profile', function publish() {
   return Profile.find({});
 });
@@ -41,14 +22,6 @@ Meteor.publish('Restaurant', function publish() {
 Meteor.publish('PendingOrders', function publish() {
   return PendingOrders.find({});
 });
-
-// Meteor.publish('MenuItems', function publish() {
-//   if (this.userId) {
-//     const username = Meteor.users.findOne(this.userId).username;
-//     return MenuItems.find({ owner: username });
-//   }
-//   return this.ready();
-// });
 
 Meteor.publish('MenuItems', function publish() {
   return MenuItems.find();
