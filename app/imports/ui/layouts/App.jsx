@@ -18,7 +18,6 @@ import Admin from '../pages/Admin';
 import AcceptOrder from '../pages/AcceptOrder';
 import Menu from '../pages/RestaurantMenus';
 import ResturantSignup from '../pages/ResturantSignup';
-import ListStuff from '../pages/ListStuff';
 import Deliveries from '../pages/Deliveries';
 import AddRestaurant from '../pages/AddRestaurant';
 import EditRestaurant from '../pages/EditRestaurant';
