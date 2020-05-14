@@ -21,6 +21,8 @@ const AcceptedOrdersSchema = new SimpleSchema({
   'size.$': String,
   personWhoOrdered: String,
   location: String,
+  lat: Number,
+  long: Number,
   cost: Number,
 }, { tracker: Tracker });
 

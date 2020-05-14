@@ -5,6 +5,7 @@ import { PendingOrders } from '../../api/pendingorders/PendingOrders';
 import { PastOrder } from '../../api/pastorder/PastOrder';
 import { PastDelivery } from '../../api/pastdelivery/PastDelivery';
 import { Profile } from '../../api/profile/Profile';
+import { AcceptedOrders } from '../../api/acceptedorders/AcceptedOrders';
 import { withTracker } from 'meteor/react-meteor-data';
 import AcceptOrderCard from '../components/AcceptOrderCard';
 import ListItems from '../components/ListItems'
@@ -28,32 +29,35 @@ const Tracking = (props) => {
     let tempLong =  158.0001;
     Geocode.setApiKey("AIzaSyAcitX2jxGewJTZZMMxLA4VewPJ2_dGApg");
     console.log(user)
-   for (let i = 0; i < PendingOrders.find().count(); i++) {
-       if (props.pendingOrder[i].personWhoOrdered == user) { 
-           console.log(props.pendingOrder[i])
-           userOrder.push(props.pendingOrder[i]) 
+   for (let i = 0; i < AcceptedOrders.find().count(); i++) {
+       if (props.acceptedOrders[i].owner == user) { 
+           console.log(props.acceptedOrders[i])
+           userOrder.push(props.acceptedOrders[i]) 
           
-           if (i == 0) {
-                tempLat = props.pendingOrder[i].lat;
-                tempLong = props.pendingOrder[i].long;
-           }
-           if (i == 0) {
-               if (user !== "john@foo.com" || user !== "admin@foo.com") {
-                    tempLat = props.pendingOrder[i].lat;
-                    tempLong = props.pendingOrder[i].long;
-               }
-           }
-           if (i == 1) {
-                if (user === "john@foo.com" || user === "admin@foo.com") {
-                    tempLat = props.pendingOrder[i].lat;
-                    tempLong = props.pendingOrder[i].long;
-                }
-            }
+        //    if (i == 0) {
+        //         tempLat = props.pendingOrder[i].lat;
+        //         tempLong = props.pendingOrder[i].long;
+        //    }
+        //    if (i == 0) {
+        //        if (user !== "john@foo.com" || user !== "admin@foo.com") {
+        //             tempLat = props.pendingOrder[i].lat;
+        //             tempLong = props.pendingOrder[i].long;
+        //        }
+        //    }
+        //    if (i == 1) {
+        //         if (user === "john@foo.com" || user === "admin@foo.com") {
+        //             tempLat = props.pendingOrder[i].lat;
+        //             tempLong = props.pendingOrder[i].long;
+        //         }
+        //     }
         }
        
    }
     console.log(tempLat, tempLong)
     console.log(userOrder);
+    console.log(props.pendingOrder)
+    console.log(props.acceptedOrders)
+    
     const MapWithAMarker = withGoogleMap(() =>
         <GoogleMap
         defaultZoom={10}
@@ -120,7 +124,7 @@ export default withTracker(() => {
   const sub2 = Meteor.subscribe('PastOrder');
   const sub3 = Meteor.subscribe('PastDelivery');
   const subscription3 = Meteor.subscribe('PendingOrders');
-
+  const sub4 = Meteor.subscribe('AcceptedOrders');
 
   return {
     pendingOrder: PendingOrders.find({}).fetch(),
@@ -128,7 +132,7 @@ export default withTracker(() => {
     pastorder: PastOrder.find({ hasRated: true }).fetch(),
     pastdelivery: PastDelivery.find({}).fetch(),
     ready: sub.ready() && sub1.ready() && sub2.ready() && sub3.ready(),
-
+    acceptedOrders: AcceptedOrders.find({}).fetch()
   };
   })(Tracking);
   
