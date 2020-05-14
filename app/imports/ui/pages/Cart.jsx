@@ -2,14 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Container, Grid, Header, Form, Message } from 'semantic-ui-react';
+import { Container, Grid, Header, Form, Message, Popup } from 'semantic-ui-react';
 import swal from 'sweetalert';
 import { Link } from 'react-router-dom';
 import { Carts } from '../../api/cart/Carts';
 import CartTable from '../components/CartTable';
 import { PendingOrders } from '../../api/pendingorders/PendingOrders';
 import { Profile } from '../../api/profile/Profile';
-import { PastOrder } from '../../api/pastorder/PastOrder';
 import Geocode from 'react-geocode' ;
 /**
  * Profiles page overrides the form’s submit event and call Meteor’s loginWithPassword().
@@ -43,71 +42,72 @@ class Cart extends React.Component {
 
   confirm(location, lat, long) {
 
+    if (location.length > 0) {
 
-    swal({
-      title: 'Are you sure?',
-      text: 'Submitting your order is final.',
-      icon: 'warning',
-      buttons: true,
-    })
-        .then((yes) => {
-          if (yes) {
-            const combinedCount = Carts.find({ combined: false }).count();
-            console.log(combinedCount);
+      swal({
+        title: 'Are you sure?',
+        text: 'Submitting your order is final.',
+        icon: 'warning',
+        buttons: true,
+      })
+          .then((yes) => {
+            if (yes) {
+              const combinedCount = Carts.find({ combined: false }).count();
+              console.log(combinedCount);
 
-            // if we have not combined the order yet
-            if (combinedCount !== 0) {
-              let cart = Carts.find({});
-              console.log(cart);
-              const orderArray = [];
-              const orderCost = [];
-              const orderQuant = [];
-              const orderSize = [];
+              // if we have not combined the order yet
+              if (combinedCount !== 0) {
+                let cart = Carts.find({});
+                console.log(cart);
+                const orderArray = [];
+                const orderCost = [];
+                const orderQuant = [];
+                const orderSize = [];
 
-              // loop through each cursor, adding the order into an orderArray
-              cart.forEach(function (order) {
-                // console.log(order.name);
-                //  console.log(order.price);
-                orderArray.push(order.name[0]);
-                orderQuant.push(order.quantity[0]);
-                orderCost.push(order.price);
-                orderSize.push(order.size[0]);
-              });
+                // loop through each cursor, adding the order into an orderArray
+                cart.forEach(function (order) {
+                  // console.log(order.name);
+                  //  console.log(order.price);
+                  orderArray.push(order.name[0]);
+                  orderQuant.push(order.quantity[0]);
+                  orderCost.push(order.price);
+                  orderSize.push(order.size[0]);
+                });
 
-              console.log(orderArray);
-              console.log(orderCost);
-              console.log(orderSize);
-              console.log(orderQuant);
+                console.log(orderArray);
+                console.log(orderCost);
+                console.log(orderSize);
+                console.log(orderQuant);
 
-              const totalOrder = _.map(orderCost, function (order, index) {
-                return order * orderQuant[index];
-              });
+                const totalOrder = _.map(orderCost, function (order, index) {
+                  return order * orderQuant[index];
+                });
 
-              console.log(totalOrder);
+                console.log(totalOrder);
 
-              const initialPrice = _.reduce(totalOrder, (total, current) => (current + total), 0);
-              const tax = (initialPrice * 0.045).toFixed(2);
-              const deliveryPrice = (2.50).toFixed(2);
-              const sum = (+initialPrice + +tax + +deliveryPrice).toFixed(2);
+                const initialPrice = _.reduce(totalOrder, (total, current) => (current + total), 0);
+                const tax = (initialPrice * 0.045).toFixed(2);
+                const deliveryPrice = (2.50).toFixed(2);
+                const sum = (+initialPrice + +tax + +deliveryPrice).toFixed(2);
 
-              console.log(sum);
-              console.log(orderArray);
-              cart = Carts.findOne({});
-              // console.log(cart);
+                console.log(sum);
+                console.log(orderArray);
+                cart = Carts.findOne({});
+                // console.log(cart);
 
-              Carts.update(
-                  { _id: cart._id },
-                  {
-                    $set: {
-                      name: orderArray,
-                      price: sum,
-                      combined: true,
-                      quantity: orderQuant,
-                      size: orderSize,
+                Carts.update(
+                    { _id: cart._id },
+                    {
+                      $set: {
+                        name: orderArray,
+                        price: sum,
+                        combined: true,
+                        quantity: orderQuant,
+                        size: orderSize,
+                      },
                     },
-                  },
-              );
-            }
+                );
+              }
 
             const order = Carts.findOne({ combined: true });
             console.log(order);
@@ -176,16 +176,24 @@ class Cart extends React.Component {
                 total--;
               }
 
-            Carts.remove(Carts.findOne({ combined: true })._id);
+              Carts.remove(Carts.findOne({ combined: true })._id);
 
-            this.forceUpdate();
-            swal('This order has been confirmed!', {
-              icon: 'success',
-            });
-          } else {
-            swal('Order was not submitted.');
+              this.forceUpdate();
+              swal('This order has been confirmed!', {
+                icon: 'success',
+              });
+            } else {
+              swal('Order was not submitted.');
+            }
+          });
+    } else {
+      swal({
+            title: 'Location Field is empty.',
+            text: 'Please enter your location.',
+            icon: 'warning',
           }
-        });
+      )
+    }
   }
 
   cancel() {
@@ -261,6 +269,12 @@ class Cart extends React.Component {
       marginRight: '15rem',
     };
 
+    const style = {
+      borderRadius: 0,
+      opacity: 0.9,
+      padding: '2em',
+    };
+
     if (totalCol === 0) {
       return (
           <Container style={blueContainer}>
@@ -311,13 +325,20 @@ class Cart extends React.Component {
           <Form>
             <div align={'center'} style={buttonPadding}>
               {console.log(this.state.location)}
-              <Form.TextArea required
-                             label={'Location'}
-                             placeholder={location}
-                             value={location}
-                             onChange={this.handleChange}
-              >
-              </Form.TextArea>
+              <Popup
+                  trigger={
+                    <Form.TextArea
+                                   label={'Location'}
+                                   placeholder={location}
+                                   value={location}
+                                   onChange={this.handleChange}
+                    >
+                    </Form.TextArea>
+                  }
+                  content='You can edit your location below!'
+                  style={style}
+                  inverted
+              />
               <Form.Group inline>
                 <Form.Button className='cancel_button' onClick={() => this.cancel()}>
                   Cancel

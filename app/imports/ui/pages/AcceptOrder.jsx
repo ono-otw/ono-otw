@@ -56,10 +56,10 @@ class AcceptOrder extends React.Component {
       return (
           <Container style={blueContainer}>
             <div style={innerContainer} align='center'>
-              <Header as='h1' style={empty}>No pending orders.</Header>
+              <Header as='h1' style={empty}>No pending orders</Header>
               <Message style={messageMargin}>
                 <div align='center'>
-                  <Link to="/restaurants">Order here!</Link>
+                  Please check back later!
                 </div>
               </Message>
             </div>
