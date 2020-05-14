@@ -5,6 +5,7 @@ import { Meteor } from 'meteor/meteor';
 import swal from 'sweetalert';
 import { Link } from 'react-router-dom';
 import { Favorites } from '../../api/favorites/Favorites';
+import { Carts } from '../../api/cart/Carts';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class RestaurantCard extends React.Component {
@@ -17,41 +18,52 @@ class RestaurantCard extends React.Component {
 
   favorite() {
 
-    const owner = Meteor.user().username;
-    const vendor = this.props.restaurant.name;
 
     // console.log(this.props.restaurant._id);
     // console.log(vendor)
     // console.log(owner)
 
     const fav = Favorites.findOne({ vendor: this.props.restaurant.name });
-    if (typeof (fav) === 'undefined') {
-      console.log('Not in favorites');
-      Favorites.insert({ owner, vendor });
-      swal({
-        title: 'Added to Favorites!',
-        icon: 'success',
-      });
+    if (Meteor.user()) {
+      const owner = Meteor.user().username;
+      const vendor = this.props.restaurant.name;
+      if (typeof (fav) === 'undefined') {
+        console.log('Not in favorites');
+        Favorites.insert({ owner, vendor });
+        swal({
+          title: 'Added to Favorites!',
+          icon: 'success',
+        });
+      } else {
+        swal({
+          title: 'Are you sure?',
+          text: 'Are you sure you want to remove this favorite?',
+          icon: 'warning',
+          buttons: true,
+          dangerMode: true,
+        })
+            .then((willDelete) => {
+              if (willDelete) {
+                Favorites.remove(Favorites.findOne({ vendor: this.props.restaurant.name })._id);
+                this.forceUpdate();
+                swal('Favorite removed.', {
+                  icon: 'success',
+                });
+              } else {
+                swal('Did not remove favorite.');
+              }
+            });
+        console.log('Already in favorites');
+      }
     } else {
+      // console.log('User is not logged in.');
       swal({
-        title: 'Are you sure?',
-        text: 'Are you sure you want to remove this favorite?',
+        title: 'You are not logged in!',
+        text: 'Please login to add to favorites.',
         icon: 'warning',
-        buttons: true,
+        buttons: false,
         dangerMode: true,
-      })
-          .then((willDelete) => {
-            if (willDelete) {
-              Favorites.remove(Favorites.findOne({ vendor: this.props.restaurant.name })._id);
-              this.forceUpdate();
-              swal('Favorite removed.', {
-                icon: 'success',
-              });
-            } else {
-              swal('Did not remove favorite.');
-            }
-          });
-      console.log('Already in favorites');
+      });
     }
   }
 
