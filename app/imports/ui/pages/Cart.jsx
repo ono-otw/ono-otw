@@ -2,15 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Container, Grid, Header, Form, Message } from 'semantic-ui-react';
+import { Container, Grid, Header, Form, Message, Popup } from 'semantic-ui-react';
 import swal from 'sweetalert';
 import { Link } from 'react-router-dom';
 import { Carts } from '../../api/cart/Carts';
 import CartTable from '../components/CartTable';
 import { PendingOrders } from '../../api/pendingorders/PendingOrders';
 import { Profile } from '../../api/profile/Profile';
-import { PastOrder } from '../../api/pastorder/PastOrder';
-
+import Geocode from 'react-geocode' ;
 /**
  * Profiles page overrides the form’s submit event and call Meteor’s loginWithPassword().
  * Authentication errors modify the component’s state to be displayed
@@ -19,133 +18,155 @@ class Cart extends React.Component {
 
   state = { location: '' };
 
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition(position => {
+    // console.log("Latitude is :", position.coords.latitude);
+    // console.log("Longitude is :", position.coords.longitude);
+    Geocode.setApiKey("AIzaSyAcitX2jxGewJTZZMMxLA4VewPJ2_dGApg");
+    Geocode.fromLatLng(position.coords.latitude, position.coords.longitude).then(
+      response => {
+        const address = response.results[0].formatted_address;
+        // console.log(address);
+        this.setState({location: address})
+      }, error => {
+        console.error(error);
+      }
+    )
+    })
+  
+  }
+
+
   handleChange = (e, { location, value }) => this.setState({ location: value })
 
   confirm(location) {
 
+    if (location.length > 0) {
 
-    swal({
-      title: 'Are you sure?',
-      text: 'Submitting your order is final.',
-      icon: 'warning',
-      buttons: true,
-    })
-        .then((yes) => {
-          if (yes) {
-            const combinedCount = Carts.find({ combined: false }).count();
-            console.log(combinedCount);
+      swal({
+        title: 'Are you sure?',
+        text: 'Submitting your order is final.',
+        icon: 'warning',
+        buttons: true,
+      })
+          .then((yes) => {
+            if (yes) {
+              const combinedCount = Carts.find({ combined: false }).count();
+              console.log(combinedCount);
 
-            // if we have not combined the order yet
-            if (combinedCount !== 0) {
-              let cart = Carts.find({});
-              console.log(cart);
-              const orderArray = [];
-              const orderCost = [];
-              const orderQuant = [];
-              const orderSize = [];
+              // if we have not combined the order yet
+              if (combinedCount !== 0) {
+                let cart = Carts.find({});
+                console.log(cart);
+                const orderArray = [];
+                const orderCost = [];
+                const orderQuant = [];
+                const orderSize = [];
 
-              // loop through each cursor, adding the order into an orderArray
-              cart.forEach(function (order) {
-                // console.log(order.name);
-                //  console.log(order.price);
-                orderArray.push(order.name[0]);
-                orderQuant.push(order.quantity[0]);
-                orderCost.push(order.price);
-                orderSize.push(order.size[0]);
-              });
-
-              console.log(orderArray);
-              console.log(orderCost);
-              console.log(orderSize);
-              console.log(orderQuant);
-
-              const totalOrder = _.map(orderCost, function (order, index) {
-                return order * orderQuant[index];
-              });
-
-              console.log(totalOrder);
-
-              const initialPrice = _.reduce(totalOrder, (total, current) => (current + total), 0);
-              const tax = (initialPrice * 0.045).toFixed(2);
-              const deliveryPrice = (2.50).toFixed(2);
-              const sum = (+initialPrice + +tax + +deliveryPrice).toFixed(2);
-
-              console.log(sum);
-              console.log(orderArray);
-              cart = Carts.findOne({});
-              // console.log(cart);
-
-              Carts.update(
-                  { _id: cart._id },
-                  {
-                    $set: {
-                      name: orderArray,
-                      price: sum,
-                      combined: true,
-                      quantity: orderQuant,
-                      size: orderSize,
-                    },
-                  },
-              );
-            }
-
-            const order = Carts.findOne({ combined: true });
-            console.log(order);
-            const store = order.vendor;
-            const profile = Profile.findOne({ owner: order.owner });
-            const quantity = order.quantity;
-            const owner = profile.owner;
-            const image = profile.image;
-            const firstName = profile.firstName;
-            const venmo = profile.venmo;
-            const lastName = profile.lastName;
-            const personWhoOrdered = order.owner;
-            const name = order.name;
-            const cost = order.price;
-            const size = order.size;
-
-            const item = _.reduce(order.quantity, (total, current) => (current + total), 0);
-            const orderTime = new Date();
-            const monthOption = { month: 'long' };
-            const month = new Intl.DateTimeFormat('en-US', monthOption).format(orderTime);
-            const day = orderTime.getDate();
-            const weekdayOption = { weekday: 'long' };
-            const weekday = new Intl.DateTimeFormat('en-US', weekdayOption).format(orderTime);
-
-            console.log(day);
-            console.log(month);
-            console.log(weekday);
-            console.log(item);
-            console.log(cost);
-            console.log(owner);
-            console.log(store);
-            PastOrder.insert({ owner, store, month, day, weekday, item, cost });
-
-            // console.log(store);
-            // console.log(profile);
-            // console.log(quantity);
-            // console.log(owner);
-            // console.log(image);
-            // console.log(firstName);
-            // console.log(lastName);
-            // console.log(personWhoOrdered);
-            // console.log(location);
-            // console.log(name);
-            // console.log(venmo);
-            // console.log(location)
-
-            PendingOrders.insert({
-                  name, firstName, lastName, image, store, owner, venmo, quantity,
-                  personWhoOrdered, location, size, cost,
-                },
-                (error) => {
-                  if (error) {
-                    swal('Error', error.message, 'error');
-                  } else {
-                    swal('Success', 'Order has been confirmed!', 'success');
-                    this.forceUpdate();
-                  }
+                // loop through each cursor, adding the order into an orderArray
+                cart.forEach(function (order) {
+                  // console.log(order.name);
+                  //  console.log(order.price);
+                  orderArray.push(order.name[0]);
+                  orderQuant.push(order.quantity[0]);
+                  orderCost.push(order.price);
+                  orderSize.push(order.size[0]);
                 });
+
+                console.log(orderArray);
+                console.log(orderCost);
+                console.log(orderSize);
+                console.log(orderQuant);
+
+                const totalOrder = _.map(orderCost, function (order, index) {
+                  return order * orderQuant[index];
+                });
+
+                console.log(totalOrder);
+
+                const initialPrice = _.reduce(totalOrder, (total, current) => (current + total), 0);
+                const tax = (initialPrice * 0.045).toFixed(2);
+                const deliveryPrice = (2.50).toFixed(2);
+                const sum = (+initialPrice + +tax + +deliveryPrice).toFixed(2);
+
+                console.log(sum);
+                console.log(orderArray);
+                cart = Carts.findOne({});
+                // console.log(cart);
+
+                Carts.update(
+                    { _id: cart._id },
+                    {
+                      $set: {
+                        name: orderArray,
+                        price: sum,
+                        combined: true,
+                        quantity: orderQuant,
+                        size: orderSize,
+                      },
+                    },
+                );
+              }
+
+              const order = Carts.findOne({ combined: true });
+              console.log(order);
+              const store = order.vendor;
+              const profile = Profile.findOne({ owner: order.owner });
+              const quantity = order.quantity;
+              const owner = profile.owner;
+              const image = profile.image;
+              const firstName = profile.firstName;
+              const venmo = profile.venmo;
+              const lastName = profile.lastName;
+              const personWhoOrdered = order.owner;
+              const name = order.name;
+              const cost = order.price;
+              const size = order.size;
+
+              const item = _.reduce(order.quantity, (total, current) => (current + total), 0);
+              const orderTime = new Date();
+              const monthOption = { month: 'long' };
+              const month = new Intl.DateTimeFormat('en-US', monthOption).format(orderTime);
+              const day = orderTime.getDate();
+              const weekdayOption = { weekday: 'long' };
+              const weekday = new Intl.DateTimeFormat('en-US', weekdayOption).format(orderTime);
+              const deliverer = Meteor.user().username;
+
+              console.log(deliverer);
+              console.log(day);
+              console.log(month);
+              console.log(weekday);
+              console.log(item);
+              console.log(cost);
+              console.log(owner);
+              console.log(store);
+              // PastOrder.insert({ owner, store, month, day, weekday, item, cost, deliverer, hasRated });
+
+              // console.log(store);
+              // console.log(profile);
+              // console.log(quantity);
+              // console.log(owner);
+              // console.log(image);
+              // console.log(firstName);
+              // console.log(lastName);
+              // console.log(personWhoOrdered);
+              // console.log(location);
+              // console.log(name);
+              // console.log(venmo);
+              // console.log(location)
+
+              PendingOrders.insert({
+                    name, firstName, lastName, image, store, owner, venmo, quantity,
+                    personWhoOrdered, location, size, cost,
+                  },
+                  (error) => {
+                    if (error) {
+                      swal('Error', error.message, 'error');
+                    } else {
+                      swal('Success', 'Order has been confirmed!', 'success');
+                      this.forceUpdate();
+                    }
+                  });
 
               let total = Carts.find({ combined: false }).count();
               while (total !== 0) {
@@ -153,16 +174,24 @@ class Cart extends React.Component {
                 total--;
               }
 
-            Carts.remove(Carts.findOne({ combined: true })._id);
+              Carts.remove(Carts.findOne({ combined: true })._id);
 
-            this.forceUpdate();
-            swal('This order has been confirmed!', {
-              icon: 'success',
-            });
-          } else {
-            swal('Order was not submitted.');
+              this.forceUpdate();
+              swal('This order has been confirmed!', {
+                icon: 'success',
+              });
+            } else {
+              swal('Order was not submitted.');
+            }
+          });
+    } else {
+      swal({
+            title: 'Location Field is empty.',
+            text: 'Please enter your location.',
+            icon: 'warning',
           }
-        });
+      )
+    }
   }
 
   cancel() {
@@ -238,6 +267,12 @@ class Cart extends React.Component {
       marginRight: '15rem',
     };
 
+    const style = {
+      borderRadius: 0,
+      opacity: 0.9,
+      padding: '2em',
+    };
+
     if (totalCol === 0) {
       return (
           <Container style={blueContainer}>
@@ -287,13 +322,21 @@ class Cart extends React.Component {
           </div>
           <Form>
             <div align={'center'} style={buttonPadding}>
-              <Form.TextArea required
-                             label={'Location'}
-                             placeholder={'Located at Sinclair library, 2nd floor.'}
-                             value={location}
-                             onChange={this.handleChange}
-              >
-              </Form.TextArea>
+              {console.log(this.state.location)}
+              <Popup
+                  trigger={
+                    <Form.TextArea
+                                   label={'Location'}
+                                   placeholder={this.state.location}
+                                   value={location}
+                                   onChange={this.handleChange}
+                    >
+                    </Form.TextArea>
+                  }
+                  content='You can edit your location below!'
+                  style={style}
+                  inverted
+              />
               <Form.Group inline>
                 <Form.Button className='cancel_button' onClick={() => this.cancel()}>
                   Cancel

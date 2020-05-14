@@ -5,6 +5,9 @@ import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
 import { AcceptedOrders } from '../../api/acceptedorders/AcceptedOrders';
 import { PastDelivery } from '../../api/pastdelivery/PastDelivery';
+import { Profile } from '../../api/profile/Profile';
+import { PastOrder } from '../../api/pastorder/PastOrder';
+
 
 class DeliveryItem extends React.Component {
   finishOrder(docID) {
@@ -18,8 +21,12 @@ class DeliveryItem extends React.Component {
     const weekday = new Intl.DateTimeFormat('en-US', weekdayOption).format(orderTime);
     const item = _.reduce(this.props.order.quantity, (total, current) => (current + total), 0);
     const cost = this.props.order.cost;
+    const hasRated = false;
+    const deliverer = this.props.order.personWhoOrdered;
 
-    console.log(cost);
+    console.log(owner)
+
+    // console.log(cost);
     swal({
       title: 'Wait!',
       text: 'Are you sure you delivered the order?',
@@ -32,6 +39,10 @@ class DeliveryItem extends React.Component {
             PastDelivery.insert({
               owner, store, month, day, weekday, item, cost,
             });
+
+            PastOrder.insert({ owner: deliverer, store, month, day, weekday,
+              item, cost, deliverer: owner, hasRated });
+
             AcceptedOrders.remove(docID);
             this.forceUpdate();
             swal('Thank you!', {
@@ -44,6 +55,9 @@ class DeliveryItem extends React.Component {
   }
 
   render() {
+
+    const profile = Profile.findOne({ owner: this.props.order.personWhoOrdered });
+
     return (
         <Item>
           <Popup
@@ -53,7 +67,7 @@ class DeliveryItem extends React.Component {
                     src={this.props.order.image}/>
               }
           ><Popup.Header>Rating</Popup.Header>
-            <Popup.Content> <Rating icon='star' defaultRating={4} maxRating={5} disabled/></Popup.Content>
+            <Popup.Content> <Rating icon='star' defaultRating={profile.rating} maxRating={5} disabled/></Popup.Content>
           </Popup>
           <Item.Content>
             <Item.Header>{this.props.order.firstName} {this.props.order.lastName}</Item.Header>
@@ -69,7 +83,7 @@ class DeliveryItem extends React.Component {
               ))}
             </List>
             <Item.Description>
-              <b>Total: </b>${this.props.order.cost}
+              <b>Total: </b>${this.props.order.cost.toFixed(2)}
             </Item.Description>
             <Label pointing='right' basic size='small' color='green'>Click here when done with order!</Label>
             <Button onClick={() => this.finishOrder(this.props.order._id)} color='green' icon='check'/>

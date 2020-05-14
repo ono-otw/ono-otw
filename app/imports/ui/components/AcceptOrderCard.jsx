@@ -6,6 +6,7 @@ import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
 import { AcceptedOrders } from '../../api/acceptedorders/AcceptedOrders';
 import { PendingOrders } from '../../api/pendingorders/PendingOrders';
+import { Profile } from '../../api/profile/Profile';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class AcceptOrderCard extends React.Component {
@@ -54,6 +55,8 @@ class AcceptOrderCard extends React.Component {
       paddingBottom: '2rem',
     };
 
+    const profile = Profile.findOne({owner: this.props.pendingOrder.owner});
+    
     return (
         <div style={divPad}>
           <Card>
@@ -63,7 +66,7 @@ class AcceptOrderCard extends React.Component {
                   <Image circular src={this.props.pendingOrder.image} />
                   {this.props.pendingOrder.firstName} {this.props.pendingOrder.lastName}
                 </Header>
-                <Rating icon='star' defaultRating={3} maxRating={5} disabled />
+                <Rating icon='star' defaultRating={profile.rating} maxRating={5} disabled />
               </div>
               <br />
               <Card.Description>

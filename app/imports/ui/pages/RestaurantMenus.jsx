@@ -142,7 +142,6 @@ class RestaurantMenus extends React.Component {
 
               <Message className='restaurant-message'>
                 <Message.Header>Click on the tabs to start looking!</Message.Header>
-                Note: You can only order from the same restaurant! (Eg. Cannot mix Starbucks with Bale)
               </Message>
 
                {this.display(activeItem)}

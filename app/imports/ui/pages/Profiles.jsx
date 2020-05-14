@@ -77,7 +77,9 @@ class Profiles extends React.Component {
       paddingBottom: '5rem',
     };
 
-    // Otherwise return the Login form.
+    const user = Meteor.user().username;
+    const userProfile = Profile.find({ owner: user });
+
     return (
         <Container style={blueContainer}>
 
@@ -89,7 +91,7 @@ class Profiles extends React.Component {
                      onClick={this.toggleVisibility}/>
               <br/>
             </div>
-            {this.props.profile.map((profile, index) => <ProfileMeta key={index} profile={profile}/>)}
+            {userProfile.map((profile, index) => <ProfileMeta key={index} profile={profile}/>)}
             <Transition animation='horizontal flip' duration={500} visible={visibleConsumer}>
               <div style={order}>
                 <div style={pastOrder}>
@@ -151,10 +153,11 @@ export default withTracker(() => {
   const sub2 = Meteor.subscribe('PastOrder');
   const sub3 = Meteor.subscribe('PastDelivery');
 
+
   return {
     profile: Profile.find({}).fetch(),
     favorites: Favorites.find({}).fetch(),
-    pastorder: PastOrder.find({}).fetch(),
+    pastorder: PastOrder.find({ hasRated: true }).fetch(),
     pastdelivery: PastDelivery.find({}).fetch(),
     ready: sub.ready() && sub1.ready() && sub2.ready() && sub3.ready(),
 

@@ -9,9 +9,10 @@ const Profile = new Mongo.Collection('Profile');
 const ProfileSchema = new SimpleSchema({
   firstName: String,
   lastName: String,
-  image: { type: String, defaultValue: 'https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png'},
+  image: { type: String, defaultValue: 'https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png' },
   venmo: String,
   owner: String,
+  rating: { type: Number, defaultValue: 5 },
 }, { tracker: Tracker });
 
 /** Attach this schema to the collection. */
