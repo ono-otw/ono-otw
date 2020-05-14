@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Image, Header } from 'semantic-ui-react';
+import { Grid } from 'semantic-ui-react';
 import '../../styles/Landing/DetailsSection';
 import Detail from './Detail';
 
@@ -14,12 +14,12 @@ const state = {
         {
             header: 'Fast Delivery',
             image: 'images/temp2.png',
-            description: "Delivery's made by your fellow UH Students",
+            description: 'Deliveries made by your fellow UH Students!',
         },
         {
             header: 'Support Local Business',
             image: 'images/temp3.png',
-            description: 'Looking for a Place to Eat? Or support Local Business?',
+            description: 'Contact us at admin@ootw.com to be partnered!',
         },
    ],
 };
