@@ -80,12 +80,12 @@ class NavBar extends React.Component {
                 </Menu.Item>,
 
                 // eslint-disable-next-line react/jsx-key
-                <Menu.Item style={displayC}>
-                  <Transition animation='fade up' duration={500} visible={visibleConsumer}>
-                    <Menu.Item position='right' as={NavLink} style={navColor}
-                               activeClassName="active" exact to="/cart" key='cart'>
-                      <Icon name='cart'/>
-                      Cart
+                <Menu.Item style={displayD}>
+                  <Transition animation='fade up' duration={500} visible={visibleDeliverer}>
+                    <Menu.Item as={NavLink} style={navColor} activeClassName="active" exact
+                               to="/tracking" key='tracking'>
+                      <Icon name='location arrow'/>
+                      Tracking
                     </Menu.Item>
                   </Transition>
                 </Menu.Item>,
@@ -93,10 +93,10 @@ class NavBar extends React.Component {
                 // eslint-disable-next-line react/jsx-key
                 <Menu.Item style={displayC}>
                   <Transition animation='fade up' duration={500} visible={visibleConsumer}>
-                    <Menu.Item as={NavLink} style={navColor} activeClassName="active" exact
-                               to="/tracking" key='tracking'>
-                      <Icon name='location arrow'/>
-                      Tracking
+                    <Menu.Item position='right' as={NavLink} style={navColor}
+                               activeClassName="active" exact to="/cart" key='cart'>
+                      <Icon name='cart'/>
+                      Cart
                     </Menu.Item>
                   </Transition>
                 </Menu.Item>,

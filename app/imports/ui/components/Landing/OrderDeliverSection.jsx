@@ -18,7 +18,7 @@ const OrderDeliverSection = () => (
                         content=" Browse through a collection of local restaurants
                         and place an order with the click of a button!"
                     />
-                    <Header textAligh={'center'} className='description'>
+                    <Header textAlign={'center'} className='description'>
                       <div align={'center'} style={{ paddingRight: '2.5rem' }}>
                         <a href={'/#/restaurants'}>
                           <Button>Order here!</Button>
