@@ -250,6 +250,14 @@
     "cost": [6.42, 7.24, 8.06],
     "label": "Juice",
     "size": ["Small", "Medium", "Large"]
+  },{
+    "owner": "jambajuice@foo.com",
+    "vendor": "Jamba Juice",
+    "name": "Electric Berry Lemonade",
+    "image": "https://cdn.jamba.com/-/media/jamba/menu/2020/c2/berrylemonade_smoothie_306x235.png?v=1&d=20200413T070159Z",
+    "cost": [6.42, 7.24, 8.06],
+    "label": "Juice",
+    "size": ["Small", "Medium", "Large"]
   },
   {
     "owner": "jambajuice@foo.com",
@@ -277,6 +285,15 @@
     "cost": [6.42, 7.24, 8.06],
     "label": "Tea",
     "size": ["Small", "Medium", "Large"]
+  },
+  {
+    "owner": "jambajuice@foo.com",
+    "vendor": "Jamba Juice",
+    "name": "Acai Primo",
+    "image": "https://cdn.jamba.com/-/media/jamba/menu/bowls-acaiprimo_hero.png?v=1&d=20200220T112644Z",
+    "cost": [6.42, 7.24, 8.06],
+    "label": "Bowls",
+    "size": ["One size"]
   },
   {
     "owner": "pandaexpress@foo.com",
