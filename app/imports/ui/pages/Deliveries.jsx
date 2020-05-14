@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Header, Loader, Segment, Item } from 'semantic-ui-react';
+import { Container, Header, Loader, Segment, Item, Message } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { _ } from 'meteor/underscore';
@@ -21,16 +21,43 @@ class Deliveries extends React.Component {
 
     const accepted = AcceptedOrders.find({}).count();
 
+    const blueContainer = {
+      marginTop: '5rem',
+      paddingBottom: '1rem',
+      backgroundColor: '#D3E3FC',
+      borderRadius: '20px',
+      paddingTop: '1rem',
+    };
+
+    const innerContainer = {
+      margin: '1rem',
+      paddingBottom: '1.5rem',
+      backgroundColor: 'white',
+      borderRadius: '20px',
+    };
+
+    const messageMargin = {
+      marginLeft: '15rem',
+      marginRight: '15rem',
+    };
+
+    const empty = {
+      padding: '1.5rem',
+    };
+
+
     if (accepted === 0) {
       return (
-          <Container>
-            <Segment className='signin-form'>
-              <Segment textAlign={'center'}>
-                <Header textAlign='center' as='h1'>Accepted Orders</Header>
-                  <p>Currently you have no accepted orders.</p>
-                  <Link to="/accept">Accept an order here!</Link>
-              </Segment>
-            </Segment>
+            <Container style={blueContainer}>
+              <div style={innerContainer} align='center'>
+                <Header as='h1' style={empty}>No orders</Header>
+                <Message style={messageMargin}>
+                  <div align='center'>
+                    <p>Currently you have no accepted orders.</p>
+                    <Link to="/accept">Accept an order here!</Link>
+                  </div>
+                </Message>
+              </div>
           </Container>
       );
     }
