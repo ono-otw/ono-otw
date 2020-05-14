@@ -1,17 +1,18 @@
 import React from 'react';
-import { Grid, Image } from 'semantic-ui-react';
 import Jumbotron from '../components/Landing/Jumbotron';
 import OrderDeliverSection from '../components/Landing/OrderDeliverSection';
 import DetailsSection from '../components/Landing/DetailsSection';
-import MobileSection from '../components/Landing/MobileSection';
+import LandingRestaurant from '../pages/LandingRestaurant';
 
 const Landing = () => {
   return (
     <div>
       <Jumbotron />
       <OrderDeliverSection />
+      <div style={ {paddingTop: '2rem'} }>
+        <LandingRestaurant/>
+      </div>
       <DetailsSection />
-      <MobileSection />
     </div>
   );
 }
