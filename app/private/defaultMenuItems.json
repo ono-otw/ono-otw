@@ -387,6 +387,150 @@
     "size": ["Small", "Medium", "Large"]
   },
   {
+    "owner": "dunkindonuts@foo.com",
+    "vendor": "Dunkin' Donuts",
+    "name": "Hot Coffee",
+    "image": "https://www.dunkindonuts.com/content/dam/dd/img/rebranding/products/pdp/120x200_HotCoffee.png",
+    "cost": [4.24, 5.04, 5.57],
+    "label": "Coffee",
+    "size": ["Small", "Medium", "Large"]
+  },
+  {
+    "owner": "dunkindonuts@foo.com",
+    "vendor": "Dunkin' Donuts",
+    "name": "Cold Brew",
+    "image": "https://www.dunkindonuts.com/content/dam/dd/img/rebranding/products/pdp/120x200_ColdBrew.png",
+    "cost": [4.24, 5.04, 5.57],
+    "label": "Coffee",
+    "size": ["Small", "Medium", "Large"]
+  },
+  {
+    "owner": "dunkindonuts@foo.com",
+    "vendor": "Dunkin' Donuts",
+    "name": "Americano",
+    "image": "https://www.dunkindonuts.com/content/dam/dd/img/rebranding/products/hotdrinks/Americano@2x.png",
+    "cost": [4.24, 5.04, 5.57],
+    "label": "Coffee",
+    "size": ["Small", "Medium", "Large"]
+  },
+  {
+    "owner": "dunkindonuts@foo.com",
+    "vendor": "Dunkin' Donuts",
+    "name": "Latte",
+    "image": "https://www.dunkindonuts.com/content/dam/dd/img/rebranding/products/hotdrinks/Latte@2x.png",
+    "cost": [4.24, 5.04, 5.57],
+    "label": "Coffee",
+    "size": ["Small", "Medium", "Large"]
+  },
+  {
+    "owner": "dunkindonuts@foo.com",
+    "vendor": "Dunkin' Donuts",
+    "name": "Macchiato",
+    "image": "https://www.dunkindonuts.com/content/dam/dd/img/rebranding/products/hotdrinks/Macchiato@2x.png",
+    "cost": [4.24, 5.04, 5.57],
+    "label": "Coffee",
+    "size": ["Small", "Medium", "Large"]
+  },
+  {
+    "owner": "dunkindonuts@foo.com",
+    "vendor": "Dunkin' Donuts",
+    "name": "Espresso",
+    "image": "https://www.dunkindonuts.com/content/dam/dd/img/rebranding/products/hotdrinks/Espresso@2x.png",
+    "cost": [4.24, 5.04, 5.57],
+    "label": "Coffee",
+    "size": ["Small", "Medium", "Large"]
+  },
+  {
+    "owner": "dunkindonuts@foo.com",
+    "vendor": "Dunkin' Donuts",
+    "name": "Capuccino",
+    "image": "https://www.dunkindonuts.com/content/dam/dd/img/rebranding/products/pdp/120x200_Cappuccino.png",
+    "cost": [4.24, 5.04, 5.57],
+    "label": "Coffee",
+    "size": ["Small", "Medium", "Large"]
+  },
+  {
+    "owner": "dunkindonuts@foo.com",
+    "vendor": "Dunkin' Donuts",
+    "name": "Vanilla Chai",
+    "image": "https://www.dunkindonuts.com/content/dam/dd/img/rebranding/products/hotdrinks/Vanilla%20Chai%20600x460.png",
+    "cost": [4.24, 5.04, 5.57],
+    "label": "Tea",
+    "size": ["Small", "Medium", "Large"]
+  },
+  {
+    "owner": "dunkindonuts@foo.com",
+    "vendor": "Dunkin' Donuts",
+    "name": "Iced Tea",
+    "image": "https://www.dunkindonuts.com/content/dam/dd/img/rebranding/products/iceddrinksdesktop/Iced%20tea@2x.png",
+    "cost": [4.24, 5.04, 5.57],
+    "label": "Tea",
+    "size": ["Small", "Medium", "Large"]
+  },
+  {
+    "owner": "dunkindonuts@foo.com",
+    "vendor": "Dunkin' Donuts",
+    "name": "Muffins",
+    "image": "https://www.dunkindonuts.com/content/dam/dd/img/rebranding/products/bakeryandsnacks/Muffins@2x.png",
+    "cost": [2.25, 7.97],
+    "label": "Bakery and Snacks",
+    "size": ["1 pc", "4 pc"]
+  },
+  {
+    "owner": "dunkindonuts@foo.com",
+    "vendor": "Dunkin' Donuts",
+    "name": "Bagel with Cream Cheese",
+    "image": "https://www.dunkindonuts.com/content/dam/dd/img/rebranding/products/bakeryandsnacks/BagelCreamCheese_1260x460.png",
+    "cost": [2.78],
+    "label": "Bakery and Snacks",
+    "size": ["1 pc"]
+  },
+  {
+    "owner": "dunkindonuts@foo.com",
+    "vendor": "Dunkin' Donuts",
+    "name": "Donuts",
+    "image": "https://www.dunkindonuts.com/content/dam/dd/img/rebranding/products/pdp/280x200_Donuts.png",
+    "cost": [1.32, 7.70, 13.29],
+    "label": "Bakery and Snacks",
+    "size": ["1 pc", "Half Dozen", "Dozen"]
+  },
+  {
+    "owner": "dunkindonuts@foo.com",
+    "vendor": "Dunkin' Donuts",
+    "name": "Beyond Sausage",
+    "image": "https://www.dunkindonuts.com/content/dam/dd/img/rebranding/products/sandwichesandwraps/Beyond%20Sausage_600x460.png",
+    "cost": [2.78],
+    "label": "Sandwiches and Wraps",
+    "size": ["1 pc"]
+  },
+  {
+    "owner": "dunkindonuts@foo.com",
+    "vendor": "Dunkin' Donuts",
+    "name": "Turkey Sausage",
+    "image": "https://www.dunkindonuts.com/content/dam/dd/img/rebranding/products/sandwichesandwraps/Turkey%20Sausage@2x.png",
+    "cost": [2.78],
+    "label": "Sandwiches and Wraps",
+    "size": ["1 pc"]
+  },
+  {
+    "owner": "dunkindonuts@foo.com",
+    "vendor": "Dunkin' Donuts",
+    "name": "Egg & Cheese",
+    "image": "https://www.dunkindonuts.com/content/dam/dd/img/rebranding/products/sandwichesandwraps/Egg%20Cheese@2x.png",
+    "cost": [3.44],
+    "label": "Sandwiches and Wraps",
+    "size": ["1 pc"]
+  },
+  {
+    "owner": "dunkindonuts@foo.com",
+    "vendor": "Dunkin' Donuts",
+    "name": "Veggie Egg White",
+    "image": "https://www.dunkindonuts.com/content/dam/dd/img/rebranding/products/sandwichesandwraps/Egg%20White%20600x460.png",
+    "cost": [3.44],
+    "label": "Sandwiches and Wraps",
+    "size": ["1 pc"]
+  },
+  {
     "owner": "subway@foo.com",
     "vendor": "Subway",
     "name": "Black Forest Ham",
