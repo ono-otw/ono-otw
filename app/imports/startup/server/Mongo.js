@@ -1,5 +1,4 @@
 import { Meteor } from 'meteor/meteor';
-import { Stuffs } from '../../api/stuff/Stuff.js';
 import { Carts } from '../../api/cart/Carts.js';
 import { Profile } from '../../api/profile/Profile';
 import { Restaurant } from '../../api/restaurant/Restaurant';
@@ -20,20 +19,6 @@ const defaultMenuItems = JSON.parse(Assets.getText('defaultMenuItems.json'));
 const defaultPastOrders = JSON.parse(Assets.getText('defaultPastOrders.json'));
 const defaultPastDelivery = JSON.parse(Assets.getText('defaultPastDelivery.json'));
 
-
-// /** Initialize the database with a default data document. */
-// function addData(data) {
-//   console.log(`  Adding: ${data.name} (${data.owner})`);
-//   Stuffs.insert(data);
-// }
-//
-// /** Initialize the collection if empty. */
-// if (Stuffs.find().count() === 0) {
-//   if (Meteor.settings.defaultData) {
-//     console.log('Creating default data.');
-//     Meteor.settings.defaultData.map(data => addData(data));
-//   }
-// }
 
 /** Initialize the database with a default data document. */
 function addCart(data) {
