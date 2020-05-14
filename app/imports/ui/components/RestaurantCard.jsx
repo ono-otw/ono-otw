@@ -5,7 +5,6 @@ import { Meteor } from 'meteor/meteor';
 import swal from 'sweetalert';
 import { Link } from 'react-router-dom';
 import { Favorites } from '../../api/favorites/Favorites';
-import { Carts } from '../../api/cart/Carts';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class RestaurantCard extends React.Component {
@@ -17,12 +16,9 @@ class RestaurantCard extends React.Component {
   );
 
   favorite() {
-
-
     // console.log(this.props.restaurant._id);
     // console.log(vendor)
     // console.log(owner)
-
     const fav = Favorites.findOne({ vendor: this.props.restaurant.name });
     if (Meteor.user()) {
       const owner = Meteor.user().username;
@@ -155,7 +151,6 @@ class RestaurantCard extends React.Component {
             ))}
           </Card.Content>
         </Card>
-
 
         // <div style={divPad} className='fixedImg'>
         //   <Card
