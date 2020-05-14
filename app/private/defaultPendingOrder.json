@@ -9,9 +9,11 @@
     "owner": "admin@foo.com",
     "quantity": [1, 1],
     "personWhoOrdered": "john@foo.com",
-    "location": "POST 314. I'm the one wearing the green hat.",
+    "location": "1000 Pope Rd, Honolulu, HI 96822",
     "size": ["Small", "Large"],
-    "cost": 15.43
+    "cost": 15.43,
+    "lat": 21.2984,
+    "long": 157.8205
   },
   {
     "name": ["Chicken"],
@@ -23,8 +25,10 @@
     "owner": "john@foo.com",
     "quantity": [2],
     "personWhoOrdered": "admin@foo.com",
-    "location": "Sinclair Library.",
+    "location": "Sinclair Building (former library, 2425 Campus Rd, Honolulu, HI 96822",
     "size": ["Large"],
-    "cost": 15.50
+    "cost": 15.50,
+    "lat": 21.2974,
+    "long": 157.8165
   }
 ]

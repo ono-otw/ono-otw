@@ -20,6 +20,8 @@ const PendingOrdersSchema = new SimpleSchema({
   personWhoOrdered: String,
   location: String,
   size: Array,
+  lat: Number,
+  long: Number,
   'size.$': String,
   cost: Number,
 }, { tracker: Tracker });

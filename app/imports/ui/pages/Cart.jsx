@@ -17,8 +17,7 @@ import Geocode from 'react-geocode' ;
  */
 class Cart extends React.Component {
 
-  state = { location: '' };
-
+  state = { location: '', lat: 0, long: 0 };
   componentDidMount() {
     navigator.geolocation.getCurrentPosition(position => {
     // console.log("Latitude is :", position.coords.latitude);
@@ -29,6 +28,9 @@ class Cart extends React.Component {
         const address = response.results[0].formatted_address;
         // console.log(address);
         this.setState({location: address})
+        this.setState({lat: position.coords.latitude})
+        this.setState({ long: this.state.long + position.coords.longitude});
+        
       }, error => {
         console.error(error);
       }
@@ -36,11 +38,10 @@ class Cart extends React.Component {
     })
   
   }
-
-
+  
   handleChange = (e, { location, value }) => this.setState({ location: value })
 
-  confirm(location) {
+  confirm(location, lat, long) {
 
 
     swal({
@@ -132,7 +133,7 @@ class Cart extends React.Component {
             const weekday = new Intl.DateTimeFormat('en-US', weekdayOption).format(orderTime);
             const deliverer = Meteor.user().username;
             const hasRated = false;
-
+           
             console.log(deliverer);
             console.log(day);
             console.log(month);
@@ -142,7 +143,7 @@ class Cart extends React.Component {
             console.log(owner);
             console.log(store);
             // PastOrder.insert({ owner, store, month, day, weekday, item, cost, deliverer, hasRated });
-
+            console.log(lat, long)
             // console.log(store);
             // console.log(profile);
             // console.log(quantity);
@@ -158,7 +159,7 @@ class Cart extends React.Component {
 
             PendingOrders.insert({
                   name, firstName, lastName, image, store, owner, venmo, quantity,
-                  personWhoOrdered, location, size, cost,
+                  personWhoOrdered, location, size, cost, lat, long
                 },
                 (error) => {
                   if (error) {
@@ -216,7 +217,7 @@ class Cart extends React.Component {
   /** Render the Cart form. */
   render() {
 
-    const { location } = this.state;
+    const { location, lat, long } = this.state;
 
     const padding = {
       paddingTop: '1.5rem',
@@ -312,7 +313,7 @@ class Cart extends React.Component {
               {console.log(this.state.location)}
               <Form.TextArea required
                              label={'Location'}
-                             placeholder={this.state.location}
+                             placeholder={location}
                              value={location}
                              onChange={this.handleChange}
               >
@@ -321,7 +322,7 @@ class Cart extends React.Component {
                 <Form.Button className='cancel_button' onClick={() => this.cancel()}>
                   Cancel
                 </Form.Button>
-                <Form.Button inverted className='submit_button' onClick={() => this.confirm(location)}>
+                <Form.Button inverted className='submit_button' onClick={() => this.confirm(location, lat, long)}>
                   Confirm
                 </Form.Button>
               </Form.Group>

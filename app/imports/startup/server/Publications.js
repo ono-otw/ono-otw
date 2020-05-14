@@ -101,3 +101,4 @@ Meteor.publish('PastDelivery', function publish() {
 Meteor.publish('Ratings', function publish() {
   return Ratings.find();
 });
+
