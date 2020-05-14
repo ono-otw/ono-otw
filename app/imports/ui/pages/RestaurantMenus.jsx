@@ -32,7 +32,7 @@ class RestaurantMenus extends React.Component {
 
   state = {
     activeItem: 'All',
-      initialState: '' };
+    initialState: '', value: '' };
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
 
@@ -72,12 +72,17 @@ class RestaurantMenus extends React.Component {
     const restaurantOwner = this.props.restaurant.owner;
     // console.log(restaurantOwner);
     // console.log(this.props.menuitems);
-    const menuItems = _.filter(this.props.menuitems, (entry) => entry.owner === restaurantOwner);
+    const restaurantItems = _.filter(this.props.menuitems, (entry) => entry.owner === restaurantOwner);
+    const menuItems = _.filter(this.props.menuitems,
+        (entry) => entry.name.toLowerCase().includes(this.state.value.toLowerCase())
+            && entry.owner === restaurantOwner);
     const categories = _.filter(menuItems, { label: tabName });
     if (tabName === 'All') {
       return (
           <Card.Group>
-            {menuItems.map((p, index) => <MenuitemCard key={index} menuitem={p}/>)}
+            { this.state.value.length > 0 ?
+                menuItems.map((p, index) => <MenuitemCard key={index} menuitem={p}/>) :
+                restaurantItems.map((p, index) => <MenuitemCard key={index} menuitem={p}/>)}
           </Card.Group>
       );
     }
@@ -141,11 +146,9 @@ class RestaurantMenus extends React.Component {
               <hr style={{ borderTop: '2px solid #184470' }}/>
 
               <Message className='restaurant-message'>
-                <Message.Header>Click on the tabs to start looking!</Message.Header>
+                <Message.Header>Click on the tabs or use the search bar to start looking!</Message.Header>
               </Message>
-
                {this.display(activeItem)}
-
               <div style={{ padding: '20px' }}>
               </div>
             </div>
@@ -164,7 +167,6 @@ class RestaurantMenus extends React.Component {
                 <Cart/>
               </Modal>
             </div>
-
           </Container>
         </div>
 
