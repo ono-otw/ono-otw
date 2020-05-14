@@ -56,7 +56,7 @@ class DeliveryItem extends React.Component {
 
   render() {
 
-    const profile = Profile.findOne({owner: this.props.order.personWhoOrdered});
+    const profile = Profile.findOne({ owner: this.props.order.personWhoOrdered });
 
     return (
         <Item>

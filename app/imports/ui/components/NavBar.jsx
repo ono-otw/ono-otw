@@ -101,6 +101,16 @@ class NavBar extends React.Component {
                   </Transition>
                 </Menu.Item>,
 
+                <Menu.Item style={displayC}>
+                  <Transition animation='fade up' duration={500} visible={visibleConsumer}>
+                    <Menu.Item as={NavLink} style={navColor} activeClassName="active" exact
+                               to="/rate" key='rating'>
+                      <Icon name='star'/>
+                      Rate
+                    </Menu.Item>
+                  </Transition>
+                </Menu.Item>,
+
                 // eslint-disable-next-line react/jsx-key
                 <Menu.Item position='right'>
                   <Radio toggle
