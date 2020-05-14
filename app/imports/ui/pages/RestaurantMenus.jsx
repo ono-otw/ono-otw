@@ -64,10 +64,6 @@ class RestaurantMenus extends React.Component {
     return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
   }
 
-  displayModal() {
-
-  }
-
   display(tabName) {
     const restaurantOwner = this.props.restaurant.owner;
     // console.log(restaurantOwner);
@@ -114,7 +110,7 @@ class RestaurantMenus extends React.Component {
     return (
         <div>
           <div className='menuimage'>
-            <img style={{ height: '200px' }} src={this.props.restaurant.bgimg}/>
+            <img style={{ height: '200px' }} alt='Background Image' src={this.props.restaurant.bgimg}/>
           </div>
 
           <Container>
